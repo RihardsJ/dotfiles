@@ -1,0 +1,20 @@
+# custom theme copy thefile into C:\Program Files\Git\usr\share\mintty
+
+ForegroundColour=248,248,248
+BackgroundColour=0,41,47
+Black=0,0,0
+BoldBlack=104,104,104
+Red=255,89,94
+BoldRed=255,110,103
+Green=80,250,123
+BoldGreen=90,247,142
+Yellow=244,249,157
+BoldYellow=255,205,58
+Blue=25,130,196
+BoldBlue=25,130,196
+Magenta=255,121,198
+BoldMagenta=255,146,208
+Cyan=139,233,253
+BoldCyan=154,237,254
+White=191,191,191
+BoldWhite=230,230,230
