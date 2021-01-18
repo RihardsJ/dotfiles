@@ -16,4 +16,4 @@ Dotfiles contains bash scripts which allows to personalize git bash for windows.
 
 ## Issues
 
-  Plealse add an issue to the repository if you spot an imperfections. I will try my best to fix them
+  Plealse add an issue to the repository if you spot an imperfection. I will do my best to fix it. Thanks you!
