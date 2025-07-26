@@ -57,7 +57,7 @@ parse_yaml_section() {
         
         # If we're in the section and line starts with "  -", extract package name
         if [[ "$in_section" == true && "$line" =~ ^-[[:space:]]+ ]]; then
-            package=$(echo "$line" | sed 's/^-[[:space:]]*//' | sed 's/^["'\'']//' | sed 's/["'\'']$//')
+            package=$(echo "$line" | sed 's/^-[[:space:]]*//' | sed "s/^['\"]//;s/['\"]$//")
             packages+=("$package")
         fi
     done < "$file"
@@ -109,7 +109,7 @@ parse_nested_yaml_section() {
         
         # Extract packages (4 spaces + dash)
         if [[ "$in_child" == true && "$line" =~ ^[[:space:]]{4}-[[:space:]] ]]; then
-            package="${line#    - }"
+            package="${line#        - }"
             package="${package#\'}"
             package="${package%\'}"
             package="${package#\"}"
@@ -119,6 +119,71 @@ parse_nested_yaml_section() {
     done < "$file"
     
     printf '%s\n' "${packages[@]}"
+}
+
+# Function to parse install scripts from development section
+parse_install_scripts() {
+    local file=$1
+    local in_development=false
+    local in_install_scripts=false
+    local current_name=""
+    local current_url=""
+    local current_args=""
+    local scripts=()
+    
+    if [ ! -f "$file" ]; then
+        return 1
+    fi
+    
+    while IFS= read -r line || [ -n "$line" ]; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+        
+        # Check for development section
+        if [[ "$line" =~ ^[[:space:]]*development:[[:space:]]*$ ]]; then
+            in_development=true
+            in_install_scripts=false
+            continue
+        fi
+        
+        # Exit development section if we hit another top-level section
+        if [[ "$line" =~ ^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*:[[:space:]]*$ ]] && [[ "$in_development" == true ]]; then
+            if [[ ! "$line" =~ ^[[:space:]]*install_scripts:[[:space:]]*$ ]]; then
+                break
+            fi
+        fi
+        
+        # Check for install_scripts section within development
+        if [[ "$in_development" == true && "$line" =~ ^[[:space:]]*install_scripts:[[:space:]]*$ ]]; then
+            in_install_scripts=true
+            continue
+        fi
+        
+        # Parse script entries
+        if [[ "$in_install_scripts" == true ]]; then
+            # New script entry
+            if [[ "$line" =~ ^[[:space:]]*-[[:space:]]*name:[[:space:]]*['\"]?([^'\"]+)['\"]?[[:space:]]*$ ]]; then
+                # Save previous script if complete
+                if [[ -n "$current_name" && -n "$current_url" ]]; then
+                    scripts+=("$current_name|$current_url|$current_args")
+                fi
+                current_name="${BASH_REMATCH[1]}"
+                current_url=""
+                current_args=""
+            elif [[ "$line" =~ ^[[:space:]]*url:[[:space:]]*['\"]?([^'\"]+)['\"]?[[:space:]]*$ ]]; then
+                current_url="${BASH_REMATCH[1]}"
+            elif [[ "$line" =~ ^[[:space:]]*args:[[:space:]]*['\"]?([^'\"]*)['\"]?[[:space:]]*$ ]]; then
+                current_args="${BASH_REMATCH[1]}"
+            fi
+        fi
+    done < "$file"
+    
+    # Save last script if complete
+    if [[ -n "$current_name" && -n "$current_url" ]]; then
+        scripts+=("$current_name|$current_url|$current_args")
+    fi
+    
+    printf '%s\n' "${scripts[@]}"
 }
 
 # Update system first
@@ -133,9 +198,9 @@ if [ ! -f "$PACKAGES_FILE" ]; then
     exit 1
 fi
 
-# Install APT packages
+# Install APT packages from ubuntu section
 echo "📦 Installing APT packages..."
-APT_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "apt"))
+APT_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "ubuntu" "apt"))
 if [ ${#APT_PACKAGES[@]} -gt 0 ]; then
     for package in "${APT_PACKAGES[@]}"; do
         [[ -n "$package" ]] && install_apt_package "$package" || true
@@ -146,7 +211,24 @@ fi
 
 # Install Snap packages (regular)
 echo "📦 Installing regular Snap packages..."
-SNAP_REGULAR_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "snap" "regular"))
+SNAP_REGULAR_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "regular" ""))
+# Try alternative path for nested structure
+if [ ${#SNAP_REGULAR_PACKAGES[@]} -eq 0 ]; then
+    # Parse ubuntu.snap.regular
+    SNAP_REGULAR_PACKAGES=($(awk '
+    /^[[:space:]]*ubuntu:/ { in_ubuntu = 1; next }
+    /^[[:space:]]*[a-zA-Z_]/ && in_ubuntu && !/^[[:space:]]*snap:/ { in_ubuntu = 0 }
+    in_ubuntu && /^[[:space:]]*snap:/ { in_snap = 1; next }
+    in_ubuntu && in_snap && /^[[:space:]]*regular:/ { in_regular = 1; next }
+    in_ubuntu && in_snap && /^[[:space:]]*[a-zA-Z_]/ && in_regular && !/^[[:space:]]*regular:/ { in_regular = 0 }
+    in_regular && /^[[:space:]]*-/ { 
+        gsub(/^[[:space:]]*-[[:space:]]*/, ""); 
+        gsub(/^["\047]|["\047]$/, ""); 
+        if (length($0) > 0) print $0 
+    }
+    ' "$PACKAGES_FILE"))
+fi
+
 if [ ${#SNAP_REGULAR_PACKAGES[@]} -gt 0 ]; then
     for package in "${SNAP_REGULAR_PACKAGES[@]}"; do
         if [[ -n "$package" ]]; then
@@ -164,7 +246,19 @@ fi
 
 # Install Snap packages (classic)
 echo "📦 Installing classic Snap packages..."
-SNAP_CLASSIC_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "snap" "classic"))
+SNAP_CLASSIC_PACKAGES=($(awk '
+/^[[:space:]]*ubuntu:/ { in_ubuntu = 1; next }
+/^[[:space:]]*[a-zA-Z_]/ && in_ubuntu && !/^[[:space:]]*snap:/ { in_ubuntu = 0 }
+in_ubuntu && /^[[:space:]]*snap:/ { in_snap = 1; next }
+in_ubuntu && in_snap && /^[[:space:]]*classic:/ { in_classic = 1; next }
+in_ubuntu && in_snap && /^[[:space:]]*[a-zA-Z_]/ && in_classic && !/^[[:space:]]*classic:/ { in_classic = 0 }
+in_classic && /^[[:space:]]*-/ { 
+    gsub(/^[[:space:]]*-[[:space:]]*/, ""); 
+    gsub(/^["\047]|["\047]$/, ""); 
+    if (length($0) > 0) print $0 
+}
+' "$PACKAGES_FILE"))
+
 if [ ${#SNAP_CLASSIC_PACKAGES[@]} -gt 0 ]; then
     for package in "${SNAP_CLASSIC_PACKAGES[@]}"; do
         if [[ -n "$package" ]]; then
@@ -180,60 +274,9 @@ else
     echo "ℹ️ No classic Snap packages specified, skipping..."
 fi
 
-# Install Cargo packages
-echo "📦 Installing Cargo packages..."
-CARGO_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "cargo"))
-if [ ${#CARGO_PACKAGES[@]} -gt 0 ]; then
-    # Check if cargo is available, install if needed
-    if ! command_exists cargo; then
-        echo "🦀 Installing Rust and Cargo..."
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        source "$HOME/.cargo/env"
-    fi
-    
-    for package in "${CARGO_PACKAGES[@]}"; do
-        if [[ -n "$package" ]]; then
-            echo "Installing $package via cargo..."
-            if cargo install "$package" 2>/dev/null; then
-                echo "✅ $package installed via cargo"
-            else
-                echo "⚠️ Failed to install $package via cargo"
-            fi
-        fi
-    done
-else
-    echo "ℹ️ No Cargo packages specified, skipping..."
-fi
-
-# Install NPM packages
-echo "📦 Installing NPM packages..."
-NPM_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "npm"))
-if [ ${#NPM_PACKAGES[@]} -gt 0 ]; then
-    for package in "${NPM_PACKAGES[@]}"; do
-        if [[ -n "$package" ]]; then
-            echo "Installing $package via npm..."
-            if command_exists npm && npm install -g "$package" 2>/dev/null; then
-                echo "✅ $package installed via npm"
-            else
-                echo "⚠️ Failed to install $package via npm"
-            fi
-        fi
-    done
-else
-    echo "ℹ️ No NPM packages specified, skipping..."
-fi
-
-# Skip GitHub releases entirely
-GITHUB_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "github_releases"))
-if [ ${#GITHUB_PACKAGES[@]} -gt 0 ]; then
-    echo "ℹ️ GitHub releases packages found but skipping as requested..."
-else
-    echo "ℹ️ No GitHub releases packages specified, skipping..."
-fi
-
 # Install Flatpak packages
 echo "📦 Installing Flatpak packages..."
-FLATPAK_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "flatpak"))
+FLATPAK_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "ubuntu" "flatpak"))
 if [ ${#FLATPAK_PACKAGES[@]} -gt 0 ]; then
     # Ensure flatpak is installed
     if ! command_exists flatpak; then
@@ -255,6 +298,36 @@ else
     echo "ℹ️ No Flatpak packages specified, skipping..."
 fi
 
+# Install development tools via install scripts
+echo "📦 Installing development tools via install scripts..."
+INSTALL_SCRIPTS=($(parse_install_scripts "$PACKAGES_FILE"))
+if [ ${#INSTALL_SCRIPTS[@]} -gt 0 ]; then
+    for script_info in "${INSTALL_SCRIPTS[@]}"; do
+        IFS='|' read -r name url args <<< "$script_info"
+        if [[ -n "$name" && -n "$url" ]]; then
+            if ! command_exists "$name"; then
+                echo "Installing $name..."
+                if [[ "$args" == *"|"* ]]; then
+                    # Handle piped commands
+                    eval "curl -fsSL '$url' $args"
+                else
+                    # Handle regular arguments
+                    curl -fsSL "$url" | sh $args
+                fi
+                if [ $? -eq 0 ]; then
+                    echo "✅ $name installed successfully"
+                else
+                    echo "⚠️ Failed to install $name"
+                fi
+            else
+                echo "ℹ️ $name is already installed, skipping..."
+            fi
+        fi
+    done
+else
+    echo "ℹ️ No install scripts specified, skipping..."
+fi
+
 # Post-installation fixes
 echo "🔧 Applying post-installation fixes..."
 
@@ -262,6 +335,12 @@ echo "🔧 Applying post-installation fixes..."
 if command_exists fdfind && [ ! -f /usr/local/bin/fd ]; then
     sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
     echo "✅ Created fd symlink for fdfind"
+fi
+
+# Source cargo environment if rust was installed
+if [ -f "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+    echo "✅ Sourced Rust/Cargo environment"
 fi
 
 echo "✅ Development tools installation complete!"
