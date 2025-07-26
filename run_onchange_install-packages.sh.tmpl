@@ -1,83 +1,190 @@
 #!/bin/bash
+{{- $os_id := .chezmoi.osRelease.id }}
+{{- if or (eq $os_id "pop") (eq $os_id "ubuntu") }}
 
-# This script runs when packages.yaml changes
+# This comment includes the hash of packages to track changes
 # Packages hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
 
 set -e
 
-echo "🚀 Installing packages declaratively..."
-
-{{- $os_id := .chezmoi.osRelease.id }}
-
-{{- if or (eq $os_id "pop") (eq $os_id "ubuntu") }}
-# Pop!_OS and Ubuntu
-echo "📦 Installing APT packages..."
-sudo apt update
-
-{{ range .packages.ubuntu.apt -}}
-if ! dpkg -l | grep -q "^ii  {{ . }} "; then
-    echo "Installing {{ . }}..."
-    sudo apt install -y {{ . | quote }}
-fi
-{{ end -}}
-
-echo "📦 Installing Snap packages..."
-{{ range .packages.ubuntu.snap -}}
-if ! snap list | grep -q "{{ . | regexReplaceAll " --.*" "" }}"; then
-    echo "Installing {{ . }}..."
-    sudo snap install {{ . }}
-fi
-{{ end -}}
-
-echo "📦 Installing Flatpak packages..."
-# Add flathub repo if not exists
-if ! flatpak remotes | grep -q flathub; then
-    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-fi
-
-{{ range .packages.ubuntu.flatpak -}}
-if ! flatpak list | grep -q "{{ . }}"; then
-    echo "Installing {{ . }}..."
-    flatpak install -y flathub {{ . | quote }}
-fi
-{{ end -}}
-
-{{- end }}
-
-# Install development tools (cross-platform)
 echo "🛠️ Installing development tools..."
 
-# Create local bin directory
-mkdir -p ~/.local/bin
+# Function to check if command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
 
-# Install from GitHub releases
-{{ range .packages.development.github_releases -}}
-if ! command -v {{ .binary }} &> /dev/null; then
-    echo "Installing {{ .binary }}..."
-    {{- if eq .binary "lazygit" }}
-    wget -q "https://github.com/{{ .repo }}/releases/download/{{ .version }}/{{ .binary }}_{{ .version }}_Linux_x86_64.tar.gz" -O "/tmp/{{ .binary }}.tar.gz"
-    tar -xzf "/tmp/{{ .binary }}.tar.gz" -C /tmp
-    mv "/tmp/{{ .binary }}" ~/.local/bin/
-    {{- else if eq .binary "delta" }}
-    wget -q "https://github.com/{{ .repo }}/releases/download/{{ .version }}/delta-{{ .version }}-x86_64-unknown-linux-gnu.tar.gz" -O "/tmp/delta.tar.gz"
-    tar -xzf "/tmp/delta.tar.gz" -C /tmp
-    mv /tmp/delta-*/delta ~/.local/bin/
-    {{- end }}
-    rm -rf /tmp/{{ .binary }}* /tmp/delta*
+# Function to install via apt with error handling
+install_apt_package() {
+    local package=$1
+    echo "Installing $package..."
+    if sudo apt install -y "$package" 2>/dev/null; then
+        echo "✅ $package installed successfully"
+    else
+        echo "⚠️ Failed to install $package via apt (package may not exist)"
+        return 1
+    fi
+}
+
+# Function to parse YAML section using pure bash
+parse_yaml_section() {
+    local file=$1
+    local section=$2
+    local in_section=false
+    local packages=()
+    
+    if [ ! -f "$file" ]; then
+        return 1
+    fi
+    
+    while IFS= read -r line; do
+        # Remove leading/trailing whitespace
+        line=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^# ]] && continue
+        
+        # Check if we're entering the desired section
+        if [[ "$line" == "$section:" ]]; then
+            in_section=true
+            continue
+        fi
+        
+        # Check if we're entering a different section (exit current section)
+        if [[ "$line" =~ ^[a-zA-Z_][a-zA-Z0-9_]*: ]] && [[ "$in_section" == true ]]; then
+            break
+        fi
+        
+        # If we're in the section and line starts with "  -", extract package name
+        if [[ "$in_section" == true && "$line" =~ ^-[[:space:]]+ ]]; then
+            package=$(echo "$line" | sed 's/^-[[:space:]]*//' | sed 's/^["'\'']//' | sed 's/["'\'']$//')
+            packages+=("$package")
+        fi
+    done < "$file"
+    
+    # Return packages as space-separated string
+    printf '%s\n' "${packages[@]}"
+}
+
+# Update system first
+echo "📦 Updating system packages..."
+sudo apt update
+
+# Read package lists from chezmoi data
+PACKAGES_FILE="{{ .chezmoi.sourceDir }}/.chezmoidata/packages.yaml"
+
+if [ ! -f "$PACKAGES_FILE" ]; then
+    echo "❌ Packages file not found: $PACKAGES_FILE"
+    exit 1
 fi
-{{ end -}}
 
-# Install via install scripts
-{{ range .packages.development.install_scripts -}}
-if ! command -v {{ .name }} &> /dev/null; then
-    echo "Installing {{ .name }}..."
-    curl -fsSL {{ .url | quote }} | sh {{ .args }}
-fi
-{{ end -}}
-
-# Source cargo env if rust was just installed
-if [ -f ~/.cargo/env ]; then
-    source ~/.cargo/env
+# Install APT packages
+echo "📦 Installing APT packages..."
+APT_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "apt"))
+if [ ${#APT_PACKAGES[@]} -gt 0 ]; then
+    for package in "${APT_PACKAGES[@]}"; do
+        [[ -n "$package" ]] && install_apt_package "$package" || true
+    done
+else
+    echo "ℹ️ No APT packages specified, skipping..."
 fi
 
-echo "✅ All packages installed successfully!"
+# Install Snap packages
+echo "📦 Installing Snap packages..."
+SNAP_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "snap"))
+if [ ${#SNAP_PACKAGES[@]} -gt 0 ]; then
+    for package in "${SNAP_PACKAGES[@]}"; do
+        if [[ -n "$package" ]]; then
+            echo "Installing $package via snap..."
+            if command_exists snap && sudo snap install "$package" 2>/dev/null; then
+                echo "✅ $package installed via snap"
+            else
+                echo "⚠️ Failed to install $package via snap"
+            fi
+        fi
+    done
+else
+    echo "ℹ️ No Snap packages specified, skipping..."
+fi
+
+# Install Cargo packages
+echo "📦 Installing Cargo packages..."
+CARGO_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "cargo"))
+if [ ${#CARGO_PACKAGES[@]} -gt 0 ]; then
+    # Check if cargo is available, install if needed
+    if ! command_exists cargo; then
+        echo "🦀 Installing Rust and Cargo..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        source "$HOME/.cargo/env"
+    fi
+    
+    for package in "${CARGO_PACKAGES[@]}"; do
+        [[ -n "$package" ]] && install_cargo_package "$package" || true
+    done
+else
+    echo "ℹ️ No Cargo packages specified, skipping..."
+fi
+
+# Install NPM packages
+echo "📦 Installing NPM packages..."
+NPM_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "npm"))
+if [ ${#NPM_PACKAGES[@]} -gt 0 ]; then
+    for package in "${NPM_PACKAGES[@]}"; do
+        if [[ -n "$package" ]]; then
+            echo "Installing $package via npm..."
+            if command_exists npm && npm install -g "$package" 2>/dev/null; then
+                echo "✅ $package installed via npm"
+            else
+                echo "⚠️ Failed to install $package via npm"
+            fi
+        fi
+    done
+else
+    echo "ℹ️ No NPM packages specified, skipping..."
+fi
+
+# Skip GitHub releases entirely
+GITHUB_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "github_releases"))
+if [ ${#GITHUB_PACKAGES[@]} -gt 0 ]; then
+    echo "ℹ️ GitHub releases packages found but skipping as requested..."
+else
+    echo "ℹ️ No GitHub releases packages specified, skipping..."
+fi
+
+# Install Flatpak packages
+echo "📦 Installing Flatpak packages..."
+FLATPAK_PACKAGES=($(parse_yaml_section "$PACKAGES_FILE" "flatpak"))
+if [ ${#FLATPAK_PACKAGES[@]} -gt 0 ]; then
+    # Ensure flatpak is installed
+    if ! command_exists flatpak; then
+        install_apt_package "flatpak"
+        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    fi
+    
+    for package in "${FLATPAK_PACKAGES[@]}"; do
+        if [[ -n "$package" ]]; then
+            echo "Installing $package via flatpak..."
+            if sudo flatpak install -y flathub "$package" 2>/dev/null; then
+                echo "✅ $package installed via flatpak"
+            else
+                echo "⚠️ Failed to install $package via flatpak"
+            fi
+        fi
+    done
+else
+    echo "ℹ️ No Flatpak packages specified, skipping..."
+fi
+
+# Post-installation fixes
+echo "🔧 Applying post-installation fixes..."
+
+# Create fd symlink if fd-find was installed
+if command_exists fdfind && [ ! -f /usr/local/bin/fd ]; then
+    sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
+    echo "✅ Created fd symlink for fdfind"
+fi
+
+echo "✅ Development tools installation complete!"
+echo "ℹ️ Some changes may require a logout/login or shell restart to take effect."
+
+{{- end }}

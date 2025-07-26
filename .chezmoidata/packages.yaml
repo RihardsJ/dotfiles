@@ -17,9 +17,9 @@ packages:
       - 'wezterm'
       - 'wget'
       - 'zsh'
-
     snap:
       - 'obsidian --classic'
+      - 'insomnia'
     flatpak:
       - 'org.gimp.GIMP'
 
@@ -33,8 +33,3 @@ packages:
       - name: 'brave'
         url: 'https://dl.brave.com/install.sh'
         args: '| sh'
-
-    # github_releases:
-    # - repo: 'jesseduffield/lazygit'
-    #   binary: 'lazygit'
-    #   version: 'v0.40.2'
