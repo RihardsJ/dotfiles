@@ -4,6 +4,7 @@ packages:
     apt:
       - 'bat'
       - 'build-essential'
+      - 'ca-certificates'
       - 'curl'
       - 'fzf'
       - 'htop'
