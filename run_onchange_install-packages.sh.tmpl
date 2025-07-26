@@ -9,229 +9,188 @@ set -e
 
 echo "🛠️ Installing development tools..."
 
-# Function to check if command exists
+# Utilities
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Function to install via apt with error handling
 install_apt_package() {
-    local package=$1
+    local package="$1"
     echo "Installing $package..."
     if sudo apt install -y "$package" 2>/dev/null; then
-        echo "✅ $package installed successfully"
+        echo "✅ $package installed"
     else
-        echo "⚠️ Failed to install $package via apt (package may not exist)"
+        echo "⚠️ Failed to install $package via apt"
         return 1
     fi
 }
 
-# Function to parse deeply nested YAML sections
-parse_deep_nested_yaml() {
-    local file=$1
-    local section1=$2
-    local section2=$3
-    local section3=$4
-    local in_section1=false
-    local in_section2=false
-    local in_section3=false
-    local packages=()
+# General-purpose simple YAML section parser
+parse_yaml_list() {
+    local file="$1"
+    local path="$2"
+    local in_target_section=false
+    local current_depth=0
+    local target_indent=0
     
-    if [ ! -f "$file" ]; then
-        return 1
-    fi
-    
+    IFS='.' read -ra keys <<< "$path"
+    local max_depth=${#keys[@]}
+
     while IFS= read -r line || [ -n "$line" ]; do
-        # Skip empty lines and comments
+        # Skip comments and empty lines
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
         
-        # Check for first level section
-        if [[ "$line" =~ ^[[:space:]]*${section1}:[[:space:]]*$ ]]; then
-            in_section1=true
-            in_section2=false
-            in_section3=false
-            continue
-        fi
+        # Calculate indentation
+        local indent=$(echo "$line" | sed 's/[^ ].*//' | wc -c)
+        indent=$((indent - 1))
         
-        # Exit if we hit another top-level section
-        if [[ "$line" =~ ^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*:[[:space:]]*$ ]] && [[ "$in_section1" == true ]]; then
-            if [[ ! "$line" =~ ^[[:space:]]*${section1}:[[:space:]]*$ ]]; then
-                break
+        # Clean line for matching
+        local clean=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        
+        # Check if we're matching the current key in our path
+        if [[ "$clean" == "${keys[$current_depth]}:" ]]; then
+            if [[ $current_depth -eq $((max_depth - 1)) ]]; then
+                # We've reached our target section
+                in_target_section=true
+                target_indent=$indent
+            else
+                # Move to next depth
+                current_depth=$((current_depth + 1))
             fi
-        fi
-        
-        # Check for second level section
-        if [[ "$in_section1" == true && "$line" =~ ^[[:space:]]{2,4}${section2}:[[:space:]]*$ ]]; then
-            in_section2=true
-            in_section3=false
             continue
         fi
         
-        # Check for third level section (if provided)
-        if [[ -n "$section3" && "$in_section2" == true && "$line" =~ ^[[:space:]]{4,8}${section3}:[[:space:]]*$ ]]; then
-            in_section3=true
-            continue
+        # If we're in target section and hit a line with same or less indentation that's a key, we're done
+        if [[ "$in_target_section" == true ]] && [[ $indent -le $target_indent ]] && [[ "$clean" =~ ^[a-zA-Z0-9_-]+: ]]; then
+            break
         fi
         
-        # Extract packages
-        local target_section=""
-        if [[ -n "$section3" ]]; then
-            target_section="$in_section3"
-        else
-            target_section="$in_section2"
+        # Extract list items from target section
+        if [[ "$in_target_section" == true ]] && [[ "$clean" == -* ]]; then
+            echo "$clean" | sed -E 's/^- +//' | sed 's/^["'"'"']//;s/["'"'"']$//'
         fi
         
-        if [[ "$target_section" == true && "$line" =~ ^[[:space:]]{6,12}-[[:space:]] ]]; then
-            # Remove leading spaces, dash, and quotes
-            package=$(echo "$line" | sed 's/^[[:space:]]*-[[:space:]]*//' | sed "s/^['\"]//;s/['\"]$//")
-            [[ -n "$package" ]] && packages+=("$package")
+        # Reset if we've moved to a different top-level section
+        if [[ $indent -eq 0 ]] && [[ "$clean" =~ ^[a-zA-Z0-9_-]+: ]] && [[ "$clean" != "${keys[0]}:" ]]; then
+            current_depth=0
+            in_target_section=false
         fi
+        
     done < "$file"
-    
-    printf '%s\n' "${packages[@]}"
 }
 
-# Function to parse install scripts from development section
+# Parse install scripts from development section
 parse_install_scripts() {
-    local file=$1
+    local file="$1"
     local in_development=false
     local in_install_scripts=false
-    local current_name=""
-    local current_url=""
-    local current_args=""
-    local scripts=()
-    
-    if [ ! -f "$file" ]; then
-        return 1
-    fi
-    
+    local name="" url="" args=""
+
     while IFS= read -r line || [ -n "$line" ]; do
-        # Skip empty lines and comments
+        # Skip comments and empty lines
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
         
-        # Check for development section
-        if [[ "$line" =~ ^[[:space:]]*development:[[:space:]]*$ ]]; then
+        local clean=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        local indent=$(echo "$line" | sed 's/[^ ].*//' | wc -c)
+        indent=$((indent - 1))
+
+        # Track development section
+        if [[ "$clean" == "development:" ]]; then
             in_development=true
-            in_install_scripts=false
             continue
         fi
         
-        # Exit development section if we hit another top-level section
-        if [[ "$line" =~ ^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*:[[:space:]]*$ ]] && [[ "$in_development" == true ]]; then
-            if [[ ! "$line" =~ ^[[:space:]]*install_scripts:[[:space:]]*$ ]]; then
-                break
-            fi
+        # Exit development if we hit another top-level section
+        if [[ $indent -eq 0 ]] && [[ "$clean" =~ ^[a-zA-Z0-9_-]+: ]] && [[ "$clean" != "development:" ]]; then
+            in_development=false
+            continue
         fi
-        
-        # Check for install_scripts section within development
-        if [[ "$in_development" == true && "$line" =~ ^[[:space:]]*install_scripts:[[:space:]]*$ ]]; then
+
+        # Track install_scripts subsection
+        if [[ "$in_development" == true ]] && [[ "$clean" == "install_scripts:" ]]; then
             in_install_scripts=true
             continue
         fi
-        
+
         # Parse script entries
         if [[ "$in_install_scripts" == true ]]; then
-            # New script entry
-            if [[ "$line" =~ ^[[:space:]]*-[[:space:]]*name:[[:space:]]*['\"]?([^'\"]+)['\"]?[[:space:]]*$ ]]; then
-                # Save previous script if complete
-                if [[ -n "$current_name" && -n "$current_url" ]]; then
-                    scripts+=("$current_name|$current_url|$current_args")
-                fi
-                current_name="${BASH_REMATCH[1]}"
-                current_url=""
-                current_args=""
-            elif [[ "$line" =~ ^[[:space:]]*url:[[:space:]]*['\"]?([^'\"]+)['\"]?[[:space:]]*$ ]]; then
-                current_url="${BASH_REMATCH[1]}"
-            elif [[ "$line" =~ ^[[:space:]]*args:[[:space:]]*['\"]?([^'\"]*)['\"]?[[:space:]]*$ ]]; then
-                current_args="${BASH_REMATCH[1]}"
+            if [[ "$clean" == -*name:* ]]; then
+                # Output previous script if complete
+                [[ -n "$name" && -n "$url" ]] && echo "$name|$url|$args"
+                name=$(echo "$clean" | cut -d: -f2- | sed 's/^ *//;s/^["'"'"']//;s/["'"'"']$//')
+                url="" args=""
+            elif [[ "$clean" == url:* ]]; then
+                url=$(echo "$clean" | cut -d: -f2- | sed 's/^ *//;s/^["'"'"']//;s/["'"'"']$//')
+            elif [[ "$clean" == args:* ]]; then
+                args=$(echo "$clean" | cut -d: -f2- | sed 's/^ *//;s/^["'"'"']//;s/["'"'"']$//')
             fi
         fi
     done < "$file"
-    
-    # Save last script if complete
-    if [[ -n "$current_name" && -n "$current_url" ]]; then
-        scripts+=("$current_name|$current_url|$current_args")
-    fi
-    
-    printf '%s\n' "${scripts[@]}"
+
+    # Output last script if complete
+    [[ -n "$name" && -n "$url" ]] && echo "$name|$url|$args"
 }
 
-# Update system first
-echo "📦 Updating system packages..."
-sudo apt update
-
-# Read package lists from chezmoi data
+# Main installation logic
 PACKAGES_FILE="{{ .chezmoi.sourceDir }}/.chezmoidata/packages.yaml"
 
-if [ ! -f "$PACKAGES_FILE" ]; then
+if [[ ! -f "$PACKAGES_FILE" ]]; then
     echo "❌ Packages file not found: $PACKAGES_FILE"
     exit 1
 fi
 
-# Install APT packages from ubuntu section
+echo "📦 Updating system packages..."
+sudo apt update
+
+# Install APT packages
 echo "📦 Installing APT packages..."
-APT_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "apt"))
-if [ ${#APT_PACKAGES[@]} -gt 0 ]; then
-    for package in "${APT_PACKAGES[@]}"; do
-        [[ -n "$package" ]] && install_apt_package "$package" || true
-    done
-else
-    echo "ℹ️ No APT packages specified, skipping..."
-fi
+while IFS= read -r pkg; do
+    [[ -n "$pkg" ]] && install_apt_package "$pkg" || true
+done < <(parse_yaml_list "$PACKAGES_FILE" "ubuntu.apt")
 
 # Install Snap packages (regular)
-echo "📦 Installing regular Snap packages..."
-SNAP_REGULAR_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "snap" "regular"))
-if [ ${#SNAP_REGULAR_PACKAGES[@]} -gt 0 ]; then
-    for package in "${SNAP_REGULAR_PACKAGES[@]}"; do
-        if [[ -n "$package" ]]; then
-            echo "Installing $package via snap..."
-            if command_exists snap && sudo snap install "$package" 2>/dev/null; then
-                echo "✅ $package installed via snap"
-            else
-                echo "⚠️ Failed to install $package via snap"
-            fi
+echo "📦 Installing Snap packages (regular)..."
+while IFS= read -r pkg; do
+    if [[ -n "$pkg" ]]; then
+        echo "Installing $pkg via snap..."
+        if command_exists snap && sudo snap install "$pkg" 2>/dev/null; then
+            echo "✅ $pkg installed (snap)"
+        else
+            echo "⚠️ Failed to install $pkg via snap"
         fi
-    done
-else
-    echo "ℹ️ No regular Snap packages specified, skipping..."
-fi
+    fi
+done < <(parse_yaml_list "$PACKAGES_FILE" "ubuntu.snap.regular")
 
 # Install Snap packages (classic)
-echo "📦 Installing classic Snap packages..."
-SNAP_CLASSIC_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "snap" "classic"))
-if [ ${#SNAP_CLASSIC_PACKAGES[@]} -gt 0 ]; then
-    for package in "${SNAP_CLASSIC_PACKAGES[@]}"; do
-        if [[ -n "$package" ]]; then
-            echo "Installing $package via snap --classic..."
-            if command_exists snap && sudo snap install "$package" --classic 2>/dev/null; then
-                echo "✅ $package installed via snap --classic"
-            else
-                echo "⚠️ Failed to install $package via snap --classic"
-            fi
+echo "📦 Installing Snap packages (classic)..."
+while IFS= read -r pkg; do
+    if [[ -n "$pkg" ]]; then
+        echo "Installing $pkg via snap --classic..."
+        if command_exists snap && sudo snap install "$pkg" --classic 2>/dev/null; then
+            echo "✅ $pkg installed (snap classic)"
+        else
+            echo "⚠️ Failed to install $pkg via snap --classic"
         fi
-    done
-else
-    echo "ℹ️ No classic Snap packages specified, skipping..."
-fi
+    fi
+done < <(parse_yaml_list "$PACKAGES_FILE" "ubuntu.snap.classic")
 
 # Install Flatpak packages
 echo "📦 Installing Flatpak packages..."
-FLATPAK_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "flatpak"))
-if [ ${#FLATPAK_PACKAGES[@]} -gt 0 ]; then
+FLATPAK_PACKAGES=$(parse_yaml_list "$PACKAGES_FILE" "ubuntu.flatpak")
+if [[ -n "$FLATPAK_PACKAGES" ]]; then
     # Ensure flatpak is installed
     if ! command_exists flatpak; then
-        install_apt_package "flatpak"
+        install_apt_package flatpak
         sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     fi
     
-    for package in "${FLATPAK_PACKAGES[@]}"; do
-        if [[ -n "$package" ]]; then
-            echo "Installing $package via flatpak..."
-            if sudo flatpak install -y flathub "$package" 2>/dev/null; then
-                echo "✅ $package installed via flatpak"
+    echo "$FLATPAK_PACKAGES" | while IFS= read -r pkg; do
+        if [[ -n "$pkg" ]]; then
+            echo "Installing $pkg via flatpak..."
+            if sudo flatpak install -y flathub "$pkg" 2>/dev/null; then
+                echo "✅ $pkg installed (flatpak)"
             else
-                echo "⚠️ Failed to install $package via flatpak"
+                echo "⚠️ Failed to install $pkg via flatpak"
             fi
         fi
     done
@@ -241,45 +200,40 @@ fi
 
 # Install development tools via install scripts
 echo "📦 Installing development tools via install scripts..."
-INSTALL_SCRIPTS=($(parse_install_scripts "$PACKAGES_FILE"))
-if [ ${#INSTALL_SCRIPTS[@]} -gt 0 ]; then
-    for script_info in "${INSTALL_SCRIPTS[@]}"; do
-        IFS='|' read -r name url args <<< "$script_info"
-        if [[ -n "$name" && -n "$url" ]]; then
-            if ! command_exists "$name"; then
-                echo "Installing $name..."
-                if [[ "$args" == *"| sh"* ]]; then
-                    # Handle piped commands
-                    curl -fsSL "$url" | sh
-                else
-                    # Handle regular arguments
-                    curl -fsSL "$url" | sh $args
-                fi
-                if [ $? -eq 0 ]; then
-                    echo "✅ $name installed successfully"
-                else
-                    echo "⚠️ Failed to install $name"
-                fi
+while IFS="|" read -r name url args; do
+    if [[ -n "$name" && -n "$url" ]]; then
+        if ! command_exists "$name"; then
+            echo "Installing $name..."
+            if [[ "$args" == *"| sh"* ]]; then
+                curl -fsSL "$url" | sh
+            elif [[ -n "$args" ]]; then
+                curl -fsSL "$url" | sh $args
             else
-                echo "ℹ️ $name is already installed, skipping..."
+                curl -fsSL "$url" | sh
             fi
+            
+            if [[ $? -eq 0 ]]; then
+                echo "✅ $name installed successfully"
+            else
+                echo "⚠️ Failed to install $name"
+            fi
+        else
+            echo "ℹ️ $name is already installed, skipping..."
         fi
-    done
-else
-    echo "ℹ️ No install scripts specified, skipping..."
-fi
+    fi
+done < <(parse_install_scripts "$PACKAGES_FILE")
 
 # Post-installation fixes
 echo "🔧 Applying post-installation fixes..."
 
 # Create fd symlink if fd-find was installed
-if command_exists fdfind && [ ! -f /usr/local/bin/fd ]; then
+if command_exists fdfind && [[ ! -f /usr/local/bin/fd ]]; then
     sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
     echo "✅ Created fd symlink for fdfind"
 fi
 
 # Source cargo environment if rust was installed
-if [ -f "$HOME/.cargo/env" ]; then
+if [[ -f "$HOME/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
     echo "✅ Sourced Rust/Cargo environment"
 fi
