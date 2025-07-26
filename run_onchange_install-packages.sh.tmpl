@@ -26,53 +26,15 @@ install_apt_package() {
     fi
 }
 
-# Function to parse YAML section using pure bash
-parse_yaml_section() {
+# Function to parse deeply nested YAML sections
+parse_deep_nested_yaml() {
     local file=$1
-    local section=$2
-    local in_section=false
-    local packages=()
-    
-    if [ ! -f "$file" ]; then
-        return 1
-    fi
-    
-    while IFS= read -r line; do
-        # Remove leading/trailing whitespace
-        line=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-        
-        # Skip empty lines and comments
-        [[ -z "$line" || "$line" =~ ^# ]] && continue
-        
-        # Check if we're entering the desired section
-        if [[ "$line" == "$section:" ]]; then
-            in_section=true
-            continue
-        fi
-        
-        # Check if we're entering a different section (exit current section)
-        if [[ "$line" =~ ^[a-zA-Z_][a-zA-Z0-9_]*: ]] && [[ "$in_section" == true ]]; then
-            break
-        fi
-        
-        # If we're in the section and line starts with "  -", extract package name
-        if [[ "$in_section" == true && "$line" =~ ^-[[:space:]]+ ]]; then
-            package=$(echo "$line" | sed 's/^-[[:space:]]*//' | sed "s/^['\"]//;s/['\"]$//")
-            packages+=("$package")
-        fi
-    done < "$file"
-    
-    # Return packages as space-separated string
-    printf '%s\n' "${packages[@]}"
-}
-
-# Function to parse nested YAML section (for snap regular/classic)
-parse_nested_yaml_section() {
-    local file=$1
-    local parent_section=$2
-    local child_section=$3
-    local in_parent=false
-    local in_child=false
+    local section1=$2
+    local section2=$3
+    local section3=$4
+    local in_section1=false
+    local in_section2=false
+    local in_section3=false
     local packages=()
     
     if [ ! -f "$file" ]; then
@@ -83,37 +45,45 @@ parse_nested_yaml_section() {
         # Skip empty lines and comments
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
         
-        # Check for parent section (no leading spaces)
-        if [[ "$line" == "$parent_section:" ]]; then
-            in_parent=true
-            in_child=false
+        # Check for first level section
+        if [[ "$line" =~ ^[[:space:]]*${section1}:[[:space:]]*$ ]]; then
+            in_section1=true
+            in_section2=false
+            in_section3=false
             continue
         fi
         
         # Exit if we hit another top-level section
-        if [[ "$line" =~ ^[a-zA-Z_][a-zA-Z0-9_]*:[[:space:]]*$ ]] && [[ "$in_parent" == true ]]; then
-            break
+        if [[ "$line" =~ ^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*:[[:space:]]*$ ]] && [[ "$in_section1" == true ]]; then
+            if [[ ! "$line" =~ ^[[:space:]]*${section1}:[[:space:]]*$ ]]; then
+                break
+            fi
         fi
         
-        # Check for child section (2 spaces)
-        if [[ "$in_parent" == true && "$line" == "  $child_section:" ]]; then
-            in_child=true
+        # Check for second level section
+        if [[ "$in_section1" == true && "$line" =~ ^[[:space:]]{2,4}${section2}:[[:space:]]*$ ]]; then
+            in_section2=true
+            in_section3=false
             continue
         fi
         
-        # Exit child if we hit another child section
-        if [[ "$in_parent" == true && "$line" =~ ^[[:space:]]{2}[a-zA-Z_][a-zA-Z0-9_]*:[[:space:]]*$ ]]; then
-            in_child=false
+        # Check for third level section (if provided)
+        if [[ -n "$section3" && "$in_section2" == true && "$line" =~ ^[[:space:]]{4,8}${section3}:[[:space:]]*$ ]]; then
+            in_section3=true
             continue
         fi
         
-        # Extract packages (4 spaces + dash)
-        if [[ "$in_child" == true && "$line" =~ ^[[:space:]]{4}-[[:space:]] ]]; then
-            package="${line#        - }"
-            package="${package#\'}"
-            package="${package%\'}"
-            package="${package#\"}"
-            package="${package%\"}"
+        # Extract packages
+        local target_section=""
+        if [[ -n "$section3" ]]; then
+            target_section="$in_section3"
+        else
+            target_section="$in_section2"
+        fi
+        
+        if [[ "$target_section" == true && "$line" =~ ^[[:space:]]{6,12}-[[:space:]] ]]; then
+            # Remove leading spaces, dash, and quotes
+            package=$(echo "$line" | sed 's/^[[:space:]]*-[[:space:]]*//' | sed "s/^['\"]//;s/['\"]$//")
             [[ -n "$package" ]] && packages+=("$package")
         fi
     done < "$file"
@@ -200,7 +170,7 @@ fi
 
 # Install APT packages from ubuntu section
 echo "📦 Installing APT packages..."
-APT_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "ubuntu" "apt"))
+APT_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "apt"))
 if [ ${#APT_PACKAGES[@]} -gt 0 ]; then
     for package in "${APT_PACKAGES[@]}"; do
         [[ -n "$package" ]] && install_apt_package "$package" || true
@@ -211,24 +181,7 @@ fi
 
 # Install Snap packages (regular)
 echo "📦 Installing regular Snap packages..."
-SNAP_REGULAR_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "regular" ""))
-# Try alternative path for nested structure
-if [ ${#SNAP_REGULAR_PACKAGES[@]} -eq 0 ]; then
-    # Parse ubuntu.snap.regular
-    SNAP_REGULAR_PACKAGES=($(awk '
-    /^[[:space:]]*ubuntu:/ { in_ubuntu = 1; next }
-    /^[[:space:]]*[a-zA-Z_]/ && in_ubuntu && !/^[[:space:]]*snap:/ { in_ubuntu = 0 }
-    in_ubuntu && /^[[:space:]]*snap:/ { in_snap = 1; next }
-    in_ubuntu && in_snap && /^[[:space:]]*regular:/ { in_regular = 1; next }
-    in_ubuntu && in_snap && /^[[:space:]]*[a-zA-Z_]/ && in_regular && !/^[[:space:]]*regular:/ { in_regular = 0 }
-    in_regular && /^[[:space:]]*-/ { 
-        gsub(/^[[:space:]]*-[[:space:]]*/, ""); 
-        gsub(/^["\047]|["\047]$/, ""); 
-        if (length($0) > 0) print $0 
-    }
-    ' "$PACKAGES_FILE"))
-fi
-
+SNAP_REGULAR_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "snap" "regular"))
 if [ ${#SNAP_REGULAR_PACKAGES[@]} -gt 0 ]; then
     for package in "${SNAP_REGULAR_PACKAGES[@]}"; do
         if [[ -n "$package" ]]; then
@@ -246,19 +199,7 @@ fi
 
 # Install Snap packages (classic)
 echo "📦 Installing classic Snap packages..."
-SNAP_CLASSIC_PACKAGES=($(awk '
-/^[[:space:]]*ubuntu:/ { in_ubuntu = 1; next }
-/^[[:space:]]*[a-zA-Z_]/ && in_ubuntu && !/^[[:space:]]*snap:/ { in_ubuntu = 0 }
-in_ubuntu && /^[[:space:]]*snap:/ { in_snap = 1; next }
-in_ubuntu && in_snap && /^[[:space:]]*classic:/ { in_classic = 1; next }
-in_ubuntu && in_snap && /^[[:space:]]*[a-zA-Z_]/ && in_classic && !/^[[:space:]]*classic:/ { in_classic = 0 }
-in_classic && /^[[:space:]]*-/ { 
-    gsub(/^[[:space:]]*-[[:space:]]*/, ""); 
-    gsub(/^["\047]|["\047]$/, ""); 
-    if (length($0) > 0) print $0 
-}
-' "$PACKAGES_FILE"))
-
+SNAP_CLASSIC_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "snap" "classic"))
 if [ ${#SNAP_CLASSIC_PACKAGES[@]} -gt 0 ]; then
     for package in "${SNAP_CLASSIC_PACKAGES[@]}"; do
         if [[ -n "$package" ]]; then
@@ -276,7 +217,7 @@ fi
 
 # Install Flatpak packages
 echo "📦 Installing Flatpak packages..."
-FLATPAK_PACKAGES=($(parse_nested_yaml_section "$PACKAGES_FILE" "ubuntu" "flatpak"))
+FLATPAK_PACKAGES=($(parse_deep_nested_yaml "$PACKAGES_FILE" "ubuntu" "flatpak"))
 if [ ${#FLATPAK_PACKAGES[@]} -gt 0 ]; then
     # Ensure flatpak is installed
     if ! command_exists flatpak; then
@@ -307,9 +248,9 @@ if [ ${#INSTALL_SCRIPTS[@]} -gt 0 ]; then
         if [[ -n "$name" && -n "$url" ]]; then
             if ! command_exists "$name"; then
                 echo "Installing $name..."
-                if [[ "$args" == *"|"* ]]; then
+                if [[ "$args" == *"| sh"* ]]; then
                     # Handle piped commands
-                    eval "curl -fsSL '$url' $args"
+                    curl -fsSL "$url" | sh
                 else
                     # Handle regular arguments
                     curl -fsSL "$url" | sh $args
