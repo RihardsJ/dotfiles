@@ -21,6 +21,7 @@ packages:
       - 'vlc'
     snap:
       regular:
+        - 'glow'
         - 'obsidian'
         - 'insomnia'
       classic:
