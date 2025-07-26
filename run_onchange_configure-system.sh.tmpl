@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# System configuration hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+set -e
+
+echo "⚙️ Configuring system..."
+
+{{- $os_id := .chezmoi.osRelease.id }}
+
+{{- if or (eq $os_id "pop") (eq $os_id "ubuntu") }}
+# Configure Git (if not already configured)
+if [ -z "$(git config --global user.name)" ]; then
+    echo "Configuring Git..."
+    git config --global user.name "Your Name"
+    git config --global user.email "your.email@example.com"
+    git config --global init.defaultBranch main
+fi
+
+# Set up Docker permissions (if Docker is installed)
+if command -v docker &> /dev/null; then
+    if ! groups $USER | grep -q docker; then
+        echo "Adding user to docker group..."
+        sudo usermod -aG docker $USER
+        echo "⚠️  Please log out and back in for Docker permissions to take effect"
+    fi
+fi
+
+# Configure Flatpak
+if command -v flatpak &> /dev/null; then
+    # Add flathub repo if not exists
+    if ! flatpak remotes | grep -q flathub; then
+        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    fi
+fi
+
+{{- end }}
+
+# Set up shell (if zsh is installed)
+if command -v zsh &> /dev/null; then
+    if [ "$SHELL" != "$(which zsh)" ]; then
+        echo "Setting zsh as default shell..."
+        chsh -s $(which zsh)
+    fi
+fi
+
+echo "✅ System configuration complete!"

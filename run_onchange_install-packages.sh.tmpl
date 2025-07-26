@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# This script runs when packages.yaml changes
+# Packages hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+set -e
+
+echo "🚀 Installing packages declaratively..."
+
+{{- $os_id := .chezmoi.osRelease.id }}
+
+{{- if or (eq $os_id "pop") (eq $os_id "ubuntu") }}
+# Pop!_OS and Ubuntu
+echo "📦 Installing APT packages..."
+sudo apt update
+
+{{ range .packages.ubuntu.apt -}}
+if ! dpkg -l | grep -q "^ii  {{ . }} "; then
+    echo "Installing {{ . }}..."
+    sudo apt install -y {{ . | quote }}
+fi
+{{ end -}}
+
+echo "📦 Installing Snap packages..."
+{{ range .packages.ubuntu.snap -}}
+if ! snap list | grep -q "{{ . | regexReplaceAll " --.*" "" }}"; then
+    echo "Installing {{ . }}..."
+    sudo snap install {{ . }}
+fi
+{{ end -}}
+
+echo "📦 Installing Flatpak packages..."
+# Add flathub repo if not exists
+if ! flatpak remotes | grep -q flathub; then
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+fi
+
+{{ range .packages.ubuntu.flatpak -}}
+if ! flatpak list | grep -q "{{ . }}"; then
+    echo "Installing {{ . }}..."
+    flatpak install -y flathub {{ . | quote }}
+fi
+{{ end -}}
+
+{{- end }}
+
+# Install development tools (cross-platform)
+echo "🛠️ Installing development tools..."
+
+# Create local bin directory
+mkdir -p ~/.local/bin
+
+# Install from GitHub releases
+{{ range .packages.development.github_releases -}}
+if ! command -v {{ .binary }} &> /dev/null; then
+    echo "Installing {{ .binary }}..."
+    {{- if eq .binary "lazygit" }}
+    wget -q "https://github.com/{{ .repo }}/releases/download/{{ .version }}/{{ .binary }}_{{ .version }}_Linux_x86_64.tar.gz" -O "/tmp/{{ .binary }}.tar.gz"
+    tar -xzf "/tmp/{{ .binary }}.tar.gz" -C /tmp
+    mv "/tmp/{{ .binary }}" ~/.local/bin/
+    {{- else if eq .binary "delta" }}
+    wget -q "https://github.com/{{ .repo }}/releases/download/{{ .version }}/delta-{{ .version }}-x86_64-unknown-linux-gnu.tar.gz" -O "/tmp/delta.tar.gz"
+    tar -xzf "/tmp/delta.tar.gz" -C /tmp
+    mv /tmp/delta-*/delta ~/.local/bin/
+    {{- end }}
+    rm -rf /tmp/{{ .binary }}* /tmp/delta*
+fi
+{{ end -}}
+
+# Install via install scripts
+{{ range .packages.development.install_scripts -}}
+if ! command -v {{ .name }} &> /dev/null; then
+    echo "Installing {{ .name }}..."
+    curl -fsSL {{ .url | quote }} | sh {{ .args }}
+fi
+{{ end -}}
+
+# Source cargo env if rust was just installed
+if [ -f ~/.cargo/env ]; then
+    source ~/.cargo/env
+fi
+
+echo "✅ All packages installed successfully!"

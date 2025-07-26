@@ -1,0 +1,23 @@
+packages:
+  # Pop!_OS and Ubuntu packages
+  ubuntu:
+    apt:
+      - 'awk'
+      - 'bat'
+      - 'build-essential'
+      - 'curl'
+      - 'fzf'
+      - 'htop'
+      - 'jq'
+      - 'neovim'
+      - 'ripgrep'
+      - 'sed'
+      - 'software-properties-common'
+      - 'tree'
+      - 'unzip'
+      - 'wezterm'
+      - 'wget'
+      - 'zsh'
+
+    snap:
+      - 'obsidian --classic'
