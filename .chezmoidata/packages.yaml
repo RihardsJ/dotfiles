@@ -21,8 +21,9 @@ packages:
 
     snap:
       - 'obsidian --classic'
+    flatpak:
+      - 'org.gimp.GIMP'
 
-    flapak:
 
   # Development tools (cross-platform)
   development:
@@ -33,11 +34,11 @@ packages:
       - repo: 'dandavison/delta'
         binary: 'delta'
         version: '0.16.5'
-    
+
     install_scripts:
       - name: 'rust'
         url: 'https://sh.rustup.rs'
         args: '-s -- -y'
-      - name: 'starship'
-        url: 'https://starship.rs/install.sh'
-        args: '-s -- -y'
+      - name: 'brave'
+        url: 'https://dl.brave.com/install.sh'
+        args: '| sh'
