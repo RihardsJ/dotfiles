@@ -1,0 +1,239 @@
+#!/usr/bin/env zsh
+
+###############################
+# ENHANCED HYBRID PROMPT      #
+# Beautiful, Fast, Informative #
+###############################
+
+setopt PROMPT_SUBST
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' formats '%b'
+zstyle ':vcs_info:*' actionformats '%b|%a'
+
+###############################
+# VISUAL ENHANCEMENTS         #
+###############################
+
+blank_line_before_prompt() {
+    echo
+}
+
+user_icon() {
+    [[ $(print -P "%#") == '#' ]] && echo '%F{88}⚡ %f'|| echo '%F{cyan}➜%f '
+}
+
+error_status() {
+   echo "%(?..%F{red}✗%f )"
+}
+
+###############################
+# DETAILED GIT STATUS         #
+###############################
+
+git_detailed_status() {
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        return
+    fi
+    
+    local INDEX STATUS
+    INDEX=$(command git status --porcelain -b 2> /dev/null)
+    STATUS=""
+
+    # Untracked files
+    if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
+        STATUS="%F{205}?%f$STATUS"
+    fi
+
+    # Added/Staged files
+    if $(echo "$INDEX" | grep '^A  \|^M  \|^MM ' &> /dev/null); then
+        STATUS="%F{205}+%f$STATUS"
+    fi
+
+    # Modified files
+    if $(echo "$INDEX" | grep '^ M \|^AM \|^MM \|^ T ' &> /dev/null); then
+        STATUS="%F{205}!%f$STATUS"
+    fi
+
+    # Renamed files
+    if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
+        STATUS="%F{205}➜%f$STATUS"
+    fi
+
+    # Deleted files
+    if $(echo "$INDEX" | grep '^ D \|^D  \|^AD ' &> /dev/null); then
+        STATUS="%F{205}✘%f$STATUS"
+    fi
+
+    # Stashed changes
+    if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
+        STATUS="%F{205}💾%f$STATUS"
+    fi
+
+    # Unmerged files
+    if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
+        STATUS="%F{205}⚡%f$STATUS"
+    fi
+
+    # Ahead/behind/diverged
+    if $(echo "$INDEX" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
+        STATUS="%F{205}⇡%f$STATUS"
+    fi
+
+    if $(echo "$INDEX" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
+        STATUS="%F{205}⇣%f$STATUS"
+    fi
+
+    if $(echo "$INDEX" | grep '^## [^ ]\+ .*diverged' &> /dev/null); then
+        STATUS="%F{205}⇕%f$STATUS"
+    fi
+
+    if [[ ! -z "$STATUS" ]]; then
+        echo " $STATUS"
+    fi
+}
+
+git_info() {
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        return
+    fi
+    
+    vcs_info
+    local branch="$vcs_info_msg_0_"
+    local status_indicators="$(git_detailed_status)"
+    
+    if [[ -n "$branch" ]]; then
+        if [[ -n "$status_indicators" ]]; then
+            echo " %F{205} $branch%f$status_indicators"
+        else
+            echo " %F{205} $branch%f"
+        fi
+    fi
+}
+
+###############################
+# LANGUAGE VERSIONS           #
+###############################
+
+node_info() {
+    if [[ -f "package.json" || -f "yarn.lock" || -f "pnpm-lock.yaml" || -f ".nvmrc" ]]; then
+        if command -v node >/dev/null; then
+            local node_version=$(node --version | sed 's/v//')
+            echo " %F{green}⬢ $node_version%f"
+        fi
+    fi
+}
+
+python_info() {
+    local python_info=""
+    
+    if [[ -n "$VIRTUAL_ENV" ]] || [[ -n "$CONDA_DEFAULT_ENV" ]] || [[ -f "pyproject.toml" || -f "requirements.txt" || -f "setup.py" || -f "Pipfile" ]]; then
+        if [[ -n "$VIRTUAL_ENV" ]]; then
+            python_info="$(basename $VIRTUAL_ENV)"
+        elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+            python_info="$CONDA_DEFAULT_ENV"
+        elif command -v python3 >/dev/null; then
+            local py_version=$(python3 --version 2>&1 | cut -d' ' -f2 | cut -d'.' -f1,2)
+            python_info="$py_version"
+        fi
+        
+        if [[ -n "$python_info" ]]; then
+            echo " %F{blue} $python_info%f"
+        fi
+    fi
+}
+
+docker_info() {
+    if [[ -f "Dockerfile" || -f "docker-compose.yml" || -f "docker-compose.yaml" ]]; then
+        echo " %F{cyan} docker%f"
+    fi
+}
+
+###############################
+# PATH DISPLAY                #
+###############################
+
+smart_pwd() {
+    local max_length=50
+    local current_pwd="${PWD/#$HOME/~}"
+    
+    if [[ ${#current_pwd} -le $max_length ]]; then
+        echo "$current_pwd"
+        return
+    fi
+    
+    # Split path into components
+    local path_parts=(${(s:/:)current_pwd})
+    local result=""
+    local total_length=0
+    
+    # Always show the last directory (current)
+    local last_dir="${path_parts[-1]}"
+    
+    # If just the last directory is too long, truncate it
+    if [[ ${#last_dir} -gt $max_length ]]; then
+        echo "…${last_dir: -$((max_length-1))}"
+        return
+    fi
+    
+    # Build path from the end, adding directories until we hit the limit
+    local i=${#path_parts}
+    while [[ $i -gt 0 ]]; do
+        local part="${path_parts[$i]}"
+        local new_length=$((total_length + ${#part} + 1))  # +1 for /
+        
+        if [[ $new_length -gt $max_length && $i -lt ${#path_parts} ]]; then
+            result="…/$result"
+            break
+        fi
+        
+        if [[ -z "$result" ]]; then
+            result="$part"
+        else
+            result="$part/$result"
+        fi
+        
+        total_length=$new_length
+        ((i--))
+    done
+    
+    # Handle root path
+    if [[ "$current_pwd" == /* && "$result" != /* && "$result" != "…"* ]]; then
+        result="/$result"
+    fi
+    
+    echo "$result"
+}
+
+###############################
+# PROMPT ASSEMBLY             #
+###############################
+
+build_prompt() {
+    vcs_info
+    
+    # Clear separation line
+    blank_line_before_prompt
+    
+    # Main prompt line with all info
+    local main_prompt=""
+    main_prompt+="%F{cyan}$(smart_pwd)%f"
+    main_prompt+="$(git_info)"
+    main_prompt+="$(node_info)"
+    main_prompt+="$(python_info)"
+    main_prompt+="$(docker_info)"
+    main_prompt+=" $(error_status)"
+    
+    # Command line with user icon
+    local command_prompt="$(user_icon)"
+    
+    PROMPT="$main_prompt"$'\n'"$command_prompt"
+    RPROMPT=""
+}
+
+###############################
+# INITIALIZATION              #
+###############################
+
+precmd() { build_prompt }
+build_prompt

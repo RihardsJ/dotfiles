@@ -1,0 +1,120 @@
+#!/usr/bin/env zsh
+
+###############################
+# ZSH CONFIGURATION           #
+###############################
+
+# Load environment variables
+[ -f "$ZDOTDIR/environment" ] && source "$ZDOTDIR/environment"
+
+# Load aliases
+[ -f "$ZDOTDIR/aliases" ] && source "$ZDOTDIR/aliases"
+
+# Load functions
+[ -f "$ZDOTDIR/functions" ] && source "$ZDOTDIR/functions"
+
+###############################
+# ZSH OPTIONS                 #
+###############################
+
+# History
+setopt HIST_VERIFY                # Show command with history expansion to user before running it
+setopt HIST_IGNORE_ALL_DUPS       # Delete old recorded entry if new entry is a duplicate
+setopt HIST_IGNORE_SPACE          # Don't record an entry starting with a space
+setopt HIST_FIND_NO_DUPS          # Do not display a line previously found
+setopt HIST_SAVE_NO_DUPS          # Don't write duplicate entries in the history file
+setopt SHARE_HISTORY              # Share history between all sessions
+setopt APPEND_HISTORY             # Append history to the history file (no overwriting)
+setopt INC_APPEND_HISTORY         # Immediately append to the history file, not just when a term is killed
+
+# Directory navigation
+setopt AUTO_CD                    # Go to folder path without using cd
+setopt AUTO_PUSHD                 # Push the old directory onto the stack on cd
+setopt PUSHD_IGNORE_DUPS          # Do not store duplicates in the stack
+setopt PUSHD_SILENT               # Do not print the directory stack after pushd or popd
+
+# Globbing
+setopt EXTENDED_GLOB              # Use extended globbing syntax
+setopt NO_CASE_GLOB               # Case insensitive globbing
+setopt NUMERIC_GLOB_SORT          # Sort filenames numerically when it makes sense
+
+# Other useful options
+setopt INTERACTIVE_COMMENTS       # Allow comments in interactive shell
+setopt MULTIOS                    # Write to multiple descriptors
+setopt PROMPT_SUBST               # Enable command substitution in prompt
+
+# Disable options
+setopt MENU_COMPLETE              # Automatically highlight first element of completion menu (your preference)
+unsetopt FLOWCONTROL              # Disable start/stop characters in shell editor
+unsetopt CORRECT                  # Disable command autocorrect
+unsetopt CORRECT_ALL              # Disable argument autocorrect
+
+###############################
+# COMPLETION SYSTEM           #
+###############################
+
+# Initialize completion system
+autoload -U compinit; compinit
+_comp_options+=(globdots)         # Include hidden files
+
+# Completion options
+setopt AUTO_LIST                  # Automatically list choices on ambiguous completion
+setopt COMPLETE_IN_WORD           # Complete from both ends of a word
+setopt ALWAYS_TO_END              # Move cursor to the end of a completed word
+setopt LIST_PACKED                # The completion menu takes less space
+
+# Use cache for completions
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+
+# Completion styling
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+
+# Completion colors and options
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' file-sort modification
+
+# Matcher list (your version is more comprehensive)
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+###############################
+# KEY BINDINGS                #
+###############################
+
+# Use emacs key bindings
+bindkey -e
+
+# History simple search
+bindkey '^R' history-incremental-search-backward
+
+###############################
+# PLUGINS                     #
+###############################
+
+# Load syntax highlighting (only if it's used)
+[ -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && {
+  source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+}
+# Load vim plugin (only if it's used)
+[ -f "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ] && {
+  source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+}
+
+###############################
+# EXTERNAL TOOLS              #
+###############################
+
+# FZF (only if installed and used)
+if command -v fzf >/dev/null; then
+  [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+  [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+fi
+
+# Initialize prompt (should be last)
+[ -f "$ZDOTDIR/prompt" ] && source "$ZDOTDIR/prompt"

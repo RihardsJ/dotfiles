@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh 
+
+# generate hyperlinks
+alias ls='ls --hyperlink --color=auto'
+alias delta="delta --hyperlinks --hyperlinks-file-link-format='file://{path}#{line}'"
+alias rg='rg --hyperlink-format=kitty --color=auto --smart-case'
+
+# listing files
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias lt='ls -ltr'        # Sort by time
+alias lh='ls -lh'         # Human readable sizes
+alias tree='tree -C'     # Colorized tree
+
+
+# Auto ls after cd
+cd() {
+    builtin cd "$@" && ls
+}
+
+# File operations
+alias cp='cp -i'          # Interactive copy
+alias mv='mv -i'          # Interactive move
+alias rm='rm -i'          # Interactive remove
+alias mkdir='mkdir -pv'   # Create parent dirs + verbose
+alias rmdir='rmdir -v'    # Verbose remove directory
+
+# Grep with color
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# mac like clipboard manipulations
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
