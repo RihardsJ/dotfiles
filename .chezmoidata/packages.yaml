@@ -10,7 +10,6 @@ packages:
       - 'fzf'
       - 'htop'
       - 'jq'
-      - 'neovim'
       - 'ripgrep'
       - 'sed'
       - 'software-properties-common'
@@ -22,6 +21,7 @@ packages:
       - 'vlc'
     snap:
       - 'obsidian'
+      - 'nvim --classic'
       - 'insomnia'
     flatpak:
       - 'org.gimp.GIMP'
