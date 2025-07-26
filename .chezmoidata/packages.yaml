@@ -4,6 +4,7 @@ packages:
     apt:
       - 'bat'
       - 'build-essential'
+      - 'ubuntu-restricted-extras'
       - 'ca-certificates'
       - 'curl'
       - 'fzf'
