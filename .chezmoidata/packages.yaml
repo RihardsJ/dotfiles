@@ -20,9 +20,11 @@ packages:
       - 'zsh'
       - 'vlc'
     snap:
-      - 'obsidian'
-      - 'nvim --classic'
-      - 'insomnia'
+      regular:
+        - 'obsidian'
+        - 'insomnia'
+      classic:
+        - 'nvim'
     flatpak:
       - 'org.gimp.GIMP'
 
@@ -35,4 +37,7 @@ packages:
         args: '-s -- -y'
       - name: 'brave'
         url: 'https://dl.brave.com/install.sh'
+        args: '| sh'
+      - name: 'zed'
+        url: 'https://zed.dev/install.sh'
         args: '| sh'
