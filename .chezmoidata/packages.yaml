@@ -18,8 +18,9 @@ packages:
       - 'wezterm'
       - 'wget'
       - 'zsh'
+      - 'vlc'
     snap:
-      - 'obsidian --classic'
+      - 'obsidian'
       - 'insomnia'
     flatpak:
       - 'org.gimp.GIMP'
