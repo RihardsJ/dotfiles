@@ -21,3 +21,23 @@ packages:
 
     snap:
       - 'obsidian --classic'
+
+    flapak:
+
+  # Development tools (cross-platform)
+  development:
+    github_releases:
+      - repo: 'jesseduffield/lazygit'
+        binary: 'lazygit'
+        version: 'v0.40.2'
+      - repo: 'dandavison/delta'
+        binary: 'delta'
+        version: '0.16.5'
+    
+    install_scripts:
+      - name: 'rust'
+        url: 'https://sh.rustup.rs'
+        args: '-s -- -y'
+      - name: 'starship'
+        url: 'https://starship.rs/install.sh'
+        args: '-s -- -y'
