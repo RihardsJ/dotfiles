@@ -1,3 +1,8 @@
 README.md
 .zcompdump*
 **/.zcompdump*
+
+# Git directories (should not be managed)
+.git/
+**/.git/
+.git
