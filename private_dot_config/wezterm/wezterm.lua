@@ -593,6 +593,12 @@ end)
 --  EVENTS
 -- ══════════════════════════════════════════════════════════════════════════════
 
+-- Maximize window on startup
+wezterm.on('gui-startup', function(cmd)
+    local _, _, window = wezterm.mux.spawn_window(cmd or {})
+    window:gui_window():maximize()
+end)
+
 -- Toast notification on config reload
 wezterm.on('window-config-reloaded', function(window, _)
     window:toast_notification('WezTerm', 'Configuration reloaded', nil, 2000)
