@@ -556,35 +556,36 @@ wezterm.on('format-tab-title', function(tab, _, _, _, hover, _)
     local unseen = pane.has_unseen_output and ' ●' or ''
 
     if tab.is_active then
-        -- Active tab: bright yellow number pill, then content
+        -- Active tab: single pill — dim number, yellow icon, bold title
         return {
             { Background = { Color = P.bg_hard } },
-            { Foreground = { Color = P.yellow } },
+            { Foreground = { Color = P.bg1 } },
             { Text = PL_LEFT },
-            { Background = { Color = P.yellow } },
-            { Foreground = { Color = P.bg_hard } },
-            { Attribute = { Intensity = 'Bold' } },
+            { Background = { Color = P.bg1 } },
+            { Foreground = { Color = P.bg4 } },           -- subtle dim number
             { Text = ' ' .. idx .. ' ' },
-            { Background = { Color = P.bg } },
-            { Foreground = { Color = P.yellow } },
-            { Text = PL_RIGHT },
-            { Background = { Color = P.bg } },
-            { Foreground = { Color = P.fg } },
-            { Text = ' ' .. icon .. '  ' .. title .. zoom .. unseen .. ' ' },
+            { Foreground = { Color = P.yellow } },         -- icon accent
+            { Text = icon },
+            { Foreground = { Color = P.fg1 } },
+            { Attribute = { Intensity = 'Bold' } },
+            { Text = '  ' .. title .. zoom .. unseen .. ' ' },
             { Background = { Color = P.bg_hard } },
-            { Foreground = { Color = P.bg } },
+            { Foreground = { Color = P.bg1 } },
             { Text = PL_RIGHT },
             'ResetAttributes',
         }
     end
 
-    -- Inactive tab
-    local bg = hover and P.bg1 or P.bg_hard
-    local fg = hover and P.fg or P.bg3
+    -- Inactive tab: flat, muted — number barely visible, icon+title dim
+    local bg     = hover and P.bg1 or P.bg_hard
+    local fg     = hover and P.fg  or P.bg3
+    local num_fg = hover and P.bg4 or P.bg2
     return {
         { Background = { Color = bg } },
+        { Foreground = { Color = num_fg } },
+        { Text = ' ' .. idx .. ' ' },
         { Foreground = { Color = fg } },
-        { Text = ' ' .. idx .. '  ' .. icon .. '  ' .. title .. unseen .. ' ' },
+        { Text = icon .. '  ' .. title .. unseen .. ' ' },
         'ResetAttributes',
     }
 end)
