@@ -1,0 +1,76 @@
+clear
+git status
+git checkout -b alpine-vm-reverse-proxy
+ssh rihards@192.168.30.60
+clear
+ssh rihardsj@192.168.30.60
+docker ps
+ls
+cd Infrastructure/Docker
+cd traefik
+chmod 600 acme.json
+clear
+git status
+git status
+clear
+ls
+git status
+git add .
+clear
+cd ..
+cd ..
+cd ..
+clear
+git commit -m 'adds traefik reverse proxy settings'
+git push origin alpine-vm-reverse-proxy
+git push alpine-vm-reverse-proxy
+git status
+git upstream
+git origin
+clear
+git push origin alpine-vm-reverse-proxy
+git log --oneline
+clear
+git commit -am 'adds portainer'
+git add .
+git commit --apend
+git commit --append
+git commit --amend
+npm start
+volta install
+ls
+clear
+npm -v
+volta install
+npm -v
+pnpm -v
+volta help install
+volta install
+volta install node@lts
+npm -v
+node -v
+git status
+clear
+w .
+clear
+windsurf
+windsurf .
+clear
+clear
+sudo apt-get update
+sudo apt-get upgrade windsurf
+ls
+cd wp-content/themes
+cd ludzas-bjc-theme
+yarn install
+yarn build
+git checkout main
+ls
+git status
+git status
+git push origin udpates
+git checkout main
+git pull
+git checkout updates
+clear
+ls

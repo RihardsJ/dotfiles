@@ -1,239 +1,146 @@
 #!/usr/bin/env zsh
+# ─── prompt ───────────────────────────────────────────────────────────────────
+# Gruvbox Material · JetBrainsMono Nerd Font v3 · vi-mode aware
+#
+# Colour philosophy — cold / neutral:
+#   blue  (#7daea3) → directory, paths, vi-normal mode
+#   aqua  (#89b482) → git branch, vi-visual mode, prompt char
+#   green (#a9b665) → clean / success / staged
+#   red   (#ea6962) → errors, deletions (semantic only)
+#   gray  (#928374) → separators, stash, unmerged (recede into background)
+#   dim   (#665c54) → parent path, "on" text
+# ─────────────────────────────────────────────────────────────────────────────
 
-###############################
-# ENHANCED HYBRID PROMPT      #
-# Beautiful, Fast, Informative #
-###############################
+autoload -Uz add-zsh-hook vcs_info
 
+# ─── vcs_info (branch name only — status computed via git directly) ───────────
+zstyle ':vcs_info:*'      enable git
+zstyle ':vcs_info:git:*'  formats       '%b'
+zstyle ':vcs_info:git:*'  actionformats '%b|%a'
+
+# ─── Nerd Font glyphs (JetBrainsMono Nerd Font v3) ───────────────────────────
+_ic_branch=$'\ue725'    #  nf-dev-git_branch
+_ic_home=$'\uf015'      #  nf-fa-home
+_ic_folder=$'\uf07b'    #  nf-fa-folder_open
+_ic_plus=$'\uf067'      #  nf-fa-plus        (staged)
+_ic_pencil=$'\uf040'    #  nf-fa-pencil      (modified)
+_ic_cross=$'\uf00d'     #  nf-fa-times       (deleted)
+_ic_arrow=$'\uf061'     #  nf-fa-arrow_right (renamed)
+_ic_warn=$'\uf06a'      #  nf-fa-exclamation (unmerged)
+_ic_quest=$'\uf128'     #  nf-fa-question    (untracked)
+_ic_inbox=$'\uf01c'     #  nf-fa-inbox       (stash)
+_ic_up=$'\uf062'        #  nf-fa-arrow_up    (ahead)
+_ic_down=$'\uf063'      #  nf-fa-arrow_down  (behind)
+_ic_check=$'\uf00c'     #  nf-fa-check       (clean)
+
+# ─── Palette — cold / neutral subset of Gruvbox Material ─────────────────────
+_c_red='#ea6962'
+_c_green='#a9b665'
+_c_aqua='#89b482'
+_c_blue='#7daea3'
+_c_gray='#928374'
+_c_dim='#665c54'
+_c_fg='#d4be98'
+
+# ─── Prompt state ─────────────────────────────────────────────────────────────
+typeset -g _P_DIR=''
+typeset -g _P_GIT=''
+typeset -g _P_VIMODE=''
+typeset -g _P_EXECTIME=''
+typeset -g _cmd_start=0
+
+# ─── Vi mode indicator ────────────────────────────────────────────────────────
+zvm_after_select_vi_mode() {
+    case $ZVM_MODE in
+        $ZVM_MODE_NORMAL)      _P_VIMODE="%F{$_c_blue}N%f " ;;
+        $ZVM_MODE_VISUAL)      _P_VIMODE="%F{$_c_aqua}V%f " ;;
+        $ZVM_MODE_VISUAL_LINE) _P_VIMODE="%F{$_c_aqua}VL%f " ;;
+        $ZVM_MODE_REPLACE)     _P_VIMODE="%F{$_c_red}R%f " ;;
+        *)                     _P_VIMODE='' ;;
+    esac
+    zle reset-prompt 2>/dev/null
+}
+
+# ─── Execution time ───────────────────────────────────────────────────────────
+_prompt_preexec() { _cmd_start=$SECONDS }
+
+_fmt_duration() {
+    local s=$1
+    (( s >= 3600 )) && { printf '%dh%dm%ds' $((s/3600)) $((s%3600/60)) $((s%60)); return }
+    (( s >= 60   )) && { printf '%dm%ds' $((s/60)) $((s%60)); return }
+    printf '%ds' $s
+}
+
+# ─── precmd ───────────────────────────────────────────────────────────────────
+_prompt_precmd() {
+    local _exit=$?
+
+    # ── Execution time ────────────────────────────────────────────────────────
+    if (( _cmd_start > 0 )); then
+        local _elapsed=$(( SECONDS - _cmd_start ))
+        (( _elapsed >= 2 )) \
+            && _P_EXECTIME="%F{$_c_dim} $(_fmt_duration $_elapsed)%f" \
+            || _P_EXECTIME=''
+    fi
+    _cmd_start=0
+
+    # ── Directory ─────────────────────────────────────────────────────────────
+    if [[ $PWD == $HOME ]]; then
+        _P_DIR="%F{$_c_blue}${_ic_home} ~%f"
+    else
+        local _short="${PWD/#$HOME/\~}"
+        local _parent="${_short%/*}/"
+        local _base="${_short##*/}"
+        _P_DIR="%F{$_c_dim}${_ic_folder} ${_parent}%f%B%F{$_c_blue}${_base}%f%b"
+    fi
+
+    # ── Git ───────────────────────────────────────────────────────────────────
+    vcs_info
+    if [[ -z $vcs_info_msg_0_ ]]; then
+        _P_GIT=''
+        return
+    fi
+
+    local _branch=$vcs_info_msg_0_
+    local _st=''
+    local _idx
+    _idx=$(command git status --porcelain=v1 -b 2>/dev/null) || { _P_GIT=''; return }
+    local _idxn=$'\n'${_idx}
+
+    # Divergence
+    if [[ $_idx == *'ahead'* && $_idx == *'behind'* ]]; then
+        _st+="%F{$_c_gray}⇅%f"
+    elif [[ $_idx == *'ahead'* ]]; then
+        _st+="%F{$_c_aqua}${_ic_up}%f"
+    elif [[ $_idx == *'behind'* ]]; then
+        _st+="%F{$_c_red}${_ic_down}%f"
+    fi
+
+    # Index / worktree
+    [[ $_idxn =~ $'\n''[MADRC]. '    ]] && _st+="%F{$_c_green}${_ic_plus}%f"   # staged
+    [[ $_idxn =~ $'\n''.[MD] '       ]] && _st+="%F{$_c_blue}${_ic_pencil}%f"  # modified
+    [[ $_idxn =~ $'\n''.[D] '        ]] && _st+="%F{$_c_red}${_ic_cross}%f"    # deleted
+    [[ $_idxn =~ $'\n''R. '          ]] && _st+="%F{$_c_gray}${_ic_arrow}%f"   # renamed
+    [[ $_idxn =~ $'\n''(UU|AA|DD) '  ]] && _st+="%F{$_c_gray}${_ic_warn}%f"   # unmerged
+    [[ $_idxn =~ $'\n''[?][?] '      ]] && _st+="%F{$_c_dim}${_ic_quest}%f"   # untracked
+
+    # Stash
+    command git rev-parse --verify --quiet refs/stash &>/dev/null \
+        && _st+="%F{$_c_gray}${_ic_inbox}%f"
+
+    # Clean
+    [[ -z $_st ]] && _st="%F{$_c_green}${_ic_check}%f"
+
+    _P_GIT=" %F{$_c_dim}on%f %F{$_c_aqua}${_ic_branch} ${_branch}%f ${_st}"
+}
+
+add-zsh-hook preexec _prompt_preexec
+add-zsh-hook precmd  _prompt_precmd
+
+# ─── Prompt assembly ──────────────────────────────────────────────────────────
 setopt PROMPT_SUBST
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' formats '%b'
-zstyle ':vcs_info:*' actionformats '%b|%a'
 
-###############################
-# VISUAL ENHANCEMENTS         #
-###############################
+PROMPT=$'\n''${_P_DIR}${_P_GIT}
+ ${_P_VIMODE}%(!.%F{'"$_c_red"'}#%f.%(?.%F{'"$_c_aqua"'}▸%f.%F{'"$_c_red"'}▸%f)) '
 
-blank_line_before_prompt() {
-    echo
-}
-
-user_icon() {
-    [[ $(print -P "%#") == '#' ]] && echo '%F{88}⚡ %f'|| echo '%F{cyan}➜%f '
-}
-
-error_status() {
-   echo "%(?..%F{red}✗%f )"
-}
-
-###############################
-# DETAILED GIT STATUS         #
-###############################
-
-git_detailed_status() {
-    if ! git rev-parse --git-dir > /dev/null 2>&1; then
-        return
-    fi
-    
-    local INDEX STATUS
-    INDEX=$(command git status --porcelain -b 2> /dev/null)
-    STATUS=""
-
-    # Untracked files
-    if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
-        STATUS="%F{205}?%f$STATUS"
-    fi
-
-    # Added/Staged files
-    if $(echo "$INDEX" | grep '^A  \|^M  \|^MM ' &> /dev/null); then
-        STATUS="%F{205}+%f$STATUS"
-    fi
-
-    # Modified files
-    if $(echo "$INDEX" | grep '^ M \|^AM \|^MM \|^ T ' &> /dev/null); then
-        STATUS="%F{205}!%f$STATUS"
-    fi
-
-    # Renamed files
-    if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-        STATUS="%F{205}➜%f$STATUS"
-    fi
-
-    # Deleted files
-    if $(echo "$INDEX" | grep '^ D \|^D  \|^AD ' &> /dev/null); then
-        STATUS="%F{205}✘%f$STATUS"
-    fi
-
-    # Stashed changes
-    if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
-        STATUS="%F{205}💾%f$STATUS"
-    fi
-
-    # Unmerged files
-    if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-        STATUS="%F{205}⚡%f$STATUS"
-    fi
-
-    # Ahead/behind/diverged
-    if $(echo "$INDEX" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
-        STATUS="%F{205}⇡%f$STATUS"
-    fi
-
-    if $(echo "$INDEX" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
-        STATUS="%F{205}⇣%f$STATUS"
-    fi
-
-    if $(echo "$INDEX" | grep '^## [^ ]\+ .*diverged' &> /dev/null); then
-        STATUS="%F{205}⇕%f$STATUS"
-    fi
-
-    if [[ ! -z "$STATUS" ]]; then
-        echo " $STATUS"
-    fi
-}
-
-git_info() {
-    if ! git rev-parse --git-dir > /dev/null 2>&1; then
-        return
-    fi
-    
-    vcs_info
-    local branch="$vcs_info_msg_0_"
-    local status_indicators="$(git_detailed_status)"
-    
-    if [[ -n "$branch" ]]; then
-        if [[ -n "$status_indicators" ]]; then
-            echo " %F{205} $branch%f$status_indicators"
-        else
-            echo " %F{205} $branch%f"
-        fi
-    fi
-}
-
-###############################
-# LANGUAGE VERSIONS           #
-###############################
-
-node_info() {
-    if [[ -f "package.json" || -f "yarn.lock" || -f "pnpm-lock.yaml" || -f ".nvmrc" ]]; then
-        if command -v node >/dev/null; then
-            local node_version=$(node --version | sed 's/v//')
-            echo " %F{green}⬢ $node_version%f"
-        fi
-    fi
-}
-
-python_info() {
-    local python_info=""
-    
-    if [[ -n "$VIRTUAL_ENV" ]] || [[ -n "$CONDA_DEFAULT_ENV" ]] || [[ -f "pyproject.toml" || -f "requirements.txt" || -f "setup.py" || -f "Pipfile" ]]; then
-        if [[ -n "$VIRTUAL_ENV" ]]; then
-            python_info="$(basename $VIRTUAL_ENV)"
-        elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
-            python_info="$CONDA_DEFAULT_ENV"
-        elif command -v python3 >/dev/null; then
-            local py_version=$(python3 --version 2>&1 | cut -d' ' -f2 | cut -d'.' -f1,2)
-            python_info="$py_version"
-        fi
-        
-        if [[ -n "$python_info" ]]; then
-            echo " %F{blue} $python_info%f"
-        fi
-    fi
-}
-
-docker_info() {
-    if [[ -f "Dockerfile" || -f "docker-compose.yml" || -f "docker-compose.yaml" ]]; then
-        echo " %F{cyan} docker%f"
-    fi
-}
-
-###############################
-# PATH DISPLAY                #
-###############################
-
-smart_pwd() {
-    local max_length=50
-    local current_pwd="${PWD/#$HOME/~}"
-    
-    if [[ ${#current_pwd} -le $max_length ]]; then
-        echo "$current_pwd"
-        return
-    fi
-    
-    # Split path into components
-    local path_parts=(${(s:/:)current_pwd})
-    local result=""
-    local total_length=0
-    
-    # Always show the last directory (current)
-    local last_dir="${path_parts[-1]}"
-    
-    # If just the last directory is too long, truncate it
-    if [[ ${#last_dir} -gt $max_length ]]; then
-        echo "…${last_dir: -$((max_length-1))}"
-        return
-    fi
-    
-    # Build path from the end, adding directories until we hit the limit
-    local i=${#path_parts}
-    while [[ $i -gt 0 ]]; do
-        local part="${path_parts[$i]}"
-        local new_length=$((total_length + ${#part} + 1))  # +1 for /
-        
-        if [[ $new_length -gt $max_length && $i -lt ${#path_parts} ]]; then
-            result="…/$result"
-            break
-        fi
-        
-        if [[ -z "$result" ]]; then
-            result="$part"
-        else
-            result="$part/$result"
-        fi
-        
-        total_length=$new_length
-        ((i--))
-    done
-    
-    # Handle root path
-    if [[ "$current_pwd" == /* && "$result" != /* && "$result" != "…"* ]]; then
-        result="/$result"
-    fi
-    
-    echo "$result"
-}
-
-###############################
-# PROMPT ASSEMBLY             #
-###############################
-
-build_prompt() {
-    vcs_info
-    
-    # Clear separation line
-    blank_line_before_prompt
-    
-    # Main prompt line with all info
-    local main_prompt=""
-    main_prompt+="%F{cyan}$(smart_pwd)%f"
-    main_prompt+="$(git_info)"
-    main_prompt+="$(node_info)"
-    main_prompt+="$(python_info)"
-    main_prompt+="$(docker_info)"
-    main_prompt+=" $(error_status)"
-    
-    # Command line with user icon
-    local command_prompt="$(user_icon)"
-    
-    PROMPT="$main_prompt"$'\n'"$command_prompt"
-    RPROMPT=""
-}
-
-###############################
-# INITIALIZATION              #
-###############################
-
-precmd() { build_prompt }
-build_prompt
+RPROMPT='${_P_EXECTIME}'

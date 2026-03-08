@@ -1,14 +1,55 @@
-#!/usr/bin/env zsh 
+#!/usr/bin/env zsh
+# ─── environment ──────────────────────────────────────────────────────────────
 
-# Zsh
+# ─── History ──────────────────────────────────────────────────────────────────
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=100000
+export SAVEHIST=100000
 
-# Editor
+# ─── Editor ───────────────────────────────────────────────────────────────────
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Go
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/go/bin
+# ─── PATH ─────────────────────────────────────────────────────────────────────
+export PATH="$XDG_BIN_HOME:$PATH"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+
+# ─── FZF — Gruvbox Material theme (matches WezTerm palette) ──────────────────
+export FZF_DEFAULT_OPTS="
+  --height=50%
+  --layout=reverse
+  --border=rounded
+  --prompt='  '
+  --pointer='▸'
+  --marker='✓'
+  --color=bg+:#3c3836,bg:#282828,spinner:#7daea3,hl:#7daea3
+  --color=fg:#d4be98,header:#928374,info:#928374,pointer:#89b482
+  --color=marker:#a9b665,fg+:#ebdbb2,prompt:#7daea3,hl+:#89b482
+  --color=border:#504945,separator:#504945
+  --bind='ctrl-/:toggle-preview'
+  --bind='ctrl-u:preview-half-page-up'
+  --bind='ctrl-d:preview-half-page-down'
+  --preview-window=right:55%:border-left:wrap"
+
+# Use fd as the default find command (respects .gitignore, faster)
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+
+# File preview with batcat, directory preview with eza tree
+export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --style=numbers,changes --line-range=:200 {} 2>/dev/null || eza --tree --level=2 --icons {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons --color=always {}'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=down:3:wrap"
+
+# ─── bat / batcat ─────────────────────────────────────────────────────────────
+export BAT_THEME="gruvbox-dark"
+
+# ─── eza ──────────────────────────────────────────────────────────────────────
+export EZA_COLORS="da=38;5;245:di=38;5;179:ln=38;5;109:ex=38;5;167"
+
+# ─── Less ─────────────────────────────────────────────────────────────────────
+export LESS='-R --use-color -Dd+r -Du+b'
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+
+# ─── Go ───────────────────────────────────────────────────────────────────────
+export GOPATH="$HOME/go"

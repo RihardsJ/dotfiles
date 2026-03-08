@@ -4,117 +4,202 @@
 # ZSH CONFIGURATION           #
 ###############################
 
-# Load environment variables
+# Load environment variables first — other files may depend on exported vars
 [ -f "$ZDOTDIR/environment" ] && source "$ZDOTDIR/environment"
 
 # Load aliases
 [ -f "$ZDOTDIR/aliases" ] && source "$ZDOTDIR/aliases"
 
-# Load functions
-[ -f "$ZDOTDIR/functions" ] && source "$ZDOTDIR/functions"
+# Load all function files
+for _f in "$ZDOTDIR"/functions/*.zsh; do
+    [ -f "$_f" ] && source "$_f"
+done
+unset _f
 
 ###############################
 # ZSH OPTIONS                 #
 ###############################
 
 # History
-setopt HIST_VERIFY                # Show command with history expansion to user before running it
-setopt HIST_IGNORE_ALL_DUPS       # Delete old recorded entry if new entry is a duplicate
-setopt HIST_IGNORE_SPACE          # Don't record an entry starting with a space
-setopt HIST_FIND_NO_DUPS          # Do not display a line previously found
-setopt HIST_SAVE_NO_DUPS          # Don't write duplicate entries in the history file
-setopt SHARE_HISTORY              # Share history between all sessions
-setopt APPEND_HISTORY             # Append history to the history file (no overwriting)
-setopt INC_APPEND_HISTORY         # Immediately append to the history file, not just when a term is killed
+setopt HIST_VERIFY              # Show history expansion before running
+setopt HIST_IGNORE_ALL_DUPS     # Delete old duplicate when new is added
+setopt HIST_IGNORE_SPACE        # Don't record commands starting with space
+setopt HIST_FIND_NO_DUPS        # Don't show duplicates in search
+setopt HIST_SAVE_NO_DUPS        # Don't write duplicates to history file
+setopt SHARE_HISTORY            # Share history across sessions
+setopt APPEND_HISTORY           # Append (don't overwrite) history file
+setopt INC_APPEND_HISTORY       # Write to history file immediately
 
 # Directory navigation
-setopt AUTO_CD                    # Go to folder path without using cd
-setopt AUTO_PUSHD                 # Push the old directory onto the stack on cd
-setopt PUSHD_IGNORE_DUPS          # Do not store duplicates in the stack
-setopt PUSHD_SILENT               # Do not print the directory stack after pushd or popd
+setopt AUTO_CD                  # Type a path to cd into it
+setopt AUTO_PUSHD               # Push previous dir onto stack on cd
+setopt PUSHD_IGNORE_DUPS        # No duplicate dirs in stack
+setopt PUSHD_SILENT             # Don't print stack after pushd/popd
 
 # Globbing
-setopt EXTENDED_GLOB              # Use extended globbing syntax
-setopt NO_CASE_GLOB               # Case insensitive globbing
-setopt NUMERIC_GLOB_SORT          # Sort filenames numerically when it makes sense
+setopt EXTENDED_GLOB            # Extended glob patterns (#, ^, ~)
+setopt NO_CASE_GLOB             # Case-insensitive globbing
+setopt NUMERIC_GLOB_SORT        # Sort numerically where appropriate
 
-# Other useful options
-setopt INTERACTIVE_COMMENTS       # Allow comments in interactive shell
-setopt MULTIOS                    # Write to multiple descriptors
-setopt PROMPT_SUBST               # Enable command substitution in prompt
+# Other
+setopt INTERACTIVE_COMMENTS     # Allow # comments in interactive shell
+setopt MULTIOS                  # Write to multiple descriptors
+setopt PROMPT_SUBST             # Enable $(...) in prompt strings
+setopt MENU_COMPLETE            # Auto-select first completion match
 
-# Disable options
-setopt MENU_COMPLETE              # Automatically highlight first element of completion menu (your preference)
-unsetopt FLOWCONTROL              # Disable start/stop characters in shell editor
-unsetopt CORRECT                  # Disable command autocorrect
-unsetopt CORRECT_ALL              # Disable argument autocorrect
+unsetopt FLOWCONTROL            # Disable Ctrl+S / Ctrl+Q freeze
+unsetopt CORRECT                # No command autocorrect
+unsetopt CORRECT_ALL            # No argument autocorrect
 
 ###############################
 # COMPLETION SYSTEM           #
 ###############################
 
-# Initialize completion system
-autoload -U compinit; compinit
-_comp_options+=(globdots)         # Include hidden files
+autoload -U compinit
+# Only regenerate the dump file if it's older than 24 hours — cuts startup time
+if [[ -n "$ZDOTDIR/.zcompdump"(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C   # skip security check, use cached dump as-is
+fi
+_comp_options+=(globdots)        # Complete hidden files too
 
-# Completion options
-setopt AUTO_LIST                  # Automatically list choices on ambiguous completion
-setopt COMPLETE_IN_WORD           # Complete from both ends of a word
-setopt ALWAYS_TO_END              # Move cursor to the end of a completed word
-setopt LIST_PACKED                # The completion menu takes less space
+setopt AUTO_LIST                 # List choices on ambiguous completion
+setopt COMPLETE_IN_WORD          # Complete from both ends of a word
+setopt ALWAYS_TO_END             # Move cursor to end after completion
+setopt LIST_PACKED               # Compact completion list
 
-# Use cache for completions
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-
-# Completion styling
 zstyle ':completion:*' menu select
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{#a9b665}-- %d --%f'
+zstyle ':completion:*:*:*:*:corrections' format '%F{#d8a657}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:messages'  format ' %F{#d3869b} -- %d --%f'
+zstyle ':completion:*:warnings'  format ' %F{#ea6962}-- no matches found --%f'
+zstyle ':completion:*:default'   list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*'           complete-options true
+zstyle ':completion:*'           file-sort modification
+zstyle ':completion:*'           matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# Completion colors and options
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' complete-options true
-zstyle ':completion:*' file-sort modification
-
-# Matcher list (your version is more comprehensive)
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-###############################
-# KEY BINDINGS                #
-###############################
-
-# Use emacs key bindings
-bindkey -e
-
-# History simple search
-bindkey '^R' history-incremental-search-backward
+# fzf-tab previews — consistent with FZF_*_OPTS in environment
+zstyle ':fzf-tab:complete:cd:*'                      fzf-preview 'eza --tree --level=2 --icons --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*'              fzf-preview 'eza --tree --level=2 --icons --color=always $realpath'
+zstyle ':fzf-tab:complete:git-(add|diff|restore):*'  fzf-preview 'git diff --color=always HEAD -- $word 2>/dev/null'
+zstyle ':fzf-tab:complete:git-checkout:*'            fzf-preview 'git log --oneline --color=always $word 2>/dev/null'
+zstyle ':fzf-tab:complete:nvim:*'                    fzf-preview 'batcat --color=always --style=numbers $realpath 2>/dev/null || eza --tree --icons $realpath 2>/dev/null'
+zstyle ':fzf-tab:*'                                  fzf-flags \
+    '--color=bg+:#3c3836,bg:#282828,hl:#ea6962,fg:#d4be98,fg+:#ebdbb2' \
+    '--color=info:#d3869b,prompt:#a9b665,pointer:#d8a657,marker:#a9b665,border:#504945'
 
 ###############################
 # PLUGINS                     #
 ###############################
 
-# Load syntax highlighting (only if it's used)
+# Load order is intentional:
+#   compinit (above) → fzf-tab → syntax-highlighting → history-substring-search → zsh-vi-mode
+#
+# zsh-vi-mode must be last: it resets keymaps. Everything that needs to
+# survive that reset is re-applied inside zvm_after_init() below.
+
+[ -f "$ZDOTDIR/plugins/fzf-tab/fzf-tab.plugin.zsh" ] && {
+    source "$ZDOTDIR/plugins/fzf-tab/fzf-tab.plugin.zsh"
+    # Navigate between completion groups (e.g. subcommands vs flags)
+    zstyle ':fzf-tab:*' switch-group ',' '.'
+}
+
 [ -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && {
-  source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    # Gruvbox Material syntax highlight colors
+    ZSH_HIGHLIGHT_STYLES[default]='fg=#d4be98'
+    ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#ea6962,bold'
+    ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#e78a4e'
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=#a9b665'
+    ZSH_HIGHLIGHT_STYLES[builtin]='fg=#a9b665'
+    ZSH_HIGHLIGHT_STYLES[function]='fg=#a9b665'
+    ZSH_HIGHLIGHT_STYLES[command]='fg=#a9b665'
+    ZSH_HIGHLIGHT_STYLES[precommand]='fg=#a9b665,italic'
+    ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#e78a4e'
+    ZSH_HIGHLIGHT_STYLES[path]='fg=#d8a657,underline'
+    ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=#928374,underline'
+    ZSH_HIGHLIGHT_STYLES[globbing]='fg=#89b482'
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#d8a657'
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#d8a657'
+    ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#d8a657'
+    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=#d3869b'
+    ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=#d3869b'
+    ZSH_HIGHLIGHT_STYLES[redirection]='fg=#7daea3'
+    ZSH_HIGHLIGHT_STYLES[comment]='fg=#665c54,italic'
+    ZSH_HIGHLIGHT_STYLES[named-fd]='fg=#7daea3'
+    ZSH_HIGHLIGHT_STYLES[arg0]='fg=#a9b665'
 }
-# Load vim plugin (only if it's used)
-[ -f "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ] && {
-  source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+
+[ -f "$ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" ] && {
+    source "$ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
+    HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=#3c3836,fg=#a9b665,bold'
+    HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=#3c3836,fg=#ea6962,bold'
+    HISTORY_SUBSTRING_SEARCH_FUZZY=1
 }
+
+# zsh-vi-mode — must be last
+[ -f "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ] && \
+    source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
 ###############################
 # EXTERNAL TOOLS              #
 ###############################
 
-# FZF (only if installed and used)
-if command -v fzf >/dev/null; then
-  [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-  [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-fi
+# Zoxide — smart cd with frecency ranking
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
-# Initialize prompt (should be last)
+# Atuin — enhanced history search
+# --disable-up-arrow: Up/Down are used by history-substring-search
+command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+
+# FZF key bindings and completions (also re-sourced in zvm_after_init)
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh ]   && source /usr/share/fzf/completion.zsh
+
+###############################
+# KEY BINDINGS                #
+###############################
+
+# zvm_after_init is called by zsh-vi-mode once its keymap setup is done.
+# Everything placed here survives the vi-mode keymap reset.
+zvm_after_init() {
+    # FZF — re-apply Ctrl+T / Alt+C after vi-mode reset
+    [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+
+    # History substring search — Up/Down arrows (insert + vicmd mode)
+    bindkey '^[[A'        history-substring-search-up
+    bindkey '^[[B'        history-substring-search-down
+    bindkey -M vicmd 'k'  history-substring-search-up
+    bindkey -M vicmd 'j'  history-substring-search-down
+
+    # Ctrl+F — zoxide interactive jump (zi)
+    bindkey -s '^F' 'zi\n'
+
+    # Ctrl+E — edit current command line in $EDITOR
+    autoload -Uz edit-command-line
+    zle -N edit-command-line
+    bindkey         '^E' edit-command-line
+    bindkey -M vicmd '^E' edit-command-line
+
+    # Atuin Ctrl+R — restore after vi-mode keymap reset
+    if command -v atuin >/dev/null; then
+        bindkey         '^R' _atuin_search_widget
+        bindkey -M vicmd '^R' _atuin_search_widget
+    fi
+
+    # Ctrl+G — interactive git stage (gadd)
+    _widget_gadd() { gadd; zle reset-prompt }
+    zle -N _widget_gadd
+    bindkey '^G' _widget_gadd
+}
+
+###############################
+# PROMPT                      #
+###############################
+
+# Sourced last — registers precmd / preexec hooks
 [ -f "$ZDOTDIR/prompt" ] && source "$ZDOTDIR/prompt"

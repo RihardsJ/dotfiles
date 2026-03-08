@@ -1,0 +1,5927 @@
+cd .config/zsh
+cd
+sudo apt install neovim
+nvim
+sudo apt remove neovim
+nvim
+clear
+ls -a
+sudo apt install exa
+ls
+clear
+sudo apt install snapd
+sudo apt autoremove
+nvim
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install core
+clear
+ls -a
+less .zsh_history
+rm .zsh_history
+rm .zshrc
+ls
+ls -a
+mv .zcompdump .config/zsh
+ls -a
+nvim
+ls
+cd rihards-pop-os
+ls
+..
+ls snap
+ls
+ls -a
+ls .profile
+clear
+ls -a
+less .zshenv
+nvim
+sudo snap install noevim
+sudo snap install neovim
+sudo snap search neovim
+sudo snap install nvim --classic
+nvim
+sudo apt remove snap
+ls
+ls -a
+ls snap
+snap -v
+snap --version
+clear
+sudo apt remove snap
+sudo apt remove snapd
+ls
+ls snap
+sudo snap remove nvim
+sudo apt install snapd
+ls
+ls snap
+sudo snap remove nvim liquidctl
+ls -a
+ls snap
+snap remove bitwarden
+ls
+sudo apt remove snap
+sudo apt remove snapd
+man apt
+sudo apt autoremove
+clear
+sudo apt update && sudo apt upgreade
+sudo apt update && sudo apt upgrade
+clear
+ls
+rm -rf snap
+ls
+exit
+reboot
+shutdown -r now
+ls
+sudo apt install snapd
+ls
+ls .config
+snap install nvim
+snap install nvim --classic
+ls
+ls .config
+man snap
+sudo snap refresh
+clear
+nvim
+nvim .
+nvm .
+nvim .
+nvim .
+nvim .
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+curl -v
+curl --help
+clear
+curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/JetBrainsMono/JetBrainsMNerdFont-Regular.otf\
+\
+
+curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFontMono-Regular.ttf
+ls
+curl -sS https://starship.rs/install.sh | sh
+nvim .config/zsh
+reset
+exit
+nvim .config/zsh
+exit
+nvim .config
+reset
+nvim .
+nvim .config/zsh
+pbpaste
+sudo apt install xclip
+pbpaste
+clear
+ls
+ls snap
+mkdir Workspace
+ls
+ls snap/nvim
+ls -a
+nvim rihards-pop-os
+clear
+ls
+ls rihards-pop-os
+mv rihards-pop-os .config
+ls
+clear
+ls -a
+clear
+nvim .config
+ls
+ls -a
+mv .bash_history .bash_history .bashrc .config/bash
+ls
+ls -a
+mv .bash_logout .config/bash
+ls .config/bash
+ls -a .config/bash
+clear
+ls
+exit
+ls
+ls -a
+trash .bashrc
+rm .bashrc
+ls
+ls -a
+clear
+ls
+ls -a
+cd .config/bash
+ls
+ls -a 
+mv * ../../
+ls
+mv .bash_history .bash_logout .bashrc ../../
+ls
+ls -a
+..
+rm bash
+rm -r bash
+..
+..
+cd
+ls
+ls -a
+source .bashrc
+ls
+ls -a
+source ~/.bashrc
+echo $SHELL
+ls -a
+nvim .bashrc
+rm .bash_history .bash_logout .bashrc
+ls
+ls -a
+exit
+git config --global user.name "Rihards J"
+git config --global user.name
+git config --global user.email "rihardsj@pm.me"
+clear
+ls
+git config --global core.editor nvim
+man git-config
+ssh-keygen -t ed25519 -C "rihardsj@pm.me"
+ssh-keygen -t ed25519 -C "rihardsj@pm.me"
+ls .config
+ssh-keygen -t ed25519 -C "rihardsj@pm.me"
+ls
+ls -a
+mkdir .config/.ssh
+ssh-keygen -t ed25519 -C "rihardsj@pm.me"
+$ eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)"
+ssh-add ~/.config/.ssh/id_ed25519
+cat ~/.config/.ssh/id_ed25519.pub
+cat ~/.config/.ssh/id_ed25519.pub > pbcopy
+ls
+cd .config
+git clone git@github.com:RihardsJ/neovim-setup.git nvim
+exit
+cd .config
+git clone git@github.com:RihardsJ/neovim-setup.git nvim
+ssh -vT git@github.com
+ls -a
+cd
+ls -a
+ssh -T git@github.com\
+
+ssh-add -l -E sha256
+eval "$(ssh-agent -s)"
+ssh-add -l
+cat ~/.config/.ssh/id_rsa.pub\
+
+cat ~/.config/.ssh/*id_rsa.pub\
+
+cd .config/.ssh
+ls
+ls
+ls -a
+touch config
+nvim .
+ssh -T git@github.com\
+
+ssh-add ~/.config/.ssh/id_ed25519
+ssh -T git@github.com\
+
+..
+ls
+clear
+ls
+git clone git@github.com:RihardsJ/prompt-settings.git
+ls
+ls
+rm -r prompt-settings
+ls
+git clone git@github.com:RihardsJ/nvim-settings.git nvim
+nvim
+nvim
+nvim .
+nvim
+ls
+rm -rf nvim
+git clone git@github.com:RihardsJ/neovim-setup.git nvim
+nvim
+nvim
+nvim
+curl https://get.volta.sh | bash
+..
+ls -a
+exa
+clear
+volta install node
+ls
+ls pbcopy
+..
+cd
+mr -r pbcopy
+rm -r pbcopy
+ls
+ls -a
+nvim .config/zsh
+reset
+exit
+nvim
+npm -v
+nvim .config/zsh
+reset
+cd .config
+exit
+volta
+volta install node
+clear
+nvim 
+exit
+cd Documents
+nvim ../.config/zsh
+reset
+cd ..
+cd .config
+clear
+ls
+cd zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+ls
+nvim .
+reset
+zhs
+reset
+exit
+clear
+ls
+ls
+cd .config
+clear
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+pnpm -v
+pnpm -version
+rm -rf $PNPM_HOME
+pnpm
+npm install -g pnpm
+pnpm
+pnpm -v
+clear
+ls -a
+ls .ssh
+lsmod | grep kvm
+ls -al /dev/kvm
+sudo usermod -aG kvm $USER
+ls -al /dev/kvm
+sudo apt-get update
+sudo apt update
+clear
+sudo apt upgrade
+clear
+ls
+cd Downloads
+ls
+cd Downloads
+ls
+nvim .config
+exit
+cd Downloads
+ls
+clear
+..
+cd Documents
+cd ../Downloads
+clear
+ls
+clear
+sudo apt install ./docker-desktop-4.29.0-amd64.deb
+ls
+sudo apt-get install ./docker-desktop-4.29.0-amd64.deb
+clear
+cd
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc\
+sudo chmod a+r /etc/apt/keyrings/docker.asc\
+\
+# Add the repository to Apt sources:\
+echo \\
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \\
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null\
+sudo apt-get update
+clear
+cd Downloads
+sudo apt install ./docker-desktop-4.29.0-amd64.deb
+systemctl --user start docker-desktop
+docker ps
+clear
+docker compose --version
+docker compose version
+docker --version
+docker version
+systemctl --user enable docker-desktop
+clear
+cd 
+ls -a
+clear
+sudo apt install psensor
+lm-sensor
+sudo apt install lm-sensors
+sudo sensors-detect
+sudo apt install fancontrol
+sudo sensors-detect
+sudo pwmconfig
+sudo systemctl start fancontrol
+sudo sensors | grep -i fan
+sudo sensors | grep -i fan
+clear
+clear
+sudo sensors | grep -i fan
+exit
+sudo sensors | grep -i fan
+psensor
+cd Downloads
+rm -r *
+ls
+clear
+sudo pwmconfig
+sudo apt install pwm-capable
+sensors
+sensors
+sudo apt update
+sudo apt upgrade
+clear
+shutdown -r now
+shutdown -r now
+ls
+cd rihards-pop-os
+ls -a
+ls -a
+..
+rm  -r rihards-pop-os
+ls
+ls
+cd Workspace
+mkdir Obsidian-Vault
+ls
+rm -r
+rm -r Obsidian-Vault
+ls
+mkdir obsidian-vault
+ls
+ls
+cd Desktop
+cd ../Documents
+mkdir Obsidian_Vault
+cd Workspace
+rm -r obsidian-vault
+ls
+exit
+nvim
+shutdown
+shutdown now
+exit
+nslookup pi.hole
+sudo apt update && sudo apt upgreade
+sudo apt update && sudo apt upgrade
+clear
+shutdown now -r 
+ping local.blue-raven.co.uk
+clear
+ping 192.168.1.30
+ssh rihardsj@local.blue-raven.co.uk
+ssh rihardsj@local.blue-raven.co.uk
+ssh rihardsj@192.168.1.30
+sudo apt update && sudo apt upgreade
+sudo apt update && sudo apt upgrade
+clear
+sudo apt autoremove
+sudo apt autoclean
+shutdown -r now
+clear
+sudo apt update && sudo apt ugprade -y
+sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
+clear
+sudo snap install bitwarden
+shutdown -r now
+man man
+clear
+man git
+clear
+sudo apt update && sudo apt upgrade
+git config get user.email
+git config --global get user.name
+man git-config
+git config get-all --global
+git config --global
+git config --get-all
+git config -l
+git config -l --global
+git config -get user.name
+git config --get user.name
+git config --get user.name --global
+git config --global --get user.name
+clear
+ls
+cd Workspace
+ls
+mkdir Tutorials
+ls
+cd Tutorials
+mkdir Git
+ls
+cd Git
+mkdir practice
+ls
+cd practice
+git init
+find .git
+touch first.md
+git status
+git add first.md
+git commit -m 'first commit'
+git status
+git
+clear
+git first.md
+clear
+ls
+cd
+cd Downloads
+open Snazzy.terminal
+./Snazzy.terminal
+ls
+cd Documents
+..
+cd Downloads
+rm Snazzy.terminal
+mv progit.pdf ../Documents
+git clone https://github.com/yihyunjoon/hyper-snazzy-gnome-terminal.git
+cd hyper-snazzy-gnome-terminal
+chmod +x hyper-snazzy.sh && ./hyper-snazzy.sh
+shutdown now
+shutdown now
+sudo apt update && sudo apt upgrade
+exit
+dow
+downloads
+unzip devicon-master.zip
+ls
+rm devicon-master.zip
+ls
+mv devicon-master ../Documents
+exit
+nvim Documents/devicon-master
+exit
+ls
+cd Documents
+nvim devicon-master
+ls
+ls
+mkdir file-flat-map
+ls
+cd file-flat-map
+nvim .
+nvim
+nvim
+nvim
+nvim
+nvim .
+exit
+ls -al ~/.ssh\
+
+ssh -T git@github.com
+ssh -vT git@github.com\
+
+ssh-add -l -E sha256
+cd
+ls -a
+cd .ssh
+cd ..
+cd .config
+..
+ls -a
+cd .ssh
+git config -l
+ssh-keygen -t ed25519 -C rihardsj@pm.me
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+pbcopy ~/.ssh/id_ed25519.pub
+ssh -vT git@github.com\
+
+exit
+cd ../Downloads
+unzip devicon-master.zip
+ls
+rm devicon-master.zip
+ls
+cd devicon-master
+cp icons ../../Documents/file-flat-map
+cp icons ../../Documents/file-flat-map -r
+cp icons ../../Documents/file-flat-map -r
+exit
+nvim
+nvim
+cd ../.config/nvim
+nvim .
+nvim
+clea
+clear
+ls
+git status
+clear
+ls
+clear
+nvim
+documents
+nvim
+nvim
+cler
+clear
+ls
+nvim file-flat-map
+nvim file-flat-map
+nvim .
+nvim .
+ls
+cd file-flat-map
+chmod +x main.js
+./main.js
+./main.js
+./main.js
+./main.js
+clear
+clear
+clear
+./main.js
+ls
+rm output
+rm -r output
+ls
+clear
+clear
+./main.js
+ls
+rm -r output
+./main.js
+./main.js
+ls
+ls output
+ls output
+./main.js
+./main.js
+./main.js
+clear
+./main.js
+./main.js
+ls
+ls -a
+ls output
+clear
+clear
+./main.js
+./main.js
+./main.js
+ls output
+ls output
+./main.js
+./main.js
+ls
+ls output
+ls
+cd Workspace
+cd Tutorials
+cd Git
+cd practice
+git log
+git log --graph --decorate\
+  
+git log --graph
+git log --graph --decorate
+clear
+git config -l
+clear
+ls -a
+tree .git
+git cat-file -p
+git cat-file
+clear
+git log
+git cat-file -p f9061b8c2d4971211e53a8bc539dc7a2fd6119e6
+echo "#Second feature" > second.md
+nvim .
+git commit -m 'adds second feature'
+git add second.md
+git commit -m 'adds second feature'
+git cat-file 0072b73
+git cat-file -p 0072b73
+git cat-file -p 388f92c69d1d2cba387f1e6702d67df3917996d4
+git config --global init.defaultBranch main
+git config
+git config -l
+..
+..
+mkdir
+mkdir 1
+cd 1
+git init
+..
+rm -r 1
+cd Git
+cd practice
+clear
+..
+mkdir hello-git
+cd hello-git
+git init
+echo "A" > README.md
+ls
+less README.md
+git add .
+git commit -m 'A'
+git log
+git checkout foo
+git branch -b foo
+git checkout -b foo
+clear
+git branch
+git  checkout -
+tree .git
+git checkout -
+echo "B" >> second.md
+git add second.md
+git commit -m 'B'
+echo "C" >> second.md
+git add second.md
+git commit -m 'C'
+git status
+less README.md
+less second.md
+clear
+git log
+git checkout main
+echo "D" >> README.md
+git add README.md
+git commit -m 'D'
+echo "E" >> README.md
+git add README.md
+git commit -m 'E'
+git log --oneline
+git log --oneline foo
+git checkout -b trunk-merge-foo
+git merge foo
+git --log
+git log --parents
+git log --oneline --graph --parents
+git checkout main
+git checkout bar
+git checkout -b bar
+echo "X" >> bar.md
+git add .
+git commit -m 'X'
+git status
+git log --oneline
+git log --oneline bar
+echo "Y" >> bar.md
+less bar.md
+git add .
+git status
+git commit -m 'Y'
+git log --oneline --graph
+git checkout main
+git merge bar
+git checkout foo
+git checkout -b foo-rebase-trunk
+git rebase trunk
+git rebase main
+git log oneline
+git log --oneline
+git checkout -
+git checkout main
+git log --oneline
+git checokut -
+git checkout -
+git reflog
+shutdown -r now
+man ping
+ping -c 4
+ping 192.168.1.30 -c 4
+ping 192.168.1.30 -c 4
+ping 192.168.1.30 -c 4
+ping gooogle.com -c 4
+workspace
+cd Tutorials/Git/practice
+git branch
+cd ../hello-git
+git checkout main
+echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra nibh cras pulvinar mattis. Odio ut sem nulla pharetra diam sit amet. A diam sollicitudin tempor id eu nisl nunc. Id ornare arcu odio ut sem nulla pharetra diam sit. Suspendisse in est ante in. Sem fringilla ut morbi tincidunt augue interdum velit euismod in. Quam viverra orci sagittis eu volutpat odio. Feugiat nisl pretium fusce id. Dictum at tempor commodo ullamcorper a lacus. Eget felis eget nunc lobortis mattis aliquam faucibus purus. Cursus mattis molestie a iaculis at." >> baz.md
+git status
+git diff
+git add -[
+git add -p
+git status
+git stash
+git checkout -b baz
+git stash pop
+git stash -l
+man git-stash
+git stash list
+git stash show
+clear
+git status
+clear
+git add baz.md
+git commit -m 'adds baz'
+git status
+less baz
+less baz.md
+git checkout -
+git branch -d
+git branch baz -d
+git branch =D baz
+git branch -D baz
+git status
+clear
+git status
+man git-restore
+git reflog
+git branch
+git reflog -5
+man git-reflog
+git cat-files -p f832225
+git cat-file -p f832225
+git cat-file -p 02489a862b6f51005bb3682e8f795db00e582829
+git cat-file -p 100644
+git cat-file -p 1517de05d8fcb0f85e333abe04761ca709a88fa1
+git reflog -5
+git cherry-pick f832225
+less baz.md
+man git-cherry-pick
+clear]
+clear
+cd ..
+mkdir remote-git
+cd remote-git
+git inti
+git init
+cd ../
+cd hello-git
+cd ../remote-git
+git remote add origin ../hello-git
+git remote -v
+git fetch
+git log
+git log origin/main
+git branch -a
+man git-fetch
+cd ../hello-git
+echo "A remote change" >> README.md
+less README.md
+git status
+git add .
+git commit -m 'a remote change'
+cd ../remote-git
+git pull
+ git branch --set-upstream-to=origin/main main
+cd ../
+cd hello-git
+git remote -v
+cd ../remote-git
+git remote
+git remote -v
+git fetch
+git status
+git log
+git log origin/main
+git merge origin/main
+git pull
+git branch --set-upstream-to=origin/main main
+git status
+git fetch
+git pull origin main
+git pull 
+git checkout bar
+echo "CHANGE FROM REMOTE" >> README.md
+git status
+git diff
+q
+git add -p
+clear
+git status
+git reset HEAD
+git status
+git add -p
+git reset README.md
+git status
+git checkout -- README.md
+git status
+history | grep CHANG
+echo "CHANGE FROM REMOTE" >> README.md
+git status
+git add README.md
+git commit -m 'adds remote changes'
+git status
+git push
+cd ../hello-git
+git log --oneline
+echo "upstream change" >> upstream.md
+cd ../remote-git
+echo "downstream change" >> README.md
+git status
+git add .
+git commit -m 'downstream change'
+cd ../hello-git
+git status
+git commit -m 'upstream change'
+git add .
+git commit -m 'upstream change'
+git status
+cd ../remote-git
+git reset --soft HEAD~1
+git status
+git reset README.md
+git status
+git stash
+git status
+git stash list
+git stash view
+git stash show
+git stash pop
+git stash -m 'readme changes'
+git stash list
+history | grep echo
+echo "some change" >> README.md
+git status
+git stash -m 'another change"
+git stash -m "another change"
+git stash list
+git pull
+git checkout main
+git pull
+git stash show
+git stash list
+git stash pop 1
+git status
+git diff
+git status
+git diff
+nvim .
+clear
+git status
+git commit -m 'merge hello-git changes'
+git add .
+git commit -m 'merge hello-git changes'
+git push
+git pull
+git push
+git push -f
+git push --force
+git pull
+git reset --hard
+git status
+git push
+git remote -v
+cd ../hello-git
+nvim README.md
+git add .
+git commit -m 'A + 1'
+less README.md
+cd ../remote-git
+nvim README.md
+nvim
+git status
+git add .
+git commit -m "A + 2"
+git status
+git pull
+git pull --rebase
+ls
+git diff
+nvim .
+git rebase --continue
+git merge
+git commit -m 'merge remote'
+git status
+git rebase --continue
+git status
+git add README.md
+git rebase --continue
+git status
+nvim README.md
+git add README.md
+git rebase --continue
+git status
+git push
+clear
+cd ../hello-git
+git pull
+clear
+cd ../remote-git
+git push
+git status
+git checkout bar
+git rebase main
+git status
+nvim README.md
+git add .
+git rebase --continue
+git pull origni main
+cd ../hello-git
+nvim README.md
+git status
+nvim bar.md
+nvim bar.md
+git add .
+git commit -m 'a change from hell-git for rebase conflict'
+cd ../
+cd remote-git
+nvim README.md
+git checkout main
+git stash
+git checkout main
+nvim README.md
+git status
+clear
+nvim bar.md
+git commit -m 'change from remote'
+git add .
+git commit -m 'change from remote'
+git pull --rebase
+git status
+nvim README.md
+nvim
+nvim README.md
+git status
+nvim README.md
+git add .
+git status
+git rebase --continue
+git log --oneline
+cd ../hello-git
+nvim README.md
+cd ../remote-git
+nvim README.md
+git status
+cd ../hello-git
+git status
+git commit -am 'A + 5"
+git commit -am 'A + 5'
+git status
+cd ../remote-git
+nvim README.md
+git add .
+git commit -m 'A +6'
+git pull --rebase
+git status
+nvim README.md
+git rebase --continue
+git status
+git add .
+git rebase --continue
+git log --oneline
+git push --force
+git checkout -
+git pull
+git pull --rebase
+git status
+nvim README.md
+git add .
+git rebase --continue
+git status
+git rebase main
+nvim .
+git add .
+git rebase --continue
+nvim .
+nvim
+clear
+git status
+git rebase --continue
+git status
+nvim .
+git add .
+git rebase --continue
+git pull
+git push origin main
+clear
+git push origin bar
+git pull origin bar
+cd ..
+git clone git@github.com:ThePrimeagen/git-bisect.git\
+  
+ls
+cd git-bisect
+npm install
+npm run test
+git log grep=foo
+git log --grep=foo
+git log --grep=foo -p
+git log -p -- src/index.js
+git bisect start
+git bisect bad
+git log --oneline
+git bisect good b56ed57
+npm run test
+git bisect bad
+npm test
+git bisect good
+npm test
+git bisect good
+npm test
+git bisect bad
+npm test
+git bisect bad
+git bisect reset
+git bisect start
+git bisect bad
+history | grep goood
+history | grep good
+git bisect good b56ed57
+git bisect run ./node_modules/.bin/vitest --run\
+  
+git cat-file -p 3798398f377cd1722284ff30b211e3b66e218738
+git cat-file -p d98063193db2f971bd28ce3f09dbd24aa93e860a
+npm test
+git diff 3798398f377cd1722284ff30b211e3b66e218738
+git cat-file -p d98063193db2f971bd28ce3f09dbd24aa93e860a
+git cat-file -p 62f1de4d43ea055be3287c89c56bdd33600efe8d
+git cat-file -p e8052ccec741033e9a9878be8ec636f1b93899c9
+git status
+git bisect end
+git bisect reset
+git revert 3798398f377cd1722284ff30b211e3b66e218738
+npm test
+sudo apt install glow bat
+clear
+sudo apt install batr
+sudo apt install bat
+man bat
+clear
+sudo apt install glow
+sudo snap install glow
+nvim .
+nvim
+touch main.js
+nvim main.js
+nvim
+exit
+sudo apt update && sudo apt upgrade -y
+nvim
+workspace
+cd Tutorials
+cd Git
+cd hello-git
+nvim .
+nvim
+nvim
+nvin
+cd
+cd .config/nvim
+nvim
+nvim
+nvim
+cd
+workspace
+cd Tutorials
+cd Git
+cd hello-git
+nvim .
+nvim .
+ls
+cd ../git-bisect
+nvim .
+cd ../../
+git clone git@github.com:RihardsJ/fruit-app.git
+nvim fruit-app
+nvim fruit-app
+nvim fruit-app
+nvim fruit-app
+nvim fruit-app
+nvim fruit-app
+nvim fruit-app
+nvim
+nvim fruit-app
+nvim fruit-app
+nvim fruit-app
+nvim
+nvim fruit-app
+nvim fruit-app
+nvim
+nvim fruit-app
+ls
+cd Workspace
+cd Tutorials
+cd fruit-app
+cd server
+cd src
+cd .././
+cd ../
+nvim .
+sudo apt update && sudo apt upgrade -y
+clear
+shutdown now
+shutdown now
+man ping
+ping -c 4 frontendmasters.com
+ping -c 4 https://www.frontendmasters.com
+ping google.com -c 4
+clear
+ssh rihards@local.blue-raven.co.uk
+clear
+ping google.com
+clear
+exit
+exit
+lsof -i :9229\
+
+lsof -i :9229\
+
+lsof -i :9229\
+
+lsof -i :9229\
+
+exit
+ls
+pnpm start --inspect
+pnpm start --inspect-brk=9229
+node index.js --inspect
+node --inspect-brk=9229 index.js
+clear
+exit
+cd 
+cd .config/cache/nvim
+less dap.log
+ls
+cd ../
+cd ../
+ls -a
+tree
+clear
+ls
+clear
+ls
+ls -a
+cd local/share/nvim/mason/packages/js-debug-adapter
+cd ../
+..
+cd bin
+cd js-debug-adapter
+open js-debug-adapter
+ls
+ls
+js-debug-adapter version
+~/.config/local/share/nvim/mason/bin/js-debug-adapter version
+clear
+ls
+rm version
+ls
+..
+cd packages/js-debug-adapter/js-debug/src/dapDebugServer.js
+cd
+~/.config/local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js
+clear
+cd .config/local/share/nvim/mason/packages/js-debug-adapter
+./js-debug-adapter
+clear
+ls
+workspace
+cd Tutorials/JavaScript/deep-js-foundations-v2-exercises
+nvim . 
+clear
+ls
+cd ../../../
+mkdir Projects
+ls
+cd Projects
+mkdir nvim-dap-test
+ls
+cd nvim-dap-test
+pnpm init
+ls
+pnpm add express
+man pnpm
+pnpm help
+pnpm add -g pnpm
+pnpm -v
+clear
+ls
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+..
+rm -r nvim-dap-test
+ls
+exit
+node
+workspace
+cd Tutorials
+rm -r fruit-app
+clear
+ls
+mkdir JavaScript
+cd JavaScript
+unzip ../../../Downloads/deep-js-foundations-v2-exercises.zip
+ls
+nvim .
+nvim
+clear
+nvim deep-js-foundations-v2-exercises
+nvim deep-js-foundations-v2-exercises
+shutdown -r now
+sudo apt update && sudo apt upgrade -y
+shutdown now
+sudo apt update && sudo apt upgrade -y
+clear
+ls
+cd Workspace
+cd Projects
+ls
+..
+cd Tutorials
+..
+mv Tutorials Learning
+ls
+cd Learning
+mkdir Programming-Languages Frameworks-Libraries 
+ls
+mv JavaScript Programming-Languages
+ls
+mkdir Concepts
+mkdir Specialised-Fields
+ls
+rm Specialised-Fields
+rm -r Specialised-Fields
+mkdir Version-Control
+mv Git Version-Control
+ls
+lc
+ls
+cd Programming-Languages
+ls
+cd JavaScript
+mkdir Frontend-Masters
+mv deep-js-foundations-v2-exercises Frontend-Masters
+ls
+cd Frontend-Masters
+nvim deep-js-foundations-v2-exercises
+..
+ls
+cd Frontend-Masters
+nvim deep-js-foundations-v2-exercises
+ls
+cd deep-js-foundations-v2-exercises
+cd types-exercises
+cd coercion
+node ex.js
+clear
+ls
+..
+cd equality
+node ex.js
+clear
+cd ../equality
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.fixed.js
+cd
+cd Documents
+cd file-flat-map
+cd output
+..
+zip output
+ls
+..
+clear
+ls
+open
+clear
+ls
+cd
+ls
+ls -a
+ls
+cd Downloads
+..
+ls
+clear
+cd Documents
+ls
+..
+cd Desktop
+cd ../Documents
+cd ../Downloads
+clear
+ls
+cd devicon-master
+cd
+cd Workspace
+clear
+node
+clear
+sudo apt update && sudo apt upgrade -y
+exit
+shutdown now
+sudo apt update && sudo apt upgrade -y
+nvim
+node
+clear
+ls
+cd Workspace
+cd Learning/
+mkdir Chellanges
+ls
+rm -r Chellanges
+cd ../
+ls
+mkdir Code-Wars
+cd Code-Wars
+touch currying.ts
+ls
+nvim currying.ts
+node
+node
+ls
+cd Workspace
+cd Code-Wars
+touch isBrowser.js
+nvim .
+cd
+cd .config/nvim
+git pull
+git histor
+git log --oneline
+clear
+nvim
+clear
+cd
+clear
+cd Workspace
+rm -r Code-Wars
+cd Learning
+cd Programming-Languages
+cd JavaScript
+cd Frontend-Masters
+nvim deep-js-foundations-v2-exercises
+nvim deep-js-foundations-v2-exercises
+ls
+cd deep-js-foundations-v2-exercises/types-exercises/equality/
+node ex.js
+clear
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+node ex.js
+sudo apt update && sudo apt upgrade
+shutdown -r now
+cd Downloads
+sudo apt update && sudo apt upgrade -y
+exit
+curl -I https://nextcloud.local.blue-raven.co.uk\
+
+curl -I https://nextcloud.local.blue-raven.co.uk
+ssh rihardsj@local.blue-raven.co.uk
+sudo apt update && sudo apt upgrade
+clear
+ls
+cd Desktop
+cd ../Documents
+mkdir Obsidian
+ls
+mv Obsidian_Vault Obsidian
+ls
+cd Obsidian
+mkdir Vaults
+ls
+mv Obsidian_Vault Vaults
+ls
+..
+clear
+exit
+ssh rihardsj@local.blue-raven-co.uk
+ssh rihardsj@local.blue-raven.co.uk
+ls
+cd Documents
+cd Obsidian
+cd Vaults
+cd Work
+cd .obsidian
+ls
+cd snippets
+touch snippet.css
+nvim .
+ls
+cd Documents
+cd Obsidian
+ls
+cd Vaults
+cd Personal
+ls -a
+cd .obsidian
+cd icons
+shutdown -r now
+sudo apt update && sudo apt upgrade -y
+clear
+top
+top -M
+top -m
+clear
+exit
+top
+ip a | grep inet\
+
+curl ifconfig.me\
+
+exit
+lsblk
+lsblk
+sudo umount /dev/sdb1\
+
+ls Downloads/proxmox-ve_8.2-1.iso
+sudo dd if=/Downloads/proxmox-ve_8.2-1.iso of=/dev/sdb bs=4M status=progress oflag=sync\
+
+sudo dd if=Downloads/proxmox-ve_8.2-1.iso of=/dev/sdb bs=4M status=progress oflag=sync\
+
+sudo eject /dev/sdb
+shutdown -r now
+ping 192.168.30.0 -c 4
+clear
+ping 192.168.1.254
+ping 192.168.1.254 -c 5
+clear
+ping 192.168.30.11 -c 4
+sudo apt update && sudo apt upgrade
+exit
+sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
+shutdown -r now
+nslookup https://pve.local.blue-raven.co.uk
+nslookup https://pve.local.blue-raven.co.uk
+nslookup pve.local.blue-raven.co.uk
+nslookup http://pve.local.blue-raven.co.uk
+nslookup pve.local.blue-raven.co.uk
+ping https://pve.local.blue-raven.co.uk
+clear
+sudo apt update && sudo apt upgrade
+clear
+sudo apt autoremove
+clear
+sudo apt autoclean
+sudo apt update && sudo apt upgrade
+ls
+cd Workspace
+cd Learning
+cd Concepts
+cd ..
+mkdir DevOps
+ls
+cd DevOps
+mkdir Terraform && cd Terraform
+ls
+clear
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+clear
+sudo apt upgrade
+clear
+sudo apt autoclean
+clear
+wget -O- https://apt.releases.hashicorp.com/gpg | \\
+gpg --dearmor | \\
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null\
+
+gpg --no-default-keyring \\
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \\
+--fingerprint\
+
+lsb_release -cs
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \\
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \\
+sudo tee /etc/apt/sources.list.d/hashicorp.list\
+
+sudo apt update
+sudo apt-get install terraform
+terraform --help
+terraform -install-autocomplete
+clear
+terraform
+clear
+terraform -h
+nvim ~/.config/zsh/.zshrc
+clear
+ls
+ls -a
+ls -a || grep zsh
+ls -a | grep zsh
+ls ./.config -a | grep zsh
+clear
+cd Workspace/Learning/
+cd DevOps
+mv Terraform ..
+ls
+cd ..
+rm -r DevOps
+cd Terraform
+mkdir learn-terraform-docker-container
+ls
+cd learn-terraform-docker-container
+clear
+pbpaste > main.tf
+ls
+less main.tf
+nvim .
+terraform init
+terraform plan
+clear
+terraform apply
+open -a Docker
+open Docker
+clera
+clear
+docker ps
+docker run
+clear
+sudo systemctl status docker
+sudo docker run hello-world
+docker -v
+shutdown -r now
+docker ps
+docker -v
+clear
+docker -v
+clear
+cd Workspace/Learning/Terraform/learn-terraform-docker-container
+terraform init
+terraform plan
+terraform apply
+sudo systemctl status docker\
+
+ps aux | grep Docker\
+
+docker info
+echo $DOCKER_HOST\
+
+nvim ~/.config/zsh/.zshrc
+reset
+which docker
+echo DOCKER_HOST
+echo $DOCKER_HOST
+exit
+echo $DOCKER_HOST
+clear
+docker info
+docker context ls
+docker context use desktop-linux\
+
+docker info\
+
+unset DOCKER_HOST\
+
+echo $DOCKER_HOST\
+
+echo $DOCKER_HOST\
+
+docker context ls\
+
+docker info\
+
+nvim .zshenv
+shutdown -r
+shutdown -c
+shutdown -r now
+docker info
+clear
+cd Workspace/Learning/Terraform/learn-terraform-docker-container
+terraform plan
+terraform apply
+history | grep zsh
+nvim .zshenv
+clear
+nvim ~/.zshenv
+reset
+history | grep DOC
+echo $DOCKER_HOST\
+
+echo $DOCKER_HOST\
+
+exit
+echo $DOCKER_HOST\
+
+docker info
+docker context ls
+docker context use default\
+
+docker info
+systemctl --user status docker-desktop\
+
+journalctl --user -u docker-desktop -e\
+
+ls -l /home/rihards/.docker/desktop/docker-cli.sock\
+
+systemctl --user restart docker-desktop\
+
+docker ps
+docker info
+sudo apt-get remove docker-desktop\
+sudo apt-get purge docker-desktop\
+sudo apt-get autoremove\
+
+docker ps
+docker
+clear
+exit
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+sudo rm -rf /var/lib/docker\
+sudo rm -rf /var/lib/containerd
+clear
+modprobe kvm
+modprobe kvm_amd
+lsmod | grep kvm
+ls -al /dev/kvm
+sudo usermod -aG kvm $USER
+\
+sudo apt-get update\
+sudo apt-get install ca-certificates curl\
+sudo install -m 0755 -d /etc/apt/keyrings\
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc\
+sudo chmod a+r /etc/apt/keyrings/docker.asc\
+\
+\
+echo \\
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \\
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null\
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+docker ps
+sudo docker run hello-world
+sudo groupadd docker
+sudo usermod -aG docker $USER
+exit
+docker run hello-world
+sudo systemctl enable docker.service\
+sudo systemctl enable containerd.service
+docker ps
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R\
+sudo chmod g+rwx "$HOME/.docker" -R
+docker ps
+exit
+docker ps
+shutdown -r
+shutdown -c
+docker ps
+sudo docker ps
+clear
+docker ps
+newgrp docker
+exit
+docker ps
+docker info
+ls
+nvim .zshenv
+reset
+docker ps
+exit
+docker run hello-world
+clear
+docker ps
+echo $DOCKER_HOST
+clear
+terraform plan
+clear
+cd Workspace/Learning/Terraform/learn-terraform-docker-container
+terraform plan
+docker ps
+shutdown -r now
+docker ps
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker ps
+exit
+exit
+cd Workspace/Learning/Terraform/learn-terraform-docker-container
+sudo docker run hello-world
+docker run hello-world
+clear
+clear
+cd ~/Downloads
+sudo apt-get install ./docker-desktop-amd64.deb
+cd ~/Workspace/Learning/Terraform/learn-terraform-docker-container
+terraform apply
+docker ps
+docker ps -a
+terraform destroy
+clear
+nvim .
+terraform fmt
+terraform validate
+terraform apply
+docker ps
+docker ps -a
+terraform show
+terraform state list
+terraform destroy
+nvim .
+nvim main.tf
+terraform plan
+terraform apply
+docker ps
+docker ps -a
+docker logs
+ps aux
+terraform destroy
+docker ps
+docker ps -a
+shutdown -r now
+docker ps
+sudo docker ps -a
+docker ps
+sudo docker ps
+sudo lsof -i :8000\
+
+clear
+cd Workspace
+cd l
+cd Learning
+cd Terraform/learn-terraform-docker-container
+ls -a
+terraform init
+terraform plan
+terraform destroy
+sudo journalctl -u docker.service\
+
+groups\
+
+sudo usermod -aG docker $USER\
+
+docker ps
+docker ps -a
+sudo docker ps -a
+echo $DOCKER_HOST\
+sudo echo $DOCKER_HOST\
+
+ls -l /var/run/docker.sock\
+
+sudo systemctl restart docker\
+
+docker ps -a
+sudo docker ps -a
+docker context ls
+docker context use default
+docker ps
+docker ps -a
+docker ps
+terraform plan
+terraform destroy
+docker system prune
+docker ps
+docker ps -a
+terraform plan
+terraform inti
+terraform init
+terraform plan
+terraform apply
+docker ps -a
+docker ps
+terraform destroy
+clear
+docker ps
+docker ps -a
+docker system prune
+clear
+nvim .
+ssh root@192.168.30.10
+ssh root@192.168.30.10
+nvim ~/.ssh/id_ed25519
+nvim ~/.ssh/id_ed25519
+ssh root@192.168.30.10
+nvim .ssh/known_hosts
+ssh-keygen -R 192.168.30.10\
+
+ssh root@192.168.30.10\
+
+ssh root@192.168.30.10\
+
+ssh-keygen -R 192.168.30.10\
+
+ssh root@192.168.30.10\
+
+ssh-keygen -R 192.168.30.10\
+
+ssh root@192.168.30.10\
+
+ssh root@192.168.30.10\
+
+ls
+clear
+packer init .
+packer fmt . && packer validate .
+packer build
+ls
+docker images
+packer build docker-ubuntu.pkr.hcl
+docker images
+docker rmi c676b6cc4b45
+docker images
+packer fmt .
+docker rmi c676b6cc4b45
+packer build docker-ubuntu.pkr.hcl
+docker images
+docker run -it 7b706eeb286a
+ls
+packer fmt .
+packer build docker-ubuntu.pkr.hcl
+packer fmt . && packer verify .
+packer fmt . && packer validate .
+packer build docker-ubuntu.pkr.hcl
+touch example.pkrvars.hcl
+pbpaste > example.pkrvars.hcl
+cat example.pkrvars.hcl
+packer build --var-file=example.pkrvars.hcl docker-ubuntu.pkr.hcl
+ls
+mv example.pkrvars.hcl example.auto.pkrvars.hcl
+packer build .
+packer build --var docker_image=ubuntu:focal .
+packer fmt . && packer validate .
+packer fmt . && packer validate .
+packer fmt . && packer validate .
+packer fmt . && packer validate .
+docker build .
+clear
+packer build .
+docker image
+docker images
+docker image -a
+docker images -a
+docker image prune -a
+clear
+packer fmt .
+packer validate .
+clear
+packer build .
+docker images
+clear
+reboot
+clear
+history | grep ssh
+ssh root@192.168.30.10
+ssh rihards@pve.local.blue-raven.co.uk
+ssh rihards@pve.local.blue-raven.co.uk
+ssh-keygen -R pve.local.blue-raven.co.uk\
+
+clear
+sudo apt-get update && sudo apt-get install packer
+packer -v
+packer -h
+clear
+man packer
+clear
+ls
+cd Workspace/Learning/
+mkdir Packer
+ls
+mkdir HashiCorp && cd $1
+ls
+cd Workspace/Learning/HashiCorp
+cd ..
+rm HashiCorp -r
+ls
+clear
+mkdir HashiCorp && cd $_
+ls
+cd ..
+rm HashiCorp -r
+mkdir HashiCorp && cd "$1"
+history
+q
+rm HashiCorp -r
+ls
+clear
+mkdir HashiCorp && mv Packer Terraform $_
+ls
+cd HashiCorp
+cd Packer
+mkdir packer_tutorial && cd $_
+touch docker-ubuntu.pkr.hcl
+ls
+pbpaste >> docker-ubuntu.pkr.hcl
+less docker-ubuntu.pkr.hcl
+nvim docker-ubuntu.pkr.hcl
+nvim docker-ubuntu.pkr.hcl
+nvim docker-ubuntu.pkr.hcl
+sudo apt update && sudo apt upgrade
+exit
+glow
+clear
+clear
+ls
+cd Packer
+git init
+git status
+touch .gitignore
+ls
+nvim .gitignore
+git status
+clear
+touch README.md
+ls
+glow README.md
+clear
+git init
+clear
+ls
+git status
+mkdir alpine
+ls
+mv alpline.* alpine
+mkdir alpine.* alpine/
+ls
+mv alpine.* alpine/
+ls
+ls alpine
+git status
+clear
+nvim .
+exit
+wget mirrors.alpinelinux.rog
+wget mirrors.alpinelinux.org
+exit
+ssh rihardsj@192.168.30.145
+ssh rihardsj@192.168.30.145
+ssh rihardsj@192.168.30.221
+echo $SSH_AUTH_SOCK\
+
+ssh rihardsj@192.168.30.221
+ssh rihardsj@192.168.30.178
+ssh rihardsj@192.168.30.178
+packer fmt .
+packer validate .
+ls
+cd Packer
+packer fmt alpine
+packer validate alpine
+packer fmt alpine
+packer validate alpine
+packer validate alpine
+packer init alpine
+packer validate alpine
+packer validate alpine
+packer validate alpine
+packer build alpine
+packer fmt alpine
+packer fmt alpine && packer validate alpine
+packer fmt alpine && packer validate alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer fmt alpine && packer validate alpine
+packer build alpine
+clear
+packer build alpine
+packer build alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer fmt
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer fmt alpine
+packer build alpine
+packer fmt alpine
+packer build apline -debug
+packer build -debug apline
+packer build -debug
+ls
+packer build -debug alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+ip addr
+ssh rihards@192.168.30.223
+cat /etc/passwd
+ssh rihardsj@192.169.30.61
+clear
+ssh rihardsj@192.168.30.61
+ssh rihardsj@192.168.30.61
+ssh -r 192.168.30.61
+ssh-keygen -R 192.168.30.61
+ssh rihardsj@192.168.30.61
+ssh rihardsj@192.168.30.61
+ssh rihardsj@192.168.30.61
+ssh rihardsj@192.168.30.61
+clear
+ls
+cd Workspace
+cd Projects
+mkdir HomeLab
+ls
+cd HomeLab
+mkdir Proxmox
+ls
+cd Proxmox
+mkdir VM-Templates
+ls
+cd VM-Templates
+nvim .
+workspace
+cd Projects/HomeLab/Proxmox/VM-Templates/Packer
+cd alpine
+..
+nvim .
+ls
+clear
+packer build alpine
+packer build alpine
+packer build alpine
+packer fmt alpine
+packer validate alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+clear
+ssh rihardsj@192.168.30.110
+ssh rihardsj@192.168.30.110
+ssh rihardsj@192.168.30.110
+ssh rihardsj@192.168.30.110
+ssh root@192.168.30.110
+ssh rihardsj@192.168.30.118
+sudo apt update && sudo apt upgrade -y
+exit
+sudo apt update && sudo apt upgrade
+clear
+sudo apt install ripgrep
+pnpm install -g neovim
+clear
+pnpm -g install tree-sitter
+pnpm -g remove tree-sitter
+clear
+curl https://sh.rustup.rs -sSf | sh\
+
+exit
+clear
+neovim
+nvim
+nvim 
+nvim
+nvim
+nvim
+nvim
+exit
+sudo apt install locate
+exit
+cargo --version
+clear
+nvim
+exit
+nvim
+nvim
+exit
+sudo apt install bat
+exit
+yarn -v
+yarn --version
+volta install yarn
+npm install tree-sitter-cli
+npm remove tree-sitter-cli
+ls
+pwd
+ls -a
+rm -r node_modules .npm
+exit
+ls
+rm package.json package-lock.json
+ls
+ls -a
+clear
+npm -g install tree-sitter-cli
+locate -v
+locate -version
+locate --version
+clear
+sudo updatedb
+su
+clear
+sudo apt updatedb
+tree-sitter
+clear
+which batcat
+exit
+exit
+nvim
+nvim 
+nvim
+nvim
+nvim
+nvim --version
+nvim 
+nvim
+nvim
+nvim
+exit
+git checkout -b code-folding
+git add .
+git commit -m 'adds basic setup for ufo'
+git push origin code-folding
+exit
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+clear
+cd ./.config/nvim
+git status
+git checkout -b updates
+git add .
+git commit -m 'whichkey config updates, updates TS server in lsp config'
+git push origin updates
+git checkout main
+git pull
+git checkout updates
+git checkout -
+git fetch && git pull
+clear
+nvim .
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+sudo apt install curl\
+\
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg\
+\
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list\
+\
+sudo apt update\
+\
+sudo apt install brave-browser
+git commit -m 'simplifies code folding setup'
+git push origin code-folding
+git status
+clear
+git checkout -b buffer
+git add .
+git commit -m 'shows hidden files in file_browse'
+git push origin buffer
+clear
+exit
+cd ~/.config/nvim
+git pull origin main
+clear
+exit
+nvim
+nvim
+nvim
+cd ./.config/nvim
+nvim .
+nvim .
+nvim .
+clear
+cd
+cd Workspace
+cd Learning
+ls Concepts
+cd Frameworks-Libraries
+mkdir Next
+ls
+cd Next
+..
+mv Next ../../
+ls
+cd ../../
+mv Next Learning
+ls
+cd Learning
+rm -r Concepts
+ls Frameworks-Libraries
+ls Programming-Languages
+mv Programming-Languages/JavaScript .
+ls
+ls Version-Control
+mv Version-Control/Git .
+ls
+ls Frameworks-Libraries
+rm -r Frameworks-Libraries Programming-Languages
+ls
+clear
+ls
+cd Next
+gh repo clone Hendrixer/headless-nextjs
+git clone https://github.com/Hendrixer/headless-nextjs.git
+ls
+nvim headless-nextjs
+cd
+ls
+cd Workspace
+cd Projects
+cd HomeLab
+cd Proxmox
+ls ~/.ssh/id_*
+clear
+ssh-keygen -t ed25519 -C "blue-raven.co.uk"
+ eval "$(ssh-agent -s)"
+ssh-add -K /home/rihards/.ssh/id_ed25519_blue_raven
+clear
+cat ~/.ssh/id_ed25519_blue_raven.pub
+ssh rihardsj@192.168.30.118
+ssh 192.168.30.118
+ssh -R 192.168.30.118
+ssh rihards@192.168.30.118
+ssh-keygen -R 192.168.30.118
+nvim .
+nvim /home/rihards/.ssh/known_hosts.old
+clear
+ssh rihards@192.168.30.118
+ssh-keygen -R 192.168.30.118
+ssh-add ~/.ssh/id_ed25519_blue_raven
+ssh rihards@192.168.30.118
+ssh-keygen -R 192.168.30.118
+history | grep ssh rih
+ssh rihardsj@192.168.30.118
+ssh rihardsj@192.168.30.118
+clear
+ssh-keygen -R 192.168.30.118
+rm /home/rihards/.ssh/known_hosts
+clear
+ls -al ~/.ssh
+rm ~/.ssh/known_hosts.old
+ls
+ls -al ~/.ssh
+clear
+cd
+cd ./.config/nvim
+git pull origin main
+clear
+cd
+cd Workspace/Projects
+cd HomeLab
+ssh rihardsj@192.168.30.118
+ssh -T rihards@192.168.30.118
+ssh -T rihardsj@192.168.30.118
+ssh-keygen -R 192.168.30.118
+ssh rih@192.168.30.118
+ls -al ~/.ssh
+rm ~/.ssh/known_hosts*
+ls -al ~/.ssh
+clear
+ssh add ~/.ssh/id_ed25519_blue_raven
+ssh add ~/.ssh/id_ed25519_blue_raven 
+ssh-keygen add ~/.ssh/id_ed25519_blue_raven
+ssh-add -K ~/.ssh/id_ed25519_blue_raven
+man ssh-add
+ssh-add -L
+clear
+ssh-add ~/.ssh/id_ed25519_blue_raven
+history | grep eval
+ssh-add -l
+eval "ssh-agent"
+ssh guest@192.168.30.118
+ssh rih@192.168.30.118
+ssh-keygen -R 192.168.30.118
+ssh rihardsj@192.168.30.118
+ssh rihards@192.168.30.65
+ssh-keygen -R 192.168.30.65
+cd ~/.ssh/
+eval "$(ssh-agent -s)"
+ssh-add -l -E
+ssh-add -l
+rm id_ed25519_blue_raven id_ed25519_blue_raven.pub
+ls
+clear
+ssh -T git@github.com
+clear
+shutdown -r now
+nvim
+clear
+ssh rihardsj@192.168.30.118
+clear
+sudo apt update && sudo apt upgrade
+shutdown -r no
+shutdown -r now
+ssh-keygen -l
+ls
+ls -a
+ls .ssh
+cd ./config
+cd ./.config
+ls | grep ssh
+..
+ls | grep ssh
+ls | grep .ssh
+ls
+ls -a .config | grep .ssh
+ls -a .config
+cd .config/.ssh
+ls
+less cofig
+less config
+..
+cd ../.ssh
+ls -a known_hosts
+less known_hosts
+..
+rm -r .ssh
+ls
+ls -a
+clear
+ssh-keygen
+clear
+exit
+ls
+ls -a
+clear
+ssh-keygen -t ed25519 -f ~/.config/.ssh/pve-vm-ed25519
+ls .config/.ssh
+ssh-copy-id -i ~/.config/.ssh/pve-vm-ed25519 rihardsj@192.168.30.118
+ls
+ln -s ~/.config/.ssh ~/.ssh\
+
+ls
+ls -a
+ssh-copy-id -i ~/.config/.ssh/pve-vm-ed25519 rihardsj@192.168.30.118
+ssh rihardsj@192.168.30.118
+ssh rihardsj@192.168.30.118
+ssh rihardsj@192.168.30.118
+shutdown now
+exit
+ssh -T git@github.com
+clear
+ls -a
+cd .ssh
+cd config
+nvim .
+exit
+sudo apt update && sudo apt upgrade
+man apt
+sudo apt autoremove
+clear
+nvim
+nvim
+nvim
+nvim
+nvim
+nvim
+cd ./.config/nvim
+git add .
+git status
+nvim .
+ssh -T git@github.com
+cd
+cd .ssh
+nvim .
+reset
+exit
+ssh-keygen -t ed25519 -C "github key" -f ~/.config/.ssh/ed25519_github
+ls
+nvim .
+eval "$(ssh-agent -s)"
+ssh-add ~/.config/.ssh/ed25519_github
+cat ~/.ssh/ed25519_github.pub
+ssh -T git@github.com
+clear
+..
+ssh rihardsj@192.168.30.118
+clear
+ssh-add ~/.config/.ssh/pve-vm-ed25519
+ssh rihardsj@192.168.30.118
+ssh -T git@github.com
+clear
+cd nvim
+git status
+nvim .
+exit
+ssh -T git@github.com
+cd .ssh
+nvim .
+nvim 
+nvim .
+ls
+exit
+ssh rihardsj@192.168.30.118
+exit
+clear
+ls
+man ls
+clear
+clear
+cd Workspace/Projects/HomeLab/VM-Templates
+cd Packer
+less README.md
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+clear
+cd ~/.config/nvim
+git status
+git checkout main
+git add .
+git commit -m 'updates spellcheck library, adds file path to oil'
+git push origin buffer
+clear
+git checkout main
+git fetch -p && git pull
+git branch
+git remote purne origin
+git remote prune origin
+git branch
+git branch --merged | egrep -v "(^*|master|dev)" | xargs -n 1 git branch -d
+git branch
+git branch -d buffer code-folding updates
+git branch
+clear
+exit
+ls
+cd Workspace
+ls
+cd Projects
+cd HomeLab
+clear
+ls
+cd Proxmox
+mv VM-Templates ..
+ls
+..
+rm -r Proxmox
+clear
+ls
+cd VM-Templates
+cd index.html
+nvim .
+ls
+cd Packer
+cd alpine
+touch ANSWER_FILE
+ls
+nvim ANSWER_FILE
+nvim ANSWER_FILE
+ls
+ls http
+nvim .
+nvim .
+ls
+cd ..
+packer build alpine
+packer build fmt
+packer validate alpine
+nvim .
+ls
+packer validate alpine
+packer validate alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer validate alpine
+packer validate alpine
+packer fmt alpine 
+packer build alpine
+packer build alpine
+cd
+history ssh
+ssh rihardsj@192.168.30.118
+clear
+workspace
+clear
+cd
+nvim
+cd Workspace
+cd Projects
+cd HomeLab
+clear
+ls
+cd VM-Templates
+cd Packer
+rm -r .git
+ls
+clear
+..
+..
+git init
+ls
+mkdir Infrastructure
+ls
+cd VM-Templates
+..
+nvim .
+cd
+nvim
+nvim
+cd Workspace/Projects/HomeLab
+ls
+cd Infrastructure
+cd VM-Templates
+cd Packer
+..
+..
+ls
+mv VM-Templates Templates
+ls
+cd Templates
+ls
+mv Packer VMs
+ls
+..
+..
+..
+clear
+clear
+ls
+cd HomeLab/Infrastructure/Templates
+cd VMs
+clear
+packer alpine
+ls
+packer build alpine
+packer build alpine
+packer build alpine
+clear
+packer build alpine
+packer validate alpine
+packer fmt alpine
+packer build alpine
+clear
+clear
+packer fmt alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+clear
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+ssh rihardsj@192.168.30.236
+ssh rihardsj@192.168.30.236
+ls
+ls
+cd Workspace/Learning
+mkdir Contentful
+ls
+cd Contentful
+git clone https://github.com/contentful/template-marketing-webapp-nextjs.git
+nvim template-marketing-webapp-nextjs
+shutdown -r now
+cd Workspace/Projects/HomeLab
+cd Infrastructure/Templates/VMs
+nvim alpine
+ls
+packer fmt alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+clear
+packer build alpine
+clear
+clear
+packer build alpine
+packer build alpine
+packer fmt alpine
+cd
+cd .ssh
+cat pve-vm-ed25519.pub
+exit
+cd Workspace/Projects/HomeLab/Infrastructure
+cd Templates
+cd VMs
+nvim .
+ls
+packer build alpine
+packer build alpine
+clear
+packer build alpine
+packer build alpine
+ssh rihardsj@192.168.30.95\
+
+ssh rihardsj@192.168.30.95\
+
+packer build alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+packer build alpine
+ssh rihardsj@192.168.30.113
+ssh rihardsj@192.168.30.113
+clear
+packer build alpine
+ssh rihardsj@192.168.30.175
+packer fmt alpine
+packer fmt alpine
+packer build alpine
+packer build alpine
+ssh rihardsj@192.168.30.49
+packer fmt alpine
+packer build alpine
+ssh rihardsj@192.168.30.216
+clear
+nvim .
+clear
+cd ../../../
+ls
+nvim .
+nslookup nas.local.blue-raven.co.uk
+nslookup http://192.168.30.62/
+nslookup 192.168.30.62
+nslookup nas.blue-raven.co.uk
+nslookup nas.local.blue-raven.co.uk
+nslookup 192.168.1.30
+nslookup http://192.168.30.62/#/network/general
+nslookup http://nas.local.blue-raven.co.uk
+nslookup http://nas.local.blue-raven.co.uk/
+nslookup nas.local.blue-raven.co.uk\
+nslookup nas.local.blue-raven.co.uk
+clear
+nslookup 192.168.1.30\
+
+nslookup nas.loca.blue-raven.co.uk\
+
+nslookup nas.local.blue-raven.co.uk
+nslookup omv-nas.local
+ssh rihards@omv-nas.local
+ssh rihards@omv-nas.local
+ssh rihards@omv-nas.local
+ssh root@omv-nas.local
+clear
+ssh admin@omv-nas.local
+exit
+ssh root@omv-nas.local
+ssh rihards@omv-nas.local
+ssh root@omv-nas.loca
+ssh root@omv-nas.local
+ssh rihards@omv-nas.local
+ssh rihards@omv-nas.local
+clear
+ssh rihards@omv-nas.local
+ssh rihardsj@omv-nas.local
+ssh rihards@omv-nas.local
+ssh rihards@omv-nas.local
+exit
+ssh root@omv-nas.local
+ ssh rihards@omv-nas.local
+clear
+exit
+ ssh rihards@omv-nas.local
+ssh rihardsj@192.168.30.118
+ssh rihards@192.168.30.121
+ssh rihards@192.168.30.121
+clear
+docker ps
+ssh rihards@192.168.30.121
+sudo apt autoclean
+top
+ssh rihards@192.168.30.121
+exit
+ssh rihards@192.168.30.117
+ssh rihardsj@192.168.30.117
+ssh rihardsj@192.168.30.60
+exit
+shutdown -r now
+fuse -v
+clear
+exit
+sudo add-apt-repository ppa:appimagelauncher-team/stable
+clear
+ls
+mv Downloads/cursor-0.42.3x86_64.AppImage /opt/cursor.appimage
+sudo mv Downloads/cursor-0.42.3x86_64.AppImage /opt/cursor.appimage
+sudo nvim /usr/share/applications/cursor.desktop
+mv /opt/cursor.appimage Downloads/cursor-0.42.3x86_64.AppImage
+sudo mv /opt/cursor.appimage Downloads/cursor-0.42.3x86_64.AppImage
+ls Downloads
+ls /opt/
+ls -al /opt
+ls Downloads
+sudo rm -r /usr/share/applications/cursor.desktop
+ls /usr/share/applications/c
+ls /usr/share/applications
+ls /usr/share/applications | grep cursor
+ls /usr/share/applications | grep gnome
+clear
+sudo add-apt-repository ppa:appimagelauncher-team/stable\
+sudo apt update\
+sudo apt install appimagelauncher\
+
+clear
+ls -a
+clear
+appimagelouncher -v
+clear
+exec zsh
+nvim .
+exit
+appimagelouncher -v
+clear
+sudo nvim /usr/share/applications/
+sudo nvim /usr/share/backgrounds
+nvim .
+ls ~/.local/share/applications/\
+
+nvim ~/.local/share/applications/appimagekit_fbd6b93907299be46a28c3ea85664979-cursor.desktop
+nvim ~/.local/share/applications/appimagekit_fbd6b93907299be46a28c3ea85664979-cursor.desktop
+nvim .
+ls
+cd Workspace/Projects/HomeLab
+clear
+curl -H Host:whoami.docker.localhost http://192.168.30.60
+exit
+nslookup whoami.localhost
+nslookup whoami.service.blue-raven.co.uk
+ssh rihards@192.168.30.60
+ssh rihardsj@192.168.30.60
+nslookup service.blue-raven.co.uk
+nslookup hello.service.blue-raven.co.uk
+ssh rihards@service.blue-raven.co.uk
+ssh rihardsj@service.blue-raven.co.uk
+ssh rihardsj@192.168.30.60
+ssh rihardsj@192.168.30.60
+exit
+ssh rihardsj@192.168.30.60
+exit
+ssh rihardsj@192.168.30.60
+ssh rihardsj@service.blue-raven.co.uk
+ssh rihardsj@192.168.30.60
+exit
+ssh rihardsj@service.blue-raven.co.uk
+exit
+ssh rihardsj@192.168.30.60
+ssh rihardsj@service.blue-raven.co.uk
+ssh rihardsj@service.blue-raven.co.uk
+curl -f https://zed.dev/install.sh | sh
+zed
+exec zsh
+nvim --version
+clear
+exit
+zed
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.configs/.zshrc\
+
+ls
+ls -a
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.configs/zsh/.zshrc\
+
+nvim /home/rihards/.configs/zsh/.zshrc
+nvim .
+~/.local/bin/zed
+glibc
+~/.local/bin/zed
+nvim .
+exit
+nvim ./.config/zsh
+clear
+nvim .
+ls -a
+nvim .config/zsh
+nvim .config/zsh
+nvim .config/nvim/after/plugin/oil.lua
+nvim .config/nvim
+nvim .
+nvim
+nvim
+nvim
+nvim 
+nvim .
+nvim
+nvim
+nvim
+nvim .
+nvim
+nvim
+cd .config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+exit
+zed
+ls
+cd Workspace
+cd Learning
+cd ..
+mkdir Sandbox
+cd Sandbox
+npx create-contentful-app my-first-app
+npm install -g npm@10.9.0
+clear
+ls
+cd my-first-app
+npm install
+npm audit fix --froce
+npm audit fix --force
+npm audit fix --force
+npm audit fix --force
+npm audit fix --force
+npm outdated
+zed .
+ls
+cd Workspace/Sandbox/my-first-app
+npm start
+npm create-app-definition
+npm run create-app-definitio
+npm run create-app-definition
+npm start
+npm start
+exit
+node -v
+clear
+exit
+exit
+ git status
+git status
+git diff
+exit
+exit
+exit
+exit
+ls
+clear
+exit
+exit
+exit
+exit
+exit
+exit
+nvim .
+nvim
+nvim .
+nvim
+nvim
+nvim
+nvim
+clear
+git status
+ls
+cd Documents
+cd ../Workspace/Learning
+../Projects
+cd ../Projects
+nvim HomeLab
+docker images
+docker image prune
+docker image
+docker images
+docker --help
+clear
+docker info
+docker container stats
+clear
+docker ps
+docker ps -a
+docker prune
+docker system prune
+docker images
+docker volumes
+docker volume
+docker ls
+docker volumes ls
+docker ls
+docker volume ls
+clear
+lsof -i :3000
+lsof
+lsof -i :1
+lsof -i :2
+lsof -i :13452
+clear
+lsof | grep brave
+clear
+docker version
+docker info
+docker info | grep -i seccomp\
+
+sudo nvim /etc/docker/daemon.json
+sudo systemctl restart docker
+docker info
+sudo systemctl restart docker\
+
+systemctl status docker.service\
+
+sudo nvim /etc/docker/daemon.json
+systemctl status docker.service\
+
+sudo systemctl restart docker
+systemctl status docker.service\
+
+journalctl -u docker.service --no-pager | tail -n 50\
+
+sudo nvim /etc/docker/daemon.json
+sudo systemctl restart docker
+docker info
+curl -o /usr/share/docker/seccomp.json https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json\
+
+sudo curl -o /usr/share/docker/seccomp.json https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json\
+
+sudo apt update\
+sudo apt install --reinstall docker-ce docker-ce-cli containerd.io
+docker info
+docker info | grep -i seccomp\
+
+curl -o /usr/share/docker/seccomp.json https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json\
+
+sudo mkdir -p /usr/share/docker\
+
+sudo curl -o /usr/share/docker/seccomp.json https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json\
+
+ls -l /usr/share/docker/seccomp.json\
+
+sudo systemctl restart docker\
+
+docker info
+sudo nvim /etc/docker/daemon.json
+sudo systemctl restart docker
+docker info
+dockerd --seccomp-profile=/etc/docker/seccomp/default.json
+sudo nvim /etc/docker/seccomp/default.json
+history
+cd /usr/share/docker
+..
+ls docker
+sudo rm -r docker
+ls | grep docker
+docker info
+clear
+grep CONFIG_SECCOMP= /boot/config-$(uname -r)\
+CONFIG_SECCOMP=y
+grep CONFIG_SECCOMP= /boot/config-$(uname -r)\
+
+clear
+docker info --format '{{ .SecurityOptions }}'
+dockerd --seccomp-profile=/etc/docker/seccomp/default.json
+sudo curl -o /usr/share/docker/seccomp.json https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json\
+
+ls
+cd
+ls -a
+cd .config
+cd Docker\ Desktop
+ls
+cd ..
+mkdir docker
+ls
+history | grep curl
+sudo curl -o ~/.config/docker/seccomp.json https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json
+ls docker
+dockerd --seccomp-profile ~/.config/docker/seccomp.json
+ls /usr/share/docker/seccomp.json
+ls /usr/share/docker
+dockerd --seccomp-profile ~/.config/docker/seccomp.json
+docker info
+ls
+sudo nvim /etc/docker/daemon.json
+sudo systemctl restart docker
+systemctl status docker.service
+sudo systemctl stop docker\
+
+sudo rm -rf /var/lib/docker\
+sudo rm -rf /var/lib/containerd\
+
+sudo rm -rf /etc/docker\
+
+sudo systemctl start docker\
+
+docker info
+sudo nvim /etc/docker/daemon.json
+sudo systemctl restart docker
+sudo nvim /etc/docker/daemon.json
+ls
+cd docker
+sudo nvim /etc/docker/daemon.json
+sudo systemctl restart docker
+systemctl status docker.service
+sudo nvim /etc/docker/daemon.json
+sudo nvim /etc/docker/daemon.json
+nvim systemctl status docker.service
+sudo nvim /etc/docker/daemon.json
+nvim /home/rihards/.config/docker/seccomp.json
+systemctl status docker.service
+clear
+sudo nvim /etc/docker/daemon.json
+sudo apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+docker
+clear
+ls
+cd ..
+rm -rf docker
+ls
+ls | grep docker
+clear
+sudo rm -rf /var/lib/docker /etc/docker
+sudo rm -rf /usr/local/bin/docker-compose
+sudo rm -rf ~/.docker
+sudo rm -rf /var/lib/containerd
+sudo apt autoremove -y && sudo apt autoclean
+sudo dpkg -l | grep -i docker
+clear
+sudo shutdown -r now
+ls
+clear
+cd Workspace/Learning
+cd Version-Control
+ls
+cd ../
+clear
+tree .
+clear
+ls
+rm -r Version-Control
+ls
+ls Next
+ls JavaScript
+ls JavaScript/Frontend-Masters
+mkdir Docker
+ls
+cd Docker
+clear
+ls
+git clone https://github.com/BretFisher/udemy-docker-mastery.git
+ls
+nvim udemy-docker-mastery
+ssh service.blue-raven.co.uk
+ssh rihardsj@service.blue-raven.co.uk
+clear
+ls
+docker run --help
+docker run -p 3000:80 -d --name=nginx nginx
+docker ps
+docker top nginx
+docker log nginx
+docker logs nginx
+clear
+docker ps
+docker run -p 8080:80 -d --name=apache httpd
+docker run -p 5000 -d --name=mysql mysql
+docker ps
+docker ps -a
+docker container rm mysql
+docker ps -a
+docker volume ls
+docker image ls
+docker run --name=mysql -d mysql -e MYSQL_RANDOM_ROOT_PASSWORD=yes
+docker ps
+docker ps -a
+docker logs 2f6ed1e41a7c
+docker run --name=mysql -d mysql -e MYSQL_ROOT_PASSWORD=hello MYSQL_ALLOW_EMPTY_PASSWORD=yes MYSQL_RANDOM_ROOT_PASSWORD=yes
+docker ps -a
+docker rm 2f6ed1e41a7c
+docker ps -a
+docker run --name=mysql -d mysql -e MYSQL_ROOT_PASSWORD=hello MYSQL_ALLOW_EMPTY_PASSWORD=yes MYSQL_RANDOM_ROOT_PASSWORD=yes
+docker ps -a
+docker logs 599
+docker rm 599
+docker ps
+docker ps -a
+docker run --name=mysql -d mysql --env MYSQL_RANDOM_ROOT_PASSWORD=true
+docker ps
+docker ps -a
+docker rm mysql
+docker run --name=mysql -d mysql --env MYSQL_RANDOM_ROOT_PASSWORD="yes"
+docker ps
+docker ps -a
+docker rm 075
+docker ps -a
+docker run -p 3306:3306 --name=mysql -d -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql 
+docker ps
+docker stop apache nginx mysql
+docker ps -a
+docker rm 0ddbd2ebf619 aaa ecf
+docker ps a-
+docker ps -a
+docker system prune
+docker ps
+history | grep nginx apache
+history | grep nginx
+docker run --name=webserver -p 8080:80 -d httpd
+docker ps
+docker run --name=db -p 3306:3306 -d -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql
+docker ps
+curl localhost:8080
+clear
+docker run --name=proxy -p 3000:80 -d nginx
+docker ps
+docker container top mysql
+docker container top db
+docker container top nginx
+docker container top proxy
+docker container inspect db
+docker container stats
+docker ls
+docker container ls
+docker docker container exec -it mysql bash
+docker container exec -it mysql bash
+docker container exec -it db bash
+ls
+docker ps -a
+clear
+kvm-ok
+modprobe kvm_amd
+modprobe kvm
+modprobe kvm_amd 
+kvm-ok
+lsmod | grep kvm
+ls -al /dev/kvm
+sudo usermod -aG kvm $USER
+sudo apt-get update\
+sudo apt-get install ./docker-desktop-amd64.deb
+docker
+ls
+cd Documents
+cd ../Downloads
+sudo apt install ./docker-desktop-amd64.deb
+gpg --generate-key
+pass init 76AB6627C52340D0CB1C47D915979AB54586CBEE
+systemctl --user start docker-desktop
+docker compose version
+docker --version
+docker version
+docker info
+clear
+clear
+docker ps
+clear
+docker compose -v
+clear
+workspace
+cd Learning
+cd Docker
+nvim udemy-docker-mastery
+docker ps
+ssh rihardsj@service.blue-raven.co.uk
+workspace
+cd Projects/HomeLab
+cd Infrastructure
+cd ..
+clear
+workspace
+cd Projects
+cd HomeLab
+clear
+clear
+docker login registry.blue-raven.co.uk
+docker login registry.service.blue-raven.co.uk
+ssh rihardsj@service.blue-raven.co.uk
+ssh rihardsj@service.blue-raven.co.uk
+workspace
+cd Projects
+nvim .
+nvim HomeLab
+ssh rihardsj@service.blue-raven.co.uk
+cd Workspace/Projects/HomeLab
+nvim .
+ssh rihardsj@ssh-forgejo.service.blue-raven.co.uk
+ssh rihardsj@service.blue-raven.co.uk
+ssh -p 1290 rihardsj@ssh-forgejo.service.blue-raven.co.uk
+ssh -p 1290 rihardsj@ssh-fo.service.blue-raven.co.uk
+ssh -p 1290 rihardsj@ssh-forgejo.service.blue-raven.co.uk
+cd
+ls
+cd .ssh
+cd config
+nvim .
+ssh-keygen -t ed25519 -f ~/.config/.ssh/forgejo-ed25519
+ls
+cat forgejo-ed25519.pub
+nvim .
+clear
+nvim .
+cd Workspace/Projects/HomeLab
+nvim .
+workspace
+cd Sandbox
+git clone git@forgejo.service.blue-raven.co.uk:Blue_Raven/test.git
+git clone git@forgejo.service.blue-raven.co.uk:Blue_Raven/test.git
+git clone git@forgejo.service.blue-raven.co.uk:Blue_Raven/test.git
+git clone git@forgejo.service.blue-raven.co.uk:Blue_Raven/test.git
+f\ad
+git clone git@forgejo.service.blue-raven.co.uk:Blue_Raven/test.git
+ssh -p 1290 git@forgejo.example.com
+ssh -p 1290 git@forgejo.service.blue-raven.co.uk
+ssh -p git@service.blue-raven.co.uk
+ssh -p 1290 git@service.blue-raven.co.uk
+ssh -p 1290 git@forgejo.service.blue-raven.co.uk
+nslookup forgejo.service.blue-raven.co.uk\
+
+git clone ssh://git@forgejo.service.blue-raven.co.uk:1290/Blue_Raven/test.git
+ssh -p 1290 user@service.blue-raven.co.uk\
+
+ssh -p 1290 git@service.blue-raven.co.uk
+ssh -p 1290 git@service.blue-raven.co.uk\
+
+ssh -p 1290 git@forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 git@forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 git@service.blue-raven.co.uk\
+
+git clone ssh://git@forgejo.service.blue-raven.co.uk:2222/Blue_Raven/test.git
+ssh rihardsj@service.blue-raven.co.uk
+git clone ssh://git@forgejo.service.blue-raven.co.uk:2222/Blue_Raven/test.git
+ssh -p 2222 git@forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 git@service.blue-raven.co.uk\
+
+ssh -p 2222 git@service.blue-raven.co.uk\
+
+ssh -p 2222 git@forgejo.service.blue-raven.co.uk\
+
+clear
+ssh rihardsj@service.blue-raven.co.uk
+git clone git@forgejo.service.blue-raven.co.uk:Blue_Raven/test.git
+ssh -p 2222 forgejo.service.blue-raven.co.uk
+ssh -p 2222 forgejo.service.blue-raven.co.uk
+ssh rihards@forgejo.service.blue-raven.co.uk -p 22\
+
+ssh -p 1290 rihardsj@service.blue-raven.co.uk
+ssh -p 2222 r@forgejo-ssh.service.blue-raven.co.uk
+ssh -p 1290 r@forgejo-ssh.service.blue-raven.co.uk
+ssh -p 1290 r@service.blue-raven.co.uk
+nvim .
+ssh rihardsj@service.blue-raven.co.ukj
+ssh rihardsj@service.blue-raven.co.uk
+pbcopy < ~/.ssh/id_ed25519.pub
+ls
+cd .ssh
+pbcopy < forgejo_ed25519.pub
+pbcopy < forgejo-ed25519.pub
+nvim .
+ssh -p 2222 r@forgejo-ssh.service.blue-raven.co.uk
+ssh -p 2222 git@forgejo-ssh.service.blue-raven.co.uk
+ssh git@forgejo-ssh.service.blue-raven.co.uk
+ssh -p 2222 git@forgejo-ssh.service.blue-raven.co.uk\
+
+clear
+ssh -p 2222 git@forgejo-ssh.service.blue-raven.co.uk\
+
+ssh -p 2222 git@forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 git@ssh-forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 rihardsj@ssh-forgejo.service.blue-raven.co.uk\
+
+nslookup ssh-forgejo.service.blue-raven.co.uk\
+
+ssh -T git@ssh-forgejo.service.blue-raven.co.uk
+ssh -T git@ssh-forgejo.service.blue-raven.co.uk -p 2222
+ssh rihardsj@service.blue.raven.co.uk
+ssh rihardsj@service.blue-raven.co.uk
+cd Workspace
+cd Projects
+cd HomeLab
+cd Infrastructure/Docker
+cd forgejo
+nvim .
+ls
+ssh rihardsj@service.blue-raven.co.uk
+docker ps
+clear
+docker compose -v
+docker compose --version
+clear
+cd ~/.ssh
+pbcopy > forgejo-ed25519.pub
+cat forgejo-ed25519.pub > pbcopy
+pbpaste
+cat forgejo-ed25519.pub
+less forgejo-ed25519.pub
+open .
+ssh-keygen -t ed25519 -f ~/.config/.ssh/forgejo-ed25519
+ls
+cat forgejo-ed25519.pub
+eval $(ssh-agent)
+pbcopy < forgejo-ed25519.pub
+ssh -T git@ssh-forgejo.service.blue-raven.co.uk
+less config
+ssh -T git@ssh-forgejo.service-blue-raven.co.uk
+ssh -p 2222 git@ssh-forgejo.service-blue-raven.co.uk
+ssh -p 2222 git@192.168.1.30\
+
+ssh -p 2222 git@ssh-forgejo.service.blue-raven.co.uk
+nvim .
+ssh -T git@ssh-forgejo.service.blue-raven.co.uk
+ssh forgejo
+nvim .
+ssh forgejo
+pbcopy < forgejo-ed25519.pub
+nvim .
+forgejo
+ssh forgejo
+ssh -T rihardsj@forgejo.service.blue-raven.co.uk
+ssh -T git@forgejo.service.blue-raven.co.uk
+ssh -T git@forgejo.service.blue-raven.co.uk -p 2222\
+
+ssh -T rihardsj@forgejo.service.blue-raven.co.uk -p 2222\
+
+ssh -T rihardsj@forgejo.service.blue-raven.co.uk -p 22\
+
+ssh -T rihardsj@forgejo.service.blue-raven.co.uk\
+
+ls
+exit
+ssh rihardsj@service.blue-raven.co.uk
+cd ~/.ssh
+nvim config
+ssh blue-raven
+docker ps
+clear
+cd Workspace/Projects/HomeLab
+ls
+cd Infrastructure
+cd Docker
+cd forgejo
+nvim .
+nvim .
+clear
+cd ~/.ssh
+pbcopy < forgejo-ed25519.pub
+nvim config
+ssh -p 2223 git@service.blue-raven.co.uk
+ssh -p 2223 git@forgejo.service.blue-raven.co.uk
+workspace && git clone ssh://git@forgejo.service.blue-raven.co.uk:2223/rihardsj/test.git
+ls
+cd test
+cd ..
+rm -r test
+workspace
+cd Projects/HomeLab/Infrastructure/Docker/forgejo
+nvim .
+ssh blue-raven
+nvim ../traefik
+ssh -p 2222 git@forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 git@forgejo-ssh.service.blue-raven.co.uk\
+
+ssh -p 22 git@forgejo-ssh.service.blue-raven.co.uk\
+
+ssh -p git@forgejo.service.blue-raven.co.uk\
+
+ssh git@forgejo.service.blue-raven.co.uk\
+
+ssh -T  git@forgejo.service.blue-raven.co.uk\
+
+ssh -T  git@forgejo-ssh.service.blue-raven.co.uk\
+
+git clone git@forgejo.service.blue-raven.co.uk:rihardsj/test2.git
+git clone ssh://git@forgejo.service.blue-raven.co.uk:2222:rihardsj/test2.git
+ssh -p 2222 git@forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 git@forgejo.service.blue-raven.co.uk\
+
+ssh -p 2222 git@service.blue-raven.co.uk\
+
+ssh git@service.blue-raven.co.uk\
+
+ssh -p 23423 git@service.blue-raven.co.uk\
+
+ssh -p 2223 git@service.blue-raven.co.uk\
+
+ssh -p 2222 git@service.blue-raven.co.uk\
+
+clear
+ssh -T git@fogejo.service.blue-raven.co.uk
+ssh -T git@fogejo.service.blue-raven.co.uk -p 2222
+ssh -v git@fogejo.service.blue-raven.co.uk
+ssh -v git@fogejo.service.blue-raven.co.uk -p 2222
+ssh -v git@fogej.service.blue-raven.co.uk -p 2222
+ssh -v git@service.blue-raven.co.uk -p 2222
+ssh -v git@service.blue-raven.co.uk -p 2222
+ssh -v git@forgejo.service.blue-raven.co.uk -p 2222
+curl http://localhost:8080/api/rawdata\
+
+curl http://service.blue-raven.co.uk:8080/api/rawdata\
+
+ssh -vv git@forgejo.service.blue-raven.co.uk -p 2222\
+
+ssh -vv git@forgejo.service.blue-raven.co.uk -p 2222\
+
+clear
+ssh git@service.blue-raven.co.uk -p 2222
+ssh -v git@service.blue-raven.co.uk -p 2222
+ssh -v git@forgejo.service.blue-raven.co.uk -p 2222
+ssh -v git@forgejo.service.blue-raven.co.uk -p 22
+ssh git@forgejo.service.blue-raven.co.uk -p 2222
+ssh git@forgejo.service.blue-raven.co.uk -p 22
+ssh rihardsj@forgejo.service.blue-raven.co.uk -p 22
+git clone ssh://git@forgejo.service.blue-raven.co.uk:2222/rihardsj/demo.git
+ls
+rm -rf demo
+ls
+ls
+ssh blue-raven
+ssh blue-raven
+ls
+nvim Workspace/Projects
+ssh blue-raven
+ssh blue-raven
+workspace
+cd Learning
+cd HashiCorp
+cd Packer
+cd ../../../
+cd Projects
+nvim HomeLab
+cd wordman
+git checkout initial-slowdown-exercise
+exit
+exit
+pnpm test
+clear
+clear
+npm i
+npm audit
+npm audit fix --force\
+
+clear
+npm test
+npm build
+npm start
+npm outdated
+npm update
+clear
+npm install react-scripts@latest
+clear
+exit
+nvim ./.config
+reset
+config
+configs
+nvim ./.config/zsh
+reset
+ls
+cd Workspace
+cd Learning
+mkdir React && cd $_
+ls
+git clone https://github.com/stevekinney/wordman.git
+ls
+nvim wordman
+cd packing-list
+npm install
+  npm audit fix --force\
+
+npm audit fix --force
+npm start
+git branch
+git branch -a
+npm start
+cd wordman
+git checkout pushing-state-down-exercise
+npm start
+exit
+npm i
+  npm audit fix --force\
+
+npm audit fix --force\
+
+npm start
+workspace
+cd Projects
+cd ../Learning
+cd React/
+mkdir performance && mv packing-list wordman $_
+ls
+cd pr
+cd performance
+nvim .
+cd .. && git clone https://github.com/stevekinney/hottest-takes.git && cd hottest-takes && nvim .
+nvim .
+npm start
+wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
+ls
+tar zxpf luarocks-3.11.1.tar.gz
+ls
+cd luarocks-3.11.1
+./configure && make && sudo make install
+sudo luarocks install luasocket
+ls
+cd ..
+mv luarocks-3.11.1 luarocks-3.11.1.tar.gz ~/Downloads
+ls
+cd ~/Downloads
+cd luarocks-3.11.1
+./configure && make && sudo make install
+lua -v\
+
+sudo apt-get update\
+sudo apt-get install lua5.3 liblua5.3-dev\
+
+clear
+sudo apt install lua
+which lua
+clear
+make && sudo make install\
+
+ls
+./configure && make && sudo make install
+sudo luarocks install luasocket
+lua
+clear
+exit
+rm -rf /home/rihards/.config/local/share/nvim/site/pack/packer\
+
+rm -rf ~/.local/share/nvim/site/pack/packer\
+
+sudo apt-get install lua5.1 liblua5.1-0-dev luarocks\
+
+exit
+exit
+$config
+clear
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+..
+nvim .
+cd nvim .
+nvim .
+nvim  .
+rm -rf ~/.local/share/nvim/site/pack/packer/start/packer.nvim\
+
+rm -rf ~/.local/share/nvim/site/pack/packer\
+rm -rf ~/.cache/nvim/packer_*\
+
+rm -f ~/.config/nvim/plugin/packer_compiled.lua\
+
+rm -rf ~/.local/state/nvim\
+
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim. 
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim.
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+cd ~/.config/nvim && nvim .
+exit
+sudo apt-get install python3 python3-pip\
+
+clear
+exit
+sudo apt install fd\
+
+sudo apt install fd-find\
+
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvi m.
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+exit
+docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama\
+
+docker ps
+docker exec ollama ollama
+docker exec ollama ollama ls
+docker exec ollama ollama pull codegemma
+docker exec ollama ollama pull llama3.1
+docker exec ollama ollama run codegemma hello
+top
+docker exec ollama ollama run codegemma hello
+docker ps
+docker ps -a
+docker restart 084f843bef91 -D
+docker restart 084f843bef91
+docker ps
+docker exec ollama ollama run codegemma hello
+docker exec ollama ollama run codegemma would you be able to assist me with neovim setup. I am doing this from scratch and would like to setup avante.nvim.
+clear
+docker exec ollama ollama run codegemma are you able to train on what I am asking?
+docker exec ollama ollama run codegemma are you able to train on what I am asking
+docker exec ollama ollama run codegemma what did I asked before
+docker exec ollama ollama run codegemma which is the most powerful ollam model that generates code and provides code suggestions?
+docker exec ollama ollama run codegemma which is the most powerful ollam model that generates code and provides code suggestions
+cd ~/.config/nvim && nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+docker ps
+docker kill 084
+docker ps
+curl -fsSL "https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/windsurf.gpg" | sudo gpg --dearmor -o /usr/share/keyrings/windsurf-stable-archive-keyring.gpg\
+echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
+sudo apt-get update
+sudo apt-get upgrade windsurf
+docker ps
+exit
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+exit
+sudo apt install ripgrep fd-find build-essential
+exit
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+..
+rm -r Cursor
+ls
+rm Nextcloud -r
+ls
+clear
+ls
+cd ..
+rm -r CascadeProjects
+ls
+clear
+ls
+clear
+cd ~/.config/nvim
+nvim .
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+sudo apt-get update
+sudo apt-get upgrade windsurf
+clear
+exit
+nvim .
+cd .config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+LS
+ls
+clear
+ls
+cd ..
+ls
+cd ..
+cd CascadeProjects
+ls
+.
+..
+rm CascadeProjects
+rm -r CascadeProjects
+ls
+clear
+rg
+exit
+sudo apt update && sudo apt upgrade -y
+clear
+sudo apt autoclean
+sudo apt get fd
+sudo apt install fd-find
+clear
+exit
+cd ./.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+ls
+nvim .
+nvim .
+nvim .
+ls
+cd
+cd Workspace
+cd Learning/JavaScript/Frontend-Masters/deep-js-foundations-v2-exercises
+nvim .
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+clear
+nvim .
+cd ~/Workspace
+cd Projects
+cd ../Learning
+cd Contentful
+nvim template-marketing-webapp-nextjs
+cd ../
+cd Next
+cd headless-nextjs
+nvim .
+nvim .
+clear
+cd ~/.config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+vim 
+nvim
+nvim .
+nvim .
+nvim .
+nvim ../zsh
+exit
+cd ../../Workspace
+cd Learning/Next
+cd headless-nextjs && cat package.json
+npm start
+npm install --fix
+npm audit fix
+npm start
+npm build
+less package.json
+npm dev
+ls
+npm start dev
+npm build
+npm start build
+ls
+nvim .
+npm run dev
+exit
+cd
+cd ~/.config/nvim
+nvim .
+sudo nvim .
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+curl -v
+curl --version
+clear
+sudo apt update curl
+sudo apt update
+sudo apt upgrade -y
+clear
+curl --version
+curl --help
+sudo apt install curl
+clear
+sudo apt autoclean
+sudo apt update
+sudo apt upgrade
+sudo apt full-update
+sudo apt full-upgrade
+clear
+exit
+npm --version
+sudo rm /snap/nvim/3164/usr/share/nvim/runtime/parser/kconfig.so
+exit
+sudo apt-get install jq
+ls
+workspace
+cd Sandbox
+clear
+mkdir http_test
+ls
+nvim http_test
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+ls
+cd http_test && nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+workspace
+cd Sandbox
+cd http_test && nvim .
+clear
+nvim .
+clear
+nvim .
+nvim .
+clear
+nvim .
+clear
+cd .config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+git status
+git add .
+git status
+git logs --oneline
+git log --oneline
+git status
+git commit -m 'adds: cmp, codeium, diff_view, git, gitsigns, lsp setup, lualine, no_neck_pain, onedark colours, todo, treesitter, telescope, whichkey'
+git status
+git push origin lazyvim
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+git add .
+git commit -m 'adds ufo with statuscol'
+git push origin lazyvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+clear
+nvim .
+nvim .
+workspace
+cd Sandbox
+cd http_test
+nvim .
+nvim .
+nvim .
+ls
+nvim .
+cd ~/.config/nvim && nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+cd ~/.config/nvim
+clear
+ls
+cd ../
+cd zsh
+nvim .
+windsurf .
+nvim .
+code ~/.config/nvim
+sudo apt update && sudo apt upgrade -y
+ sudo apt update && sudo apt upgrade -y
+sudo apt autoclean
+clear
+exit
+sudo apt 
+clear
+apt
+sudo apt autoremove
+clear
+exit
+sudo apt updata && sudo apt upgrade -y
+sudo apt updata && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
+shutdown -r now
+exit
+cd
+clear
+cd Documents/ISO
+lsblk
+sudo umount /dev/sdb
+sudo umount /dev/sdb3
+ls
+lsblk
+sudo dd if=/proxmox-ve_8.3-1.iso of=/dev/sdb3 bs=4M status=progress oflag=sync
+sudo dd if=proxmox-ve_8.3-1.iso of=/dev/sdb3 bs=4M status=progress oflag=sync
+ls
+cd ..
+cd ..
+lsblk
+lsblk
+lsblk
+sudo umount sdb
+sudo umount /dev/sdb
+sudo umount /media/rihards/PVE\
+
+lsblk\
+
+sudo dd if=proxmox-ve_8.3-1.iso of=/dev/sdb bs=4M status=progress oflag=sync\
+
+cd Documents/ISO
+sudo dd if=proxmox-ve_8.3-1.iso of=/dev/sdb bs=4M status=progress oflag=sync\
+
+lsblk
+man lsblk
+clear
+nvim .
+cd .config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+cd Documents
+cd ISO
+nvim .
+cd Documents
+cd Technical-Documentation
+touch excerpt.txt
+nvim .
+nvim
+clear
+nvim
+ls
+cd Documents
+cd Technical-Documentation
+nvim excerpt-2-backups.txt
+ls
+shutdown -r now
+shutdown now
+ping 192.168.30.67
+ping 192.168.30.67 -c 4
+clear
+exit
+projects
+projects
+clear
+ls
+cd Workspace/Projects
+cd HomeLab
+cd Infrastructure
+cd Templates
+cd VMs
+ls alpine
+nvim .
+shutdown -r now
+shutdown -r now
+shutdown -r now
+ssh root@192.168.30.67
+ssh root@192.168.30.67
+exit
+ssh rihards@192.168.30.67
+ping 192.168.30.100 -c 4
+sudo apt update && sudo apt upgrade -y
+exit
+flatpack
+clear
+flatpak update
+nvim .
+exit
+flatpak list
+clear
+flatpak search wezterm
+flatpak install flathub org.wezfurlong.wezterm\
+
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg\
+echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list\
+
+sudo apt update\
+
+sudo apt install wezterm\
+
+nvim 
+cd config
+cd configs
+configs
+clear
+ls
+configs
+pwd
+ls -a
+nvim ./.config/zsh
+config
+zsh reset
+reset
+config
+exit
+exit
+pwd
+ls
+clear
+ls
+ls -a
+clear
+nvim .config/starship.toml
+cd .config
+mv starship.toml starship.toml.bak
+ls
+touch starship.toml
+nvim starship.toml
+clear
+exit
+nvim ../starship.toml
+clear
+ls
+ls -a
+clear
+nvim .config/starship.toml
+clear
+ls
+cd .config/zsh
+../
+..
+cd nvim
+ls
+cd ../
+rm starship.toml
+mv starship.toml.bak starship.toml
+clear
+nvim
+ls
+cd .config
+touch .wezterm.lua
+ls
+nvim .wezterm.lua
+exit
+cd .config
+mkdir wezterm
+ls
+mv .wezterm.lua wezterm
+ls
+nvim wezterm
+exit
+nvim .
+cd .config
+nvim wezterm
+clear
+nvim wezterm
+nvim wezterm
+nvim wezterm
+clear
+nvim .
+ls
+cd Documents
+touch details.txt
+exit
+shutdown -r now
+sudo apt update && sudo apt upgrade -y
+clear
+exit
+cd
+ls
+ls -a
+cd .config/wezterm
+nvim .
+shutdown -r now
+reset
+shutdown -r now
+shutdown -r now
+nvim
+exit
+shutdown -r now
+exit
+sudo update-alternatives --config x-terminal-emulator\
+
+exit
+lsblk
+sudo umount /dev/sdb3
+ls
+cd Documents/ISO
+cd TrueNAS-SCALE
+rm TrueNAS-SCALE-24.10.1.sha256
+ls
+ls
+sudo dd if=TrueNAS-SCALE-24.10.2.iso of=/dev/sdb/ bs=4m status=progress oflag=sync
+sudo dd if=TrueNAS-SCALE-24.10.2.iso of=/dev/sdb/ bs=4M status=progress oflag=sync
+sudo dd if=TrueNAS-SCALE-24.10.2.iso of=/dev/sdb bs=4M status=progress oflag=sync
+sudo eject /dev/sdb
+sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
+config
+nvim wezterm
+nvim .
+nvim .
+config
+nvim .
+shutdown -r now
+ls
+cd Workspace/Projects
+git clone ssh://ludzasbjc@ludzasbjc.lv/home/ludzasbjc/lbjc-wordpress-theme-repository
+exit
+ls -a
+cd .ssh
+ls
+mv ~/Downloads/lbjc_rsa .
+ls
+chmod 600 lbjc_rsa
+nano ~/.ssh/config
+nvim ~/.ssh/config
+ssh ludzasbjc
+nvim ~/.ssh/config
+ssh -i ~/.ssh/lbjc_rsa ludzasbjc@ludzasbjc.lv
+ssh -p 22 -i ~/.ssh/lbjc_rsa ludzasbjc@ludzasbjc.lv
+ssh -p 2222 -i ~/.ssh/lbjc_rsa ludzasbjc@ludzasbjc.lv
+ssh -v -i ~/.ssh/lbjc_rsa ludzasbjc@ludzasbjc.lv -p 2222
+ssh -v -i ~/.ssh/lbjc_rsa ludzasbjc@ludzasbjc.lv -p 22
+ls
+rm lbjc_rsa
+ls
+ssh-keygen -t ed25519 -C "engineering@ludzasbjc.lv"
+eval "$(ssh-agent -s)"
+ls
+cat id_ludzasbjc_github.pub
+ls
+ssh -T git@github.com
+clear
+ls
+cd
+cd Workspace
+cd Projects
+git clone git@github.com:LudzasBJC/Homepage.git
+ssh-add ~/.ssh/id_ludzasbjc_github
+nvim ~/.ssh/config
+ls
+cd
+ls 
+ls -a
+cd .ssh
+pwd
+cd ../
+cd ./.config/.ssh
+ssh -vT git@github-ludzasbjc
+ssh -vT git@github.com
+exit
+docker system prune
+cd ~/Workspace/Projects
+git clone ssh://ludzasbjc@ludzasbjc.lv/home/ludzasbjc/lbjc-wordpress-theme-repository
+git clone ssh://ludzasbjc@ludzasbjc.lv/home/ludzasbjc/lbjc-wordpress-theme-repository
+git clone git@github.com:LudzasBJC/Homepage.git
+ssh-add -l
+ssh -T git@github.com
+nvim ~/.ssh/config
+clear
+ls
+git clone git@github-ludzasbjc:LudzasBJC/Homepage.git
+ls
+mv Homepage LudzasBJC-Homepage
+ls
+cd LudzasBJC-Homepage
+clear
+sudo apt update && sudo apt upgrade -y
+clear
+sudo apt install lftp
+sudo apt remove lftp
+sudo apt install filezilla
+clear
+cd
+cd Workspace
+cd Learning
+mkdir TensorFlow
+cd TensorFlow
+nvim .
+nvim .
+nvim .
+cd
+config
+nvim nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+workspace
+cd Learning/TensorFlow
+ls
+cd fem-ml-workshop
+nvim .
+config
+nvim nvim
+nvim nvim 
+workspace
+cd Learning/TensorFlow
+cd fem-ml-workshop
+nvim .
+ls
+cd exercises/project-1 && npm install && npm run watch
+npm run watch
+npm run watch
+ssh
+ssh-add -l
+ssh-keygen -t rsa -b 4096 -C "rihards.dev@pm.me"
+ssh-keygen -t rsa -b 4096 -C "truenas key"
+shutdown -r now
+ping 192.168.30.100 -c 4
+ls
+clear
+ls
+cd Workspace
+cd Projects
+nvim HomeLab
+nvim HomeLab
+nvim HomeLab
+nvim HomeLab
+nvim 
+nvim 
+nvim HomeLab
+nvim HomeLab
+ls
+nvim LudzasBJC-Homepage
+nvim LudzasBJC-Homepage
+nvim LudzasBJC-Homepage
+nvim 
+nvim 
+nvim .
+nvim .
+curl https://sh.rustup.rs -sSf | sh\
+
+reset
+cargo
+clear
+cargo install ast-grep --locked
+ast-grep
+clear
+config
+nvim nvim
+ls
+cd Workspace/Projects/LudzasBJC-Homepage
+clear
+nvim .
+nvim .
+nvim .
+nvim .
+ssh-add -l
+config
+nvim nvim
+nvim nivim
+nvim nvim
+nvim nvim 
+nvim nvim
+nvim nvim 
+nvim nvim 
+nvim nvim 
+nvim nvim
+nvim nvim
+nvim nvim
+cd nvim && nvim .
+pip install jupyterlab
+jupyter lab
+pip install kaggle
+pip --version
+rm -rf /tmp/autogen && mkdir -p /tmp/autogen && unzip -qo /tmp/autogen.zip -d /tmp/autogen &&\
+mv /tmp/autogen/autogen-*/* /tmp/autogen && rm -rf /tmp/autogen/autogen-* &&\
+sudo chmod a+rx /tmp/autogen/autogen.sh
+docker system prune
+docker sp
+docker ps
+ls
+cd Local\ Sites
+cd ludzas-bjc
+cd ..
+rm -rf ludzas-bjc
+ls
+shutdown now
+pip install pylatexenc
+clear
+nvim .
+nvim .
+nvim .
+sudo apt update && sudo apt ugprade -y
+sudo apt upgrade -y
+config
+cd nvim && nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+shutdown -r now
+snap install ghostty --classic\
+
+ghostty
+exit
+ls
+clear
+curl -v
+curl -version
+curl --version
+cd ../wezterm
+ls
+nvim wezterm.lua
+exit
+sudo snap remove ghostty
+snap list
+clear
+ls
+cd Local\ Sites
+ls
+nvim .
+ls
+config && cd nvim && nvim
+nvim .
+nvim .
+exit
+exit
+cd
+cd Workspace
+ls
+cd Projects
+cd ..
+cd Learning
+cd TensorFlow
+nvim .
+nvim .
+nvim .
+nvim --version
+nvim .
+npx tree-sitter generate
+pip install pylatexenc
+pip
+clear
+config
+nvim wezterm
+clear
+wezterm show-keys
+nvim wezterm
+clear
+curl --version
+clear
+nvim .
+nvim wezterm
+nvim wezterm
+nvim wezterm
+cd nvim && nvim .
+ls
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+cleasr
+ls
+ls
+cd ..
+cd ..
+cd Workspace
+cd Projects
+cd LudzasBJC-Homepage && nvim .
+nvim .
+nvim .
+ls
+git add .
+git commit -m ' adds jauniesiem page'
+git status
+clear
+ls
+cd ..
+cd HomeLab
+mkdir nginx-manager
+nvim .
+cd nginx-manager
+docker compose up -d
+docker ps
+docker compose down
+ls
+nvim .
+docker compose up
+exit
+nslookup local.blue-raven.co.uk
+nslookup local.blue-raven.co.uk
+nslookup dd.local.blue-raven.co.uk
+nslookup minio.service.blue-raven.co.uk
+shutdown -r now
+nvim .
+nvim .
+nvim .
+cd .config/nvim
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+clear
+sudo apt-get update
+sudo apt-get upgrade windsurf
+cd .config/nvim && nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+nvim .
+sudo apt update && sudo apt upgrade
+nslookup immich.service.blue-raven.co.uk
+nslookup random-name.service.blue-raven.co.uk
+nslookup pi.hole
+nslookup pi.hole
+nslookup random-name.service.blue-raven.co.uk
+nslookup random-name.local.blue-raven.co.uk
+nslookup truenas.home.blue-raven.co.uk
+ls
+cd Workspace
+cd Projects
+cd HomeLab
+cd Infrastructure
+cd Docker
+nvim .
+ls
+cd Documents
+cd british-citizenship
+nvim .
+nvim .
+exit
+ls
+clear
+sudo apt install ./ghostty_1.1.3-0.ppa2_amd64_22.04.deb\
+
+exit
+curl -f https://zed.dev/install.sh | sh\
+
+zed
+sudo apt update && sudo apt upgrade
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+sudo apt install libgtk-4-dev libadwaita-1-dev git blueprint-compiler gettext libxml2-utils\
+
+docker -v
+docker compose --version
+clear
+apt list --installed | grep ghostty
+sudo apt remove ghostty\
+sudo apt purge ghostty\
+sudo apt autoremove
+clear
+apt list --installed | grep ghostty
+ghostty
+apt list --installed | grep ghostty
+ls /etc/apt/sources.list.d/
+sudo apt update
+clear
+ls
+cd ..
+fc-list
+fc-list : JetBrains
+fc-list : JetBrainsMono
+fc-list : Jetbrainsmono
+fc-cache -f -v
+fc-list | grep "JetBrains Mono Nerd Font"
+ls
+cd
+ls
+clear
+ls
+mkdir -p ~/.fonts
+ls -a
+ls /home/rihards/.local/share/fonts/
+ls /home/rihards/.local/share/fonts/
+cp /home/rihards/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf .fonts
+ls
+fc-list
+fc-cache -f -v
+clear
+fc-list | grep "JetBrains Mono Nerd Font"
+fc-list | grep "JetBrains"
+exit
+clear
+clear
+ls
+cd Workspace
+cd Projects
+git clone git@github.com:unclekhalifa/data-whisperer.git
+ls
+zed data-whisperer
+exit
+sudo apt update && sudo apt upgrade -y
+shutdown -r now
+exit
+exit
+pip --version
+pip install jupiterlab
+pip install jupyterlab
+jupiter lab
+jupyter lab
+clera
+clear
+jupiter
+sudo apt update && sudo apt upgrade -y
+sudo apt dist-upgrade -y
+sudo apt install \\
+build-essential \\
+apt-transport-https \\
+ca-certificates \\
+curl \\
+software-properties-common \\
+apache2-utils \\
+make \\
+chromium-browser \\
+gnome-tweaks \\
+gnome-shell-extensions \\
+dconf-editor
+sudo apt autoremove -y\
+sudo apt autoclean -y
+sudo fwupdmgr get-devices\
+sudo fwupdmgr get-updates\
+sudo fwupdmgr update
+sudo apt autoclean -y
+sudo fwupdmgr get-updates
+sudo reboot now
+sudo apt install gnome-tweaks
+gnome-tweaks
+sudo gedit /etc/sysctl.conf
+sudo nvim /etc/sysctl.conf
+sudo sysctl -p
+curl -1sLf \\
+  'https://packages.konghq.com/public/insomnia/setup.deb.sh' \\
+  | sudo -E distro=ubuntu codename=focal bash
+sudo apt-get update\
+sudo apt-get install insomnia
+sudo add-apt-repository ppa:wireshark-dev/stable
+sudo apt update
+sudo apt install wireshark
+sudo usermod -a -G wireshark "$USER"
+groups "$USER"
+sudo apt install adwaita-qt
+QT_STYLE_OVERRIDE=Adwaita-Dark wireshark
+sudo reboot now
+sudo reboot now
+clear
+sudo apt update && sudo apt upgrade -y
+clear
+apt list
+apt list | grep widsurf
+dpkg -help
+dpkg --help
+dpkg -l windsurf
+sudo apt remove windsurf
+exit
+lsusb | grep -i bluetooth\
+lspci | grep -i bluetooth\
+dmesg | grep -i bluetooth
+sudo lsusb | grep -i bluetooth\
+lspci | grep -i bluetooth\
+dmesg | grep -i bluetooth
+lsusb | grep -i bluetooth
+lspci | grep -i bluetooth
+dmesg | grep -i bluetooth
+systemctl status bluetooth
+cat /lib/systemd/system/bluetooth.service
+sudo dmesg | grep -i bluetooth
+sudo dmesg | grep -i "hci\|bt\|firmware"
+lspci -v | grep -A 10 -B 2 "MT7921\|MediaTek"
+clear
+# See all network devices\
+lspci | grep -i network\
+lspci | grep -i wireless\
+lspci | grep -i ethernet\
+\
+# Check what's at the address we saw in dmesg (09:00.0)\
+lspci -s 09:00.0 -v
+lspci | grep -i network\
+lspci | grep -i wireless\
+lspci | grep -i ethernet\
+
+lspci -s 09:00.0 -v
+clear
+lsmod | grep mt7921\
+lsmod | grep -E "(bluetooth|btusb|btmtk)"
+# Check if bluetooth modules exist\
+find /lib/modules/$(uname -r) -name "*mt7921*" -o -name "*btmtk*" -o -name "*bluetooth*"
+sudo modprobe bluetooth\
+sudo modprobe btmtk\
+sudo modprobe btusb
+lsmod | grep -E "(bluetooth|btmtk|btusb)"
+ls -la /sys/class/bluetooth
+systemctl status bluetooth
+dmesg | grep -E "(bluetooth|btmtk|hci)" | tail -15
+sudo dmesg | grep -E "(bluetooth|btmtk|hci)" | tail -15
+sudo dmesg | grep -i bluetooth
+clear
+sudo dmesg | grep -i btmtk
+sudo dmesg | grep -i firmware | grep -E "(mt7921|mediatek)"
+find /lib/firmware -name "*mt7921*" 2>/dev/null\
+ls -la /lib/firmware/mediatek/ 2>/dev/null || echo "No mediatek firmware directory"
+sudo dmesg -C\
+sudo modprobe -r mt7921e\
+sleep 2\
+sudo modprobe mt7921e
+sudo dmesg
+ls -la /lib/firmware/mediatek/mt7925/
+sudo apt update\
+sudo apt install --reinstall linux-firmware
+ls -la /lib/firmware/mediatek/ | grep -i mt7921
+find /lib/firmware -name "*MT7921*" -o -name "*mt7921*" 2>/dev/null
+sudo lspci -s 09:00.0 -vvv | grep -E "(Device|Subsystem|Vendor)"
+sudo dmesg -C\
+sudo modprobe -r btmtk btusb\
+sudo modprobe btmtk\
+sudo modprobe btusb\
+
+sudo dmesg | grep -E "(firmware|btmtk|bluetooth)"
+reset now
+reset --now
+reboot now
+reboot
+sudo ln -sf /lib/firmware/mediatek/BT_RAM_CODE_MT7922_1_1_hdr.bin /lib/firmware/mediatek/BT_RAM_CODE_MT7921_1_1_hdr.bin
+ls -la /lib/firmware/mediatek/ | grep MT7921
+sudo modprobe -r bluetooth btusb btmtk btrtl btintel btbcm
+sudo modprobe -r mt7921e
+sleep 3
+sudo modprobe mt7921e\
+sudo modprobe bluetooth\
+sudo modprobe btmtk\
+sudo modprobe btusb
+ls -la /sys/class/bluetooth
+sudo dmesg | grep -E "(bluetooth|btmtk|hci)" | tail -10
+sudo systemctl start bluetooth\
+systemctl status bluetooth
+ls -la /sys/class/bluetooth
+hciconfig -a\
+bluetoothctl list
+sudo dmesg | grep -E "(bluetooth|btmtk|hci)" | tail -15
+sudo dmesg | grep -i firmware | tail -10
+bluetoothctl scan on
+sudo systemctl status bluetooth -l
+lsmod | grep btmtk\
+dmesg | grep btmtk
+sudo dmesg | grep btmtk
+sudo dmesg | grep -E "(usb.*bluetooth|btmtk.*usb)" -i
+lsusb | grep -i mediatek\
+lsusb -v | grep -A 15 -B 5 -i "mediatek"
+lsusb -v | grep -A 10 -B 5 -i "bluetooth"
+find /lib/modules/$(uname -r) -name "*mt7921*" -o -name "*mtk*" | grep -v "mt7921e"
+ls /lib/modules/$(uname -r)/kernel/drivers/bluetooth/
+sudo modprobe btmtksdio\
+sudo modprobe btmtkuart
+sudo dmesg | tail -10
+lspci -k | grep -A 3 -B 3 "09:00.0"
+sudo dmesg | grep -E "(failed|error)" | grep -i "09:00.0\|mt7921"
+find /lib/modules/$(uname -r) -name "*pcie*" | grep bluetooth\
+find /lib/modules/$(uname -r) -name "*mt76*" | grep -v mt7921e
+uname -r
+modinfo mt7921e | grep -i bluetooth
+modinfo mt7921_common | grep -E "(description|author|parm)"
+apt list --upgradable | grep linux-image
+sudo modprobe btintel_pcie
+sudo dmesg | tail -10
+sudo hciconfig hci0 up 2>/dev/null && echo "Bluetooth device found || echo "No Bluetooth device"\
+\
+\
+
+ip link show | grep -i bluetooth
+apt search linux-image | grep -E "(6\.13|6\.14|6\.15)"
+sudo modprobe btintel_pcie
+sudo dmesg | tail -10
+sudo modprobe btintel_pcie
+sudo dmesg | tail -10
+lspci -s 09:00.0 -n
+echo "14c3 0616" | sudo tee /sys/bus/pci/drivers/btintel_pcie/new_id 2>/dev/null || echo "Binding failed"
+sudo dmesg | tail -5
+sudo hciconfig hci0 up 2>/dev/null && echo "Bluetooth device found || echo "No Bluetooth device"\
+rfkill list bluetooth
+sudo hciconfig hci0 up 2>/dev/null && echo "Bluetooth device found || echo "No Bluetooth device"\
+rfkill list bluetooth
+hciconfig -a\
+bluetoothctl list
+rfkill list bluetooth\
+rfkill list all
+sudo dmesg | grep -i "btintel\|pcie.*bluetooth" | tail -10
+sudo systemctl restart bluetooth\
+systemctl status bluetooth
+bluetoothctl list
+lspci -k -s 09:00.0
+ls
+cd Workspace
+mkdir Jupiter-Workspace
+ls
+mv Jupiter-Workspace Jupiter_Workspace
+ls
+cd Jupiter_Workspace
+pip -version
+pip --version
+pip install --upgrade pip
+pip --version
+python -m ensurepip --upgrade
+python3 --version
+python3 -m ensurepip --upgrade
+sudo apt update && sudo apt upgrade
+clear
+sudo apt install python3-pip
+pip3 install --user pipenv
+pipenv install jupyterlab pandas numpy matplotlib seaborn\
+pipenv shell\
+jupyter lab
+ source /home/rihards/.config/local/share/virtualenvs/Jupiter_Workspace-DUUrKnk3/bin/activate
+nvim .
+jupyter lab
+sudo apt update && sudo apt upgrade
+clear
+python3
+clear
+reboot
+reboot
+shutdown
+shutdown -c
+shutdown -n
+shutdown --now
+man shutdown
+shutdown now
+ls
+cd Documents
+touch visa-letter.txt
+open visa-letter.txt
+exit
+ls
+cd Desktop/
+ls
+cd ../Documents
+nvim visa-letter.txt
+open visa-letter.txt
+shutdown now
+sudo apt update && sudo apt upgrade
+ls
+cd Documents/ISO/Pop_OS/
+nvim .
+ls
+ls
+reboot
+shutdown now
+ls
+cd .config
+cd wezterm
+nvim .
+exit
+sudo apt update
+sudo apt install snapd
+sudo snap install emote
+nslookup virtuvian.blue-raven.co.uk
+clear
+ls
+cd Workspace
+cd Projects
+mkdir virtuvian
+ls
+cd virtuvian
+clear
+man ssh
+ssh-keygen -help
+clear
+man ssh-gen
+man ssh-keygen
+ssh-keygen -t rsa -b 4096 -C "rihards.dev@pm.me (hetzner)" -f ~/.ssh/hetzner-cloud
+ls .ssh
+cat .ssh/hetzner-cloud.pub
+cat .ssh/hetzner-cloud.pub | pbcopy
+nslookup http://virtuvian.blue-raven.co.uk/
+nslookup virtuvian.blue-raven.co.uk/
+nslookup blue-raven.co.uk
+nslookup blue-raven.co.uk
+nslookup local.blue-raven.co.uk
+ssh 46.62.158.16
+ping 46.62.158.16
+ping 46.62.158.16 -c 4
+nslookup static.16.158.62.46.clients.your-server.de
+ping static.16.158.62.46.clients.your-server.de -c 4
+ssh static.16.158.62.46.clients.your-server.de
+ssh root@46.62.158.16
+ls
+ls .ssh
+nvim .ssh/config
+ssh virtuvian
+ls
+unzip bw-linux-2025.6.1.zip
+ls
+mv chmod +x bw
+chmod +x bw
+history
+clear
+exit
+cargo install bws
+rustup update stable\
+rustup default stable
+cargo clean
+cargo install bws
+cargo clean
+curl -LO https://github.com/bitwarden/sdk/releases/latest/download/bws-x86_64-unknown-linux-gnu.zip\
+
+ls
+mv bws-x86_64-unknown-linux-gnu.zip Desktop
+ls
+ls Desktop
+cd Desktop
+rm bws-x86_64-unknown-linux-gnu.zip
+clear
+ls
+cd ..
+cd Downloads
+curl -fsSL https://bws.sh/install -o bws-install.sh
+ls
+rm Bitwarden.Secrets.Sdk.1.0.0.nupkg
+rm untitled-app_2024-11-04_private-key.pem
+mv 23andme ../Documents/Archive
+ls
+ls truenas-backups
+mv truenas-backups/sdk-sm-dotnet-v1.0.0.tar.gz .
+ls
+ls
+cd bws
+bws
+clear
+ls -a
+ls -l
+sudo mv ~/Downloads/bws /usr/local/bin/bws\
+
+ls
+ls
+ls
+cd /usr/local/bin/bws
+ls
+bws --version
+sudo chmod +x /usr/local/bin/bws
+bws --version
+file /usr/local/bin/bws
+sudo rm -r /usr/local/bin/bws
+ls
+cd ~/Desktop
+ls
+cd ../Documents
+cd ../Downloads
+man unzip
+unzip bws-x86_64-unknown-linux-gnu-1.0.0.zip -d /usr/local/bin
+sudo unzip bws-x86_64-unknown-linux-gnu-1.0.0.zip -d /usr/local/bin
+ls
+unzip bws-x86_64-unknown-linux-gnu-1.0.0.zip
+ls
+rm bws
+claer
+clear
+bws
+bws -c
+clear
+bws
+bws --help
+bws help
+clear
+bws project list
+nvim ~/.config/zsh
+ls
+history
+ls /usr/local/bin/
+mv bw /usr/local/bin/
+sudo mv bw /usr/local/bin/
+bw
+nvim ~/.config/zsh
+exit
+bws projects
+bws project list
+bws project list
+bws project list
+ls
+sudo apt update && sudo apt upgrade -y
+ssh virtuvian
+docker ps
+docker ps -a
+clear
+less ~/.ssh/config
+less ~/.ssh/config
+export DOCKER_HOST=https://root@46.62.158.16
+docker ps
+export DOCKER_HOST=ssh://root@46.62.158.16
+docker ps
+docker ps -a
+unset DOCKER_HOST
+docker ps -a
+docker version
+docker container run --publish 80:80 nginx
+docker container run --publish 80:80 --detach nginx
+docker ps
+docker ps -a
+docker container top 7e8
+docker ps 
+docker ps -a
+docker container rm fa57a788d395 85fcc0c277d0
+docker ps -a
+docker rm -f 7e8b45c8f7b8
+docker ps
+cd Workspace/Learning
+cd Docker
+cd udemy-docker-mastery
+docker ps
+docker ps
+clear
+nvim .
+nvim .
+exit
+reboot
+ssh virtuvian
+grep . /sys/bus/usb/devices/*/power/wakeup
+sudo grep enabled /proc/acpi/wakeup
+clear
+docker run --name mongo -d mongo
+docker ps
+docker top mongo
+ps aux
+ps aux | grep mongo
+docker stop mongo
+docker ps
+docker top mongo
+ps aux | grep mongo
+ps aux
+ps aux | grep mongo
+docker start mongo
+docker ps
+docker top mongo
+ps aux | grep mongo
+docker stop mongo
+clear
+docker ps -a
+docker rm b82
+clear
+docker run --name nginx -p 80:80 -d nginx
+docker ps
+docker run --name apache -p 8080:80 -d httpd
+docker ps
+docker ps
+docker run --name mysql -p 3306:3306 -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql
+clear
+docker ps
+docker ps -a
+docker logs 773
+docker logs 773 | grep password
+docker logs database
+docker ps
+docker ps
+clear
+docker logs mysql
+docker ps 
+docker container stop 773 b18 857
+docker ps
+docker ps -a
+docker container rm 773c8003740a b18859a6cee7 857aa64d1c1d
+docker image ls
+clear
+docker container run -d --name nginx -p 80:8
+docker container run -d --name nginx -p 80:80
+docker container run -d --name nginx -p 80:80 nginx
+docker ps
+docker container run -d --name webserver 8080:80 httpd
+docker container run -d --name webserver -p 8080:80 httpd
+docker ps
+docker container run -d --name database -p 3306:3306 -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql
+docker ps
+docker container top database
+docker container inspect database
+docker container stats --help
+docker container stats
+docker ps
+docker container run -it --name proxy -p 8000:80 nginx bash
+docker container ls
+docker ps -a
+docker run -it --name ubuntu ubuntu
+docker container ls
+docker container ls -a
+docker container -ai ubuntu
+docker container start -ai ubuntu
+docker container exec -it database bash
+docker ps -a
+docker pull alpine
+docker image ls
+docker container run -it alpine bash
+docker container run -it alpine sh
+docker container exec -it alpine bash
+ls
+docker ps
+docker ps -a
+docker container run alpine
+docker ps -a
+docker container run ubuntu -d
+docker container run -d ununtu
+docker container run -d ubuntu
+docker ps
+docker ps -a
+docker container run -d --name ubuntu -it ubuntu bash
+docker ps
+docker container exec -it ubuntu
+docker container exec -it ubuntu bash
+docker ps
+docker ps -a
+docker start -ai ubuntu bash
+docker start -ai 125 bash
+docker start -ai wonderful_boyd bash
+docker start -ai wonderful_boyd\
+
+docker ps -a
+docker start -ai wonderful_boyd bash\
+
+docker start -ai wonderful_boyd /bin/bash\
+
+docker start -ai wonderful_boyd -d\
+
+docker container start -ai ubuntu\
+
+docker container start -ai 125\
+
+docker container start -ai alpine\
+
+docker ps -a
+docker container start -ai wonderful_boy\
+
+docker container start -ai wonderful_boyd\
+
+docker container start -ai xenodochial_johnson\
+
+docker container start -ai xenodochial_johnson\
+
+docker container exec -it 0e2 bash
+docker start -ai 0e2bf252a850
+docker container start -ai 060067711f6c
+docker ps -a
+docker ps -a
+docker container start -ai 060067711f6cclear
+clear
+docker container start -ai 060067711f6c
+docker ps
+docker ps -a
+docker container start -ia 0f5e2558bf79
+docker start amazing_khayyam\
+docker exec -it amazing_khayyam /bin/sh
+docker exec -it amazing_khayyam /bin/sh
+clear
+lsblk
+sudo umount /dev/sdb
+ls
+cd Downloads
+cd Downloads | grep iso
+ls | grep iso
+cd ../Documents
+cd ISO
+cd Pop
+cd Pop_OS
+sudo dd if=pop-os_22.04_amd64_nvidia_54.iso of=/dev/sdb bs=4m status=progress oflag=sync
+sudo dd if=pop-os_22.04_amd64_nvidia_54.iso of=/dev/sdb bs=4M status=progress oflag=sync
+sudo eject /dev/sdb
+lsblk
+sudo umount /dev/sdb1
+sudo umount /dev/sdb
+ls
+cd Documents/ISO/Pop_OS
+clear
+clear
+ls
+ls
+sudo dd if=pop-os_22.04_amd64_nvidia_54.iso of=/dev/sdb bs=4M status=progress && sync\
+
+exit
+exit
+go
+clear
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz\
+
+dow
+ls
+cd Downloads
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz\
+
+rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz\
+
+rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz\
+
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz\
+
+export PATH=$PATH:/usr/local/go/bin
+go version
+go install github.com/minio/mc@latest
+mc alias set vertuvian https://hel1.your-objectstorage.com MXTLMSCXLYWJICBWAHXX o4EAe2UpOyu8SkNr6JGr4Lvv4Zef58rgbFitbcEA --api "s3v4" --path "off"
+mc
+ls $HOME/go/bin/mc
+export PATH="$PATH:$HOME/go/bin"
+exec zsh
+mc
+exit
+clear
+mc alias set vertuvian https://hel1.your-objectstorage.com MXTLMSCXLYWJICBWAHXX o4EAe2UpOyu8SkNr6JGr4Lvv4Zef58rgbFitbcEA --api "s3v4" --path "off"
+mc
+nvim ./.config/zsh
+exec zsh
+mc --version
+mc alias set vertuvian https://hel1.your-objectstorage.com MXTLMSCXLYWJICBWAHXX o4EAe2UpOyu8SkNr6JGr4Lvv4Zef58rgbFitbcEA --api "s3v4" --path "off"
+mc help
+mc --help
+mc ls
+clear
+mc ls play
+mc alias vertuvian
+mc alias list
+mc ls vertuvian
+mc mb vertuvian/vertuvian
+mc ls vertuvian
+mc tree
+clear
+mc tree vertuvian
+mc ls --recursive --versions vertuvian
+mc ls --recursive vertuvian
+mc rb --force vertivian/personal
+mc rb --force vertivian/vertuvian/personal
+mc rb vertuvian vertivian/personal
+mc rb vertivian/personal
+mc ls vertuvian/personal
+mc ls vertuvian/vertuvian/personal
+mc alias list
+mc ls vertuvian/vertuvian/personal
+mc rb vertuvian/vertuvian/personal
+mc rb vertuvian/vertuvian/personal --force
+clear
+shutdown now
+sudo apt update && sudo apt upgrade -y
+clear
+sudo apt update && sudo apt upgrade -y
+shutdown -r
+shutdown -c
+shutdown -r now
+cd ~/.config/zsh
+zed .
+uv --version
+curl -LsSf https://astral.sh/uv/install.sh | sh
+clear
+git status
+git add .
+git commit -m 'Initial commit: basic python and git setup, readme.md'
+git remote add origin https://github.com/RihardsJ/gmail-mcp.git
+git branch -M main
+git push -u origin main
+git remote add origin git@github.com:RihardsJ/gmail-mcp.git
+git remote remove
+git remote --help
+git remote remove git remote add origin https://github.com/RihardsJ/gmail-mcp.git
+git remote remove git remote add origin https://github.com/RihardsJ/gmail-mcp.git
+git remote add git remote add origin git@github.com:RihardsJ/gmail-mcp.git
+ git remote add origin git@github.com:RihardsJ/gmail-mcp.git
+git remote 
+git remote remove origin
+git remote add origin git@github.com:RihardsJ/gmail-mcp.git
+git push -u origin main
+clear
+mkdir -p .github/ISSUE_TEMPLATE
+touch .github/ISSUE_TEMPLATE/feature.yml
+sudo apt-get update
+sudo apt upgrade
+clear
+uv --version
+nvim ~/.config/zsh
+exit
+exit
+exit
+ls
+cd 
+cd .config
+ls | grep gcloud
+clear
+ls /etc/apt/sources.list.d/google-cloud-sdk.list
+sudo apt-get update && sudo apt-get install google-cloud-cli
+clear
+cd 
+exit
+docker compose -f docker-compose.alpine.yml up -d
+docker compose -f docker-compose.alpine.yml up -d
+docker compose -f docker-compose.alpine.yml up -d
+clear
+docker ps
+docker compose -f docker-compose.alpine.yml down
+docker compose -f docker-compose.alpine.yml up -d
+docker ps
+docker ps
+docker ps
+docker compose -f docker-compose.alpine.yml up -d
+docker ps
+docker ps
+docker ps
+docker ps
+# Stop the container\
+docker-compose -f docker-compose.alpine.yml down\
+\
+# Remove the old image to force a complete rebuild\
+docker rmi gmail-mcp-server:alpine\
+\
+# Rebuild without cache\
+docker-compose -f docker-compose.alpine.yml build --no-cache\
+\
+# Start the container\
+docker-compose -f docker-compose.alpine.yml up -d\
+\
+# Check logs\
+docker logs -f gmail-mcp-server-alpine\
+
+docker ps -a
+clear
+docker compose build
+docker compose up
+docker compose build
+docker compose up
+docker compose down
+docker compose --profile debug up -d
+docker compose down
+git add *
+git commit -m 'change server mcp server to use streamable http transport, adds docker setup'
+git push origin streamable-http-server
+git add .
+git commit -m 'updates gitignore'
+git push origin streamable-http-server
+npx @modelcontextprotocol/inspector
+uv uvicorn main:app
+history | grep source
+source .venv/bin/activate
+uv uvicorn -v
+history
+clear
+uv run python main.py
+npx @modelcontextprotocol/inspector
+uv run mcp dev main.py
+git stash -m 'generated 0Auth implementation example'
+git checkout main
+git checkout -b streamable-http-server
+git stash --append
+git stash pop
+git stash -um 'generated 0Auth implementation example'
+git stash -u -m 'generated 0Auth implementation example'
+git stash -m 'generated 0Auth implementation example' -u
+git stash -u
+git stash -um 'generated auth implementation example'
+clear
+uv run mcp main.py
+history
+source .venv/bin/activate
+uv run python main.py
+uv run python main.py
+uv run python main.py
+uv run python main.py
+uv run python main.py
+uv run python main.py
+uv run python main.py
+uv run python main.py
+uv run python main.py
+uv run python main.py
+sudo apt update && sudo apt upgrade
+clear
+exit
+make inspector
+make run
+make run
+make run
+make run
+make dev
+make dev
+make dev
+make dev
+make dev
+make dev
+git commit -am 'adds basic authentication setup'
+git push origin streamable-http-server
+git checkout main
+git pull origin main
+clear
+git pull
+git checkout -b oauth
+make dev
+make dev
+git add .
+git commit -m 'adds basic google oauth'
+make inspector
+make dev
+git status
+git add .
+git commit -m 'adds google flow'
+git push origin oauth
+make inspector
+make dev
+make dev
+make dev
+make dev
+make dev
+make dev
+make dev
+source .venv/bin/activate
+uv add itsdangerous
+make dev
+git add .
+git commit -m 'adds session middleware and google oauth authorisation and callback routes'
+git push oauth
+git push origin oauth
+make dev
+git add .
+git commit -m 'adds auth discovery'
+git push origin oauth
+git push origin oauth
+git branch
+git checkout main
+git checkout -b stdio-transport-implementation
+clear
+make inspector
+python3 -m venv venv
+source venv/bin/activate
+make activete
+uv sync
+git add -All
+git add -A 
+git commit -m 'revert to stdio transport'
+clear
+git push origin stdio-transport-implementation
+pwd
+make credentials
+make credentials
+echo pwd
+pwd
+make credentails
+make activate
+make
+make settings
+make settings
+clear
+git commit -am 'adds granular logging settings, adds make settings to Makefile'
+git push origin stdio-transport-implementation
+git add -A && git commit -m 'adds gmail oauth, adds get_unread_message tool'
+git push origin stdio-transport-implementation
+uv run python src/gmail_mcp_server/tools/get_unread_emails.py
+uv run python .src/gmail_mcp_server/tools/get_unread_emails.py
+git add .
+git commit -m 'adds get_unread_emails'
+git push origin stdio-transport-implementation
+make inspector
+pop-upgrade release upgrade -f
+reboot now
+sudo reboot now
+git checkout main
+git pull origin main
+git fetch -p
+clear
